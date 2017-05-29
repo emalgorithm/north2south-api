@@ -1,13 +1,7 @@
+# Docker Compose common services
 version: "2"
 services:
   web:
-    build: .
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    ports:
-      - "9000:9000"
+    image: emalgortihm/north2south:latest
   mongo:
     image: mongo
-    ports:
-      - "27017:27017"
