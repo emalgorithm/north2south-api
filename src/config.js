@@ -37,7 +37,7 @@ const config = {
   },
   test: {
     mongo: {
-      uri: 'mongodb://localhost/north-2-south-test',
+      uri: 'mongodb://mongo:27017/north-2-south',
       options: {
         debug: false
       }
@@ -45,7 +45,7 @@ const config = {
   },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/north-2-south-dev',
+      uri: 'mongodb://mongo:27017/north-2-south',
       options: {
         debug: true
       }
