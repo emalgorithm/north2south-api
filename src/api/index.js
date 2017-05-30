@@ -30,6 +30,6 @@ const router = new Router()
  */
 router.use('/users', user)
 router.use('/auth', auth)
-router.use('/checkpoint', checkpoint)
+router.use('/checkpoints', checkpoint)
 
 export default router

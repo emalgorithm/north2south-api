@@ -1,18 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
 const checkpointSchema = new Schema({
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  heartbeats: {
-    type: String
-  },
-  calories: {
-    type: String
-  },
-  GPSPositions: {
+  heartRate: {
     type: String
   }
 }, {
@@ -24,10 +13,7 @@ checkpointSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      user: this.user.view(full),
-      heartbeats: this.heartbeats,
-      calories: this.calories,
-      GPSPositions: this.GPSPositions,
+      heartRate: this.heartRate,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

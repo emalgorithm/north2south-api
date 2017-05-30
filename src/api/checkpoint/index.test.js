@@ -1,37 +1,22 @@
 import request from 'supertest-as-promised'
-import { signSync } from '../../services/jwt'
 import express from '../../services/express'
-import { User } from '../user'
 import routes, { Checkpoint } from '.'
 
 const app = () => express(routes)
 
-let userSession, anotherSession, checkpoint
+let checkpoint
 
 beforeEach(async () => {
-  const user = await User.create({ email: 'a@a.com', password: '123456' })
-  const anotherUser = await User.create({ email: 'b@b.com', password: '123456' })
-  userSession = signSync(user.id)
-  anotherSession = signSync(anotherUser.id)
-  checkpoint = await Checkpoint.create({ user })
+  checkpoint = await Checkpoint.create({})
 })
 
-test('POST /checkpoints 201 (user)', async () => {
+test('POST /checkpoints 201', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ access_token: userSession, heartbeats: 'test', calories: 'test', GPSPositions: 'test' })
+    .send({ heartRate: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.heartbeats).toEqual('test')
-  expect(body.calories).toEqual('test')
-  expect(body.GPSPositions).toEqual('test')
-  expect(typeof body.user).toEqual('object')
-})
-
-test('POST /checkpoints 401', async () => {
-  const { status } = await request(app())
-    .post('/')
-  expect(status).toBe(401)
+  expect(body.heartRate).toEqual('test')
 })
 
 test('GET /checkpoints 200', async () => {
@@ -55,62 +40,31 @@ test('GET /checkpoints/:id 404', async () => {
   expect(status).toBe(404)
 })
 
-test('PUT /checkpoints/:id 200 (user)', async () => {
+test('PUT /checkpoints/:id 200', async () => {
   const { status, body } = await request(app())
     .put(`/${checkpoint.id}`)
-    .send({ access_token: userSession, heartbeats: 'test', calories: 'test', GPSPositions: 'test' })
+    .send({ heartRate: 'test' })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(checkpoint.id)
-  expect(body.heartbeats).toEqual('test')
-  expect(body.calories).toEqual('test')
-  expect(body.GPSPositions).toEqual('test')
-  expect(typeof body.user).toEqual('object')
+  expect(body.heartRate).toEqual('test')
 })
 
-test('PUT /checkpoints/:id 401 (user) - another user', async () => {
-  const { status } = await request(app())
-    .put(`/${checkpoint.id}`)
-    .send({ access_token: anotherSession, heartbeats: 'test', calories: 'test', GPSPositions: 'test' })
-  expect(status).toBe(401)
-})
-
-test('PUT /checkpoints/:id 401', async () => {
-  const { status } = await request(app())
-    .put(`/${checkpoint.id}`)
-  expect(status).toBe(401)
-})
-
-test('PUT /checkpoints/:id 404 (user)', async () => {
+test('PUT /checkpoints/:id 404', async () => {
   const { status } = await request(app())
     .put('/123456789098765432123456')
-    .send({ access_token: anotherSession, heartbeats: 'test', calories: 'test', GPSPositions: 'test' })
+    .send({ heartRate: 'test' })
   expect(status).toBe(404)
 })
 
-test('DELETE /checkpoints/:id 204 (user)', async () => {
+test('DELETE /checkpoints/:id 204', async () => {
   const { status } = await request(app())
     .delete(`/${checkpoint.id}`)
-    .query({ access_token: userSession })
   expect(status).toBe(204)
 })
 
-test('DELETE /checkpoints/:id 401 (user) - another user', async () => {
-  const { status } = await request(app())
-    .delete(`/${checkpoint.id}`)
-    .send({ access_token: anotherSession })
-  expect(status).toBe(401)
-})
-
-test('DELETE /checkpoints/:id 401', async () => {
-  const { status } = await request(app())
-    .delete(`/${checkpoint.id}`)
-  expect(status).toBe(401)
-})
-
-test('DELETE /checkpoints/:id 404 (user)', async () => {
+test('DELETE /checkpoints/:id 404', async () => {
   const { status } = await request(app())
     .delete('/123456789098765432123456')
-    .query({ access_token: anotherSession })
   expect(status).toBe(404)
 })
