@@ -10,6 +10,7 @@
     "test:integration": "npm test \"src/**/index.test.js\"",
     "coverage": "npm test -- --coverage",
     "postcoverage": "opn coverage/lcov-report/index.html",
+    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "dev": "nodemon -i \"*.test.js\" .",
     "prod": "cross-env NODE_ENV=production nodemon -i \"*.test.js\" -r dotenv-safe/config .",
     "lint": "eslint src",
@@ -25,6 +26,7 @@
     "apidoc-markdown": "^0.2.0",
     "babel-eslint": "^7.0.0",
     "babel-jest": "^18.0.0",
+    "coveralls": "^2.13.1",
     "cross-env": "^3.1.3",
     "dotenv-safe": "^4.0.3",
     "eslint": "^3.3.1",
@@ -66,5 +68,6 @@
     "querymen": "^2.0.0",
     "rand-token": "^0.3.0",
     "request": "^2.74.0",
-    "request-promise": "^4.1.1"  }
+    "request-promise": "^4.1.1"
+  }
 }
