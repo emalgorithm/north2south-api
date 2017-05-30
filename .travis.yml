@@ -28,7 +28,7 @@ env:
 after_success:
   - npm run coveralls
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker build -t north2south/web .;
+    docker build -t registry.heroku.com/north2south/web .;
     docker login --username=_ --password="$HEROKU_TOKEN" registry.heroku.com;
     docker push registry.heroku.com/north2south/web;
     fi
