@@ -1,0 +1,7 @@
+# Development image for north2south
+
+FROM north2south-prod:latest
+
+# Install development dependencies
+RUN npm install --only=development
+CMD ["run", "dev"]
