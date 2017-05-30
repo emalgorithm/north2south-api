@@ -4,4 +4,9 @@ FROM emalgorithm/northtosouth:latest
 
 # Install development dependencies
 RUN npm install --only=development
+
+# node-mongo-seeds needs to be installed globally so adding it to package.json is not enough
+# To actually seed the DB it is enough to run "$ seed" into the container
+RUN npm install -g node-mongo-seeds
+
 CMD ["run", "dev"]
