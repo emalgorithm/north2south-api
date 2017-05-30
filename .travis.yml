@@ -28,6 +28,6 @@ env:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker build -t north2south/web .;
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
+    docker login --username=_ --password="$HEROKU_TOKEN" registry.heroku.com;
     docker push north2south/web;
     fi
