@@ -24,7 +24,7 @@ const { heartbeats, calories, GPSPositions } = schema.tree
  * @apiError 401 user access only.
  */
 router.post('/',
-  token({ required: true }),
+  // token({ required: true }), disabled for testing purposes
   body({ heartbeats, calories, GPSPositions }),
   create)
 
