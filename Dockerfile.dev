@@ -1,6 +1,6 @@
 # Development image for north2south
 
-FROM north2south-prod:latest
+FROM emalgorithm/northtosouth:latest
 
 # Install development dependencies
 RUN npm install --only=development
