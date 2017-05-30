@@ -8,6 +8,9 @@ services:
       - "9000:9000"
     links:
       - mongo
+    volumes:
+      - ./:/home/node/app
+      - /home/node/app/node_modules
   mongo:
     image: mongo
     ports:
