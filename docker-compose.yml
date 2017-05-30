@@ -1,7 +1,15 @@
-# Docker Compose common services
-version: "2"
+version: "3"
 services:
   web:
-    image: emalgortihm/north2south:latest
+    build: .
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    ports:
+      - "80:8080"
+    links:
+      - mongo
   mongo:
     image: mongo
+    ports:
+      - "27017:27017"

@@ -1,14 +1,13 @@
+# Production environment image for north2south
+
 FROM node:6.10.3
 
-RUN useradd --create-home --user-group app
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
 
-ENV HOME=/home/app
+COPY package.json .
+RUN npm install --production
+COPY . .
 
-RUN mkdir $HOME/north2south
-COPY package.json $HOME/north2south
-RUN chown -R app:app $HOME/*
-
-USER app
-WORKDIR $HOME/north2south
-
-RUN npm install
+ENTRYPOINT ["npm"]
+CMD ["start"]
