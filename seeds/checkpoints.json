@@ -32,14 +32,6 @@
     "updatedAt": "2017-05-31T18:10:23.692Z"
   },
   {
-    "id": "592f06eb362d3200591d51dc",
-    "heartRate": 72,
-    "calories": 1022,
-    "distance": 1746,
-    "createdA": "2017-05-31T18:09:47.270Z",
-    "updatedAt": "2017-05-31T18:09:47.270Z"
-  },
-  {
     "id": "592f06d8362d3200591d51db",
     "heartRate": 77,
     "calories": 910,
@@ -58,7 +50,7 @@
   {
     "id": "592f06c2362d3200591d51d9",
     "heartRate": 66,
-    "calories": 820,""
+    "calories": 820,
     "distance": 1209,
     "createdAt": "2017-05-31T18:09:06.012Z",
     "updatedAt": "2017-05-31T18:09:06.012Z"
