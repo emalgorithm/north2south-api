@@ -3,7 +3,7 @@ import { Checkpoint } from '.'
 let checkpoint
 
 beforeEach(async () => {
-  checkpoint = await Checkpoint.create({ heartRate: 'test' })
+  checkpoint = await Checkpoint.create({ heartRate: 67 })
 })
 
 describe('view', () => {

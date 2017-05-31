@@ -13,10 +13,10 @@ beforeEach(async () => {
 test('POST /checkpoints 201', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ heartRate: 'test' })
+    .send({ heartRate: 67 })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.heartRate).toEqual('test')
+  expect(body.heartRate).toEqual(67)
 })
 
 test('GET /checkpoints 200', async () => {
@@ -43,11 +43,11 @@ test('GET /checkpoints/:id 404', async () => {
 test('PUT /checkpoints/:id 200', async () => {
   const { status, body } = await request(app())
     .put(`/${checkpoint.id}`)
-    .send({ heartRate: 'test' })
+    .send({ heartRate: 67 })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(checkpoint.id)
-  expect(body.heartRate).toEqual('test')
+  expect(body.heartRate).toEqual(67)
 })
 
 test('PUT /checkpoints/:id 404', async () => {
