@@ -118,6 +118,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "aurelia-http-client",
           "text",
           {
             "name": "aurelia-templating-resources",
@@ -134,6 +135,11 @@
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
             "env": "dev"
+          },
+          {
+            "name": "dygraphs",
+            "path": "../node_modules/dygraphs/",
+            "main": "dygraphs"
           }
         ]
       }
