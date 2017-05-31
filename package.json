@@ -20,7 +20,10 @@
   "jest": {
     "testEnvironment": "node",
     "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
-    "testPathIgnorePatterns": ["/node_modules", "/aurelia-app/"]
+    "testPathIgnorePatterns": [
+      "/node_modules",
+      "/aurelia-app/"
+    ]
   },
   "devDependencies": {
     "apidoc": "^0.16.1",
@@ -69,6 +72,7 @@
     "querymen": "^2.0.0",
     "rand-token": "^0.3.0",
     "request": "^2.74.0",
-    "request-promise": "^4.1.1"
+    "request-promise": "^4.1.1",
+    "socket.io": "^2.0.1"
   }
 }

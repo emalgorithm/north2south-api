@@ -1,12 +1,5 @@
 <template>
-  <h1>"Hello"</h1>
-
-  <form submit.trigger="addCheckpoint()">
-    <input type="text" value.bind="heartRate">
-    <input type="text" value.bind="calories">
-    <input type="text" value.bind="distance">
-    <button type="submit">Add Checkpoint</button>
-  </form>
+  <h1>${heading}</h1>
 
   <ul>
     <li repeat.for="checkpoint of checkpoints">
@@ -15,7 +8,6 @@
         ${checkpoint.calories}
         ${checkpoint.distance}
       </span>
-      <button click.trigger="removeCheckpoint(checkpoint)">Remove</button>
     </li>
   </ul>
 </template>
