@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import cors from 'cors'
 import compression from 'compression'
@@ -22,6 +23,8 @@ export default (routes) => {
   app.use(routes)
   app.use(queryErrorHandler())
   app.use(bodyErrorHandler())
+
+  app.use(express.static(path.join(__dirname, '../../../aurelia-app')))
 
   return app
 }

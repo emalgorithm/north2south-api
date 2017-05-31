@@ -9,4 +9,6 @@ RUN npm install --only=development
 # To actually seed the DB it is enough to run "$ seed" into the container
 RUN npm install -g node-mongo-seeds
 
+RUN npm install -g aurelia-cli
+
 CMD ["run", "dev"]
