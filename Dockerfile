@@ -8,12 +8,12 @@ WORKDIR /home/node/app
 COPY package.json .
 RUN npm install --production
 
+# Install Aurelia production dependencies
+# Make sure the app is built with 'au build --env prod' before building image
 COPY aurelia-app/package.json aurelia-app/
 RUN cd aurelia-app && npm install --production && cd ..
 
 COPY . .
-
-RUN npm run build:au -- --env prod
 
 # Note that the image won't run with production keys
 # Use docker-compose which uses env-file when running locally

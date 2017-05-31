@@ -18,6 +18,7 @@ addons:
 
 script:
   - npm test -- -i --coverage
+  - npm run build:au -- --env prod
 
 env:
   global:
