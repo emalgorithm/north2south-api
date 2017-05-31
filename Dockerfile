@@ -10,4 +10,4 @@ RUN npm install --production
 COPY . .
 
 ENTRYPOINT ["npm"]
-CMD ["start"]
+CMD ["run", "web"]
