@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import { onSave } from './socket'
 
 const checkpointSchema = new Schema({
   heartRate: Number,
@@ -26,6 +27,10 @@ checkpointSchema.methods = {
     } : view
   }
 }
+
+checkpointSchema.post('save', function (doc) {
+  onSave(doc);
+});
 
 const model = mongoose.model('Checkpoint', checkpointSchema)
 
