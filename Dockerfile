@@ -9,5 +9,4 @@ COPY package.json .
 RUN npm install --production
 COPY . .
 
-ENTRYPOINT ["npm"]
-CMD ["start"]
+CMD ["npm", "run", "web"]
