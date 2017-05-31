@@ -11,4 +11,4 @@ RUN npm install -g node-mongo-seeds
 
 RUN npm install -g aurelia-cli
 
-CMD ["run", "dev"]
+ENTRYPOINT ["./dev_entrypoint.sh"]
