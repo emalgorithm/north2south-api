@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd aurelia-app
-au install
+npm install
 au run --watch &
 
 cd ..
