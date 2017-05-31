@@ -17,6 +17,7 @@ addons:
     - g++-4.8
 
 install:
+  - npm install
   - cd aurelia-app && npm install && cd ..
 
 script:
