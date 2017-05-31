@@ -15,6 +15,7 @@
 //   }
 // }
 import {HttpClient} from 'aurelia-http-client';
+import Dygraph from '../node_modules/dygraphs/dist/dygraph';
 
 export class App {
 
@@ -27,7 +28,18 @@ export class App {
 
     client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
-      this.checkpoints = checkpoints;
+      console.log(checkpoints)
+      chartHeartRate(checkpoints)
     }.bind(this));
   }
+}
+
+var chartHeartRate = function (checkpoints) {
+  var data = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
+
+  new Dygraph(document.getElementById("chart"),
+    data,
+    {
+      labels: [ "Time", "HeartRate"]
+    });
 }

@@ -1,13 +1,4 @@
 <template>
   <h1>${heading}</h1>
-
-  <ul>
-    <li repeat.for="checkpoint of checkpoints">
-      <span>
-        ${checkpoint.heartRate}
-        ${checkpoint.calories}
-        ${checkpoint.distance}
-      </span>
-    </li>
-  </ul>
+  <div id="chart"></div>
 </template>
