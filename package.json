@@ -19,7 +19,8 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
+    "testPathIgnorePatterns": ["/node_modules", "/aurelia-app/"]
   },
   "devDependencies": {
     "apidoc": "^0.16.1",
