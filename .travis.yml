@@ -16,6 +16,9 @@ addons:
     - gcc-4.8
     - g++-4.8
 
+install:
+  - cd aurelia-app && npm install
+
 script:
   - npm test -- -i --coverage
   - npm run build:au -- --env prod
