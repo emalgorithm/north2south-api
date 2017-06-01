@@ -11,6 +11,7 @@ services:
     volumes:
       - ./:/home/node/app
       - /home/node/app/node_modules
+      - /home/node/app/aurelia-app/node_modules
   mongo:
     image: mongo
     ports:

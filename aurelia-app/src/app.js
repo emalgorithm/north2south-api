@@ -1,7 +1,7 @@
 import {HttpClient} from 'aurelia-http-client';
 import Dygraph from '../node_modules/dygraphs/dist/dygraph';
 import io from '../node_modules/socket.io-client/dist/socket.io';
-var socket = io.connect('http://localhost:9000');
+var socket = io.connect();
 
 
 export class App {
@@ -11,7 +11,7 @@ export class App {
 
     let client = new HttpClient()
       .configure(x => {
-        x.withBaseUrl('http://localhost:9000');
+        x.withBaseUrl('/');
       });
 
     client.get('checkpoints').then(function (response) {

@@ -2,8 +2,11 @@
 
 FROM emalgorithm/northtosouth:latest
 
+ENV NODE_ENV=development
+
 # Install development dependencies
 RUN npm install --only=development
+RUN cd aurelia-app && npm install --only=development && cd ..
 
 # node-mongo-seeds needs to be installed globally so adding it to package.json is not enough
 # To actually seed the DB it is enough to run "$ seed" into the container
