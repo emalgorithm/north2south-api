@@ -15,13 +15,15 @@ export class App {
       });
 
     client.get('checkpoints').then(function (response) {
-      this.checkpoints = JSON.parse(response.response);
-      this.heartRateChart = chartHeartRate(this.checkpoints)
+      var checkpoints = JSON.parse(response.response);
+      this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
+      console.log(this.dateAndHeartRates)
+      this.heartRateChart = chartHeartRate(this.dateAndHeartRates)
       this.calories = 0
       this.distance = 0
-      if (this.checkpoints.length > 0) {
-        this.calories = this.checkpoints.last.calories || 0
-        this.distance = this.checkpoints.last.distance || 0
+      if (checkpoints.length > 0) {
+        this.calories = checkpoints[checkpoints.length - 1].calories || 0
+        this.distance = checkpoints[checkpoints.length - 1].distance || 0
       }
 
     }.bind(this));
@@ -31,16 +33,20 @@ export class App {
     socket.on('checkpoint:save',
       function (checkpoint) {
         console.log("Getting socket updates:  " + checkpoint)
-        this.checkpoints.push(checkpoint)
-        updateChart(this.heartRateChart, this.checkpoints)
+
+        // Update chart real time
+        this.dateAndHeartRates.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
+        this.heartRateChart.updateOptions( { 'file': this.dateAndHeartRates } );
+
+        //Update other fields
         this.calories = checkpoint.calories
         this.distance = checkpoint.distance
+
       }.bind( this ) );
   }
 }
 
-var chartHeartRate = function (checkpoints) {
-  var data = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
+var chartHeartRate = function (data) {
   return chart("heartRate", data)
 }
 
@@ -53,9 +59,4 @@ var chart = function (chartName, data) {
       labels: ["Time", chartName],
       //title: chartName,
     });
-}
-
-var updateChart = function (chart, checkpoints) {
-  var data = checkpoints.map(c => [new Date(c.createdAt), c[chart]])
-  chart.updateOptions( { 'file': data } );
 }
