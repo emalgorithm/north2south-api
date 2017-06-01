@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node .",
-    "build:au": "cd aurelia-app && au build",
+    "build:au": "cd aurelia-app && npm install && au build",
     "test": "jest",
     "test:unit": "npm test \"src/**/!(index).test.js\"",
     "test:integration": "npm test \"src/**/index.test.js\"",
