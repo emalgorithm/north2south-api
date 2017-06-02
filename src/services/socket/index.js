@@ -1,12 +1,9 @@
-// When the user connects.. perform this
-function onConnect(socket) {
-  require('../../api/checkpoint/socket').register(socket)
-}
+import checkpointSocket from '../../api/checkpoint/socket'
 
-export default (socketio) => {
+exports.setUpSocket = (socketio) => {
+  // When the user connects.. perform this
   socketio.on('connection', function (socket) {
     console.log("Someone connected to the socket!")
-    // Call onConnect
-    onConnect(socket)
+    checkpointSocket.register(socket)
   })
 }
