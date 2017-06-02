@@ -7,7 +7,7 @@ var socket = io.connect();
 export class App {
 
   constructor() {
-    this.heading = "Checkpoints";
+    this.heading = "NorthToSouth";
 
     let client = new HttpClient()
       .configure(x => {
@@ -47,6 +47,8 @@ export class App {
 }
 
 var chartHeartRate = function (data) {
+  chart("calories", data)
+  chart("distance", data)
   return chart("heartRate", data)
 }
 
