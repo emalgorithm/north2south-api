@@ -28,9 +28,25 @@
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
       <div class="col-md-5">
+        <div id="graph" style="width:600px; height:300px;"></div>
         <div id="heartRate"></div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      g = new Dygraph(
+        document.getElementById("graph"),
+        "Date,Temperature\n" +
+        "2008-05-07,75\n" +
+        "2008-05-08,70\n" +
+        "2008-05-09,80\n", {
+          rollPeriod: 7,
+          errorBars: true,
+          visibility: [true]
+        }
+      );
+    </script>
+
 
     <hr class="featurette-divider">
 
