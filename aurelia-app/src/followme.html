@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../assets/css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Social Share Kit CSS -->
+    <link rel="stylesheet" href="../assets/css/social-share-kit.css" type="text/css">
+    <!-- Dynamic graphs -->
+    <link rel="stylesheet" href="../assets/css/dygraph.css">
+    <script type="text/javascript" src="../assets/js/dygraph.js"></script>
+    <script type="text/javascript" src="../assets/data.js"></script>
+
+    <style>
+      body {
+        padding-top: 70px;
+      }
+      #intro {
+        height: 70vh;
+      }
+      .component {
+        padding: 10vh;
+      }
+      #journey_desc {
+        padding-right: 10vw;
+        position: relative;
+        display: inline-block;
+        height: 100%;
+      }
+      #share_buttons {
+        position: absolute;
+        bottom: 0;
+      }
+      #journey_img {
+        padding-left: 10vh;
+      }
+    </style>
+  </head>
+  <body>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top" id="main_nav">
+    <div class="container">
+      <a href="#" class="navbar-brand">Home</a>
+    </div>
+  </nav>
+
+  <div id="intro">
+    <div class="col-md-6" id="journey_img">
+      <img src="../assets/images/south_pole.png" height="440" width="440" >
+    </div>
+    <div class="col-md-6" id="journey_desc">
+      <h3>Support James Redden on his expedition on the South pole</h3>
+      <a href="">DONATE<img src="../assets/images/donate.png" height="20" width="20"></a>
+
+      <div>Brief Description of journey</div>
+      <div class="ssk-group" id="share_buttons">
+        <a href="http://www.facebook.com/sharer.php?u=https://www.stackoverflow.com" class="ssk ssk-facebook"></a>
+        <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=https://www.stackoverflow.com" class="ssk ssk-twitter"></a>
+        <a href="https://plus.google.com/share?url=https://www.stackoverflow.com" class="ssk ssk-google-plus"></a>
+        <a href="http://pinterest.com/pin/create/button/?url=url=https://www.stackoverflow.com" class="ssk ssk-pinterest"></a>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="container marketing">
+      <h1>${heading}</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>James Redden</h3>
+          <img src="../assets/images/JamesRedden.jpg" alt="Generic placeholder image" width="340" height="340">
+        </div>
+        <div class="col-md-8">
+          <h3>Description</h3>
+          <div>James in an explorer. He is going to the South Pole for a 30 day expedition in order to raise money for charities.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Have a look at James' heart rate. <span class="text-muted">Let's hope it keeps beating.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <div id="heartRate"></div>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading">Today, James burnt ${calories} calories. <span class="text-muted">See for yourself.</span></h2>
+            <p class="lead">You burn calories to provide energy for three main functions:
+            Basal Metabolic Rate (BMR).
+
+            Burning Calories for Activity.
+
+            Dietary Thermogenesis.
+          </div>
+          <div class="col-md-5 col-md-pull-7">
+            <div id="calories"></div>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Today, James walked for ${distance} meters.  <span class="text-muted">See for yourself.</span></h2>
+          </div>
+          <div class="col-md-5">
+            <div id="distance"></div>
+          </div>
+        </div>
+
+        <div id="graph" style="width:600px; height:300px;"></div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+
+        <!-- /END THE FEATURETTES -->
+
+        <!-- Twitter feed -->
+        <a class="twitter-timeline"  href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
+        <script>
+          !function(d,s,id) {
+              var js, fjs = d.getElementsByTagName(s)[0],
+                p = /^http:/.test(d.location) ? 'http' : 'https';
+              if (!d.getElementById(id)) {
+                  js = d.createElement(s);
+                  js.id = id;
+                  js.src = p+"://platform.twitter.com/widgets.js";
+                  fjs.parentNode.insertBefore(js, fjs);
+              }
+          }(document,"script","twitter-wjs");
+        </script>
+        <hr class="featurette-divider">
+
+        <!-- FOOTER -->
+        <footer>
+          <p class="pull-right"><a href="#">Back to top</a></p>
+          <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </footer>
+
+        <script type="text/javascript">
+          g = new Dygraph(
+            document.getElementById("graph"),
+            "Date,Temperature\n" +
+            "2008-05-07,75\n" +
+            "2008-05-08,70\n" +
+            "2008-05-09,80\n", {
+              rollPeriod: 7,
+              errorBars: true,
+              visibility: [true]
+            }
+          );
+        </script>
+
+      </div><!-- /.container -->
+  </body>
+</html>
