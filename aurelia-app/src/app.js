@@ -9,18 +9,20 @@ export class App {
   constructor() {
     this.heading = "NorthToSouth";
     this.date = new Date();
+  }
+
+  attached() {
 
     let client = new HttpClient()
       .configure(x => {
         x.withBaseUrl('/');
       });
 
-
-    setup_twitter_feed()
     client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
       console.log(this.dateAndHeartRates)
+      alert(this.dateAndHeartRates)
       this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
       this.calories = 0
       this.distance = 0
@@ -30,9 +32,7 @@ export class App {
       }
       /* Initialise twitter feed */
     }.bind(this));
-  }
 
-  activate() {
     socket.on('checkpoint:save',
       function (checkpoint) {
         console.log("Getting socket updates:  " + checkpoint)
@@ -45,7 +45,8 @@ export class App {
         this.calories = checkpoint.calories
         this.distance = checkpoint.distance
 
-      }.bind( this ) );
+      }.bind(this));
+    setup_twitter_feed()
   }
 
   nextDay() {
@@ -61,6 +62,9 @@ export class App {
   }
 
   chartHeartRate = function (data) {
+    alert(data);
+    if (data <= 0) return;
+
     data = data.filter(d => d[0].toDateString() === this.date.toDateString())
 
     chart("calories", data)
