@@ -2,7 +2,9 @@ body {
   padding-top: 70px;
 }
 #intro {
-  height: 70vh;
+  height: 50vh;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
 }
 .component {
   padding: 10vh;
@@ -17,20 +19,39 @@ body {
   position: absolute;
   bottom: 0;
 }
-#journey_img {
-  padding-left: 10vh;
-}
 #heartRate {
-  width: 50vw;
+  width: 40vw;
+  height: 40vh;
 }
 #calories {
-  width: 100vw;
+  width: 40vw;
+  height: 40vh;
+}
+#map {
+  height: 400px;
+  width: 100%;
 }
 #distance {
-  width: 50vw;
+  width: 40vw;
+  height: 40vh;
 }
 #twitter_feed {
   margin-top:auto;
   margin-bottom:auto;
   text-align:center;
+}
+#journey_img {
+  /* make it a circle */
+  width: 25vw;
+  height: 25vw;
+  border-radius:50%;
+}
+#top_line {
+  border: 3px solid black;
+}
+.separate_line {
+  border-width: 2px;
+}
+.title_text {
+  color: black;
 }

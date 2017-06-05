@@ -1,6 +1,5 @@
 {
-	"undefined": "mongodb://mongo:27017/north-2-south",
-	"dev": "mongodb://mongo:27017/north-2-south",
+  "undefined": "mongodb://mongo:27017/north-2-south",
   "development": "mongodb://mongo:27017/north-2-south",
-	"prod": "mongodb://mongo/north-2-south"
+  "production": "mongodb://mongo/north-2-south"
 }

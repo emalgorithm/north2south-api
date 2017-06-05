@@ -81,6 +81,51 @@ let chart = function (chartName, data) {
     });
 };
 
+let init_sample = function () {
+  var g = new Dygraph(
+    document.getElementById("distance"),
+    "Date,km\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n", {
+      rollPeriod: 7,
+      strokeWidth: 3,
+      pointSize: 5,
+      errorBars: true,
+      visibility: [true],
+      colors: ["#ad0505"]
+    }
+  );
+  var g2 = new Dygraph(
+    document.getElementById("heartRate"),
+    "Date,hbps\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n", {
+      rollPeriod: 7,
+      strokeWidth: 3,
+      pointSize: 5,
+      errorBars: true,
+      visibility: [true],
+      colors: ["#05a502"]
+    }
+  );
+  var g3 = new Dygraph(
+    document.getElementById("calories"),
+    "Date,calories\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n", {
+      rollPeriod: 7,
+      strokeWidth: 3,
+      pointSize: 5,
+      errorBars: true,
+      visibility: [true],
+      colors: ["#0310a5"]
+    }
+  );
+}
+
 let setup_twitter_feed = function() {
   !function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0],
@@ -93,3 +138,24 @@ let setup_twitter_feed = function() {
     }
   }(document, "script", "twitter-wjs");
 };
+
+
+function init_map() {
+  //document.write('<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap"></script>');
+  let script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap`;
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+
+
+  var uluru = {lat: -25.363, lng: 131.044};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+}
