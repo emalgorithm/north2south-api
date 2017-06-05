@@ -75,8 +75,11 @@ let init_sample = function () {
     "2008-05-08,70\n" +
     "2008-05-09,80\n", {
       rollPeriod: 7,
+      strokeWidth: 3,
+      pointSize: 5,
       errorBars: true,
-      visibility: [true]
+      visibility: [true],
+      colors: ["#ad0505"]
     }
   );
   var g2 = new Dygraph(
@@ -86,8 +89,11 @@ let init_sample = function () {
     "2008-05-08,70\n" +
     "2008-05-09,80\n", {
       rollPeriod: 7,
+      strokeWidth: 3,
+      pointSize: 5,
       errorBars: true,
-      visibility: [true]
+      visibility: [true],
+      colors: ["#05a502"]
     }
   );
   var g3 = new Dygraph(
@@ -97,8 +103,11 @@ let init_sample = function () {
     "2008-05-08,70\n" +
     "2008-05-09,80\n", {
       rollPeriod: 7,
+      strokeWidth: 3,
+      pointSize: 5,
       errorBars: true,
-      visibility: [true]
+      visibility: [true],
+      colors: ["#0310a5"]
     }
   );
 }

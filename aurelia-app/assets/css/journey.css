@@ -3,6 +3,8 @@ body {
 }
 #intro {
   height: 50vh;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
 }
 .component {
   padding: 10vh;
@@ -18,13 +20,16 @@ body {
   bottom: 0;
 }
 #heartRate {
-  width: 50vw;
+  width: 40vw;
+  height: 40vh;
 }
 #calories {
-  width: 100vw;
+  width: 40vw;
+  height: 40vh;
 }
 #distance {
-  width: 50vw;
+  width: 40vw;
+  height: 40vh;
 }
 #twitter_feed {
   margin-top:auto;
@@ -36,4 +41,13 @@ body {
   width: 25vw;
   height: 25vw;
   border-radius:50%;
+}
+#top_line {
+  border: 3px solid black;
+}
+.separate_line {
+  border-width: 2px;
+}
+.title_text {
+  color: black;
 }
