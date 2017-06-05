@@ -2,7 +2,7 @@ body {
   padding-top: 70px;
 }
 #intro {
-  height: 70vh;
+  height: 50vh;
 }
 .component {
   padding: 10vh;
@@ -17,9 +17,6 @@ body {
   position: absolute;
   bottom: 0;
 }
-#journey_img {
-  padding-left: 10vh;
-}
 #heartRate {
   width: 50vw;
 }
@@ -33,4 +30,10 @@ body {
   margin-top:auto;
   margin-bottom:auto;
   text-align:center;
+}
+#journey_img {
+  /* make it a circle */
+  width: 25vw;
+  height: 25vw;
+  border-radius:50%;
 }
