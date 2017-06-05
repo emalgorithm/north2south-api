@@ -1,11 +1,10 @@
-var sockets = []
+var socketRoom = null
 
-exports.register = (socket) => {
-  console.log('registered socket ' + socket.id)
-  sockets.push(socket)
+exports.setUpSocketRoom = (io) => {
+  socketRoom = io
 }
 
 exports.onSave = (checkpoint) => {
-  console.log('save hook for ' + checkpoint.id)
-  sockets.forEach((s) => s.emit('checkpoint:save', checkpoint))
+  console.log("Broadcasting checkpoint update")
+  socketRoom.emit('checkpoint:save', checkpoint)
 }
