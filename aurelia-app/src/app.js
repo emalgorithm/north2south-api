@@ -8,6 +8,7 @@ export class App {
 
   constructor() {
     this.heading = "NorthToSouth";
+    this.date = new Date();
 
     let client = new HttpClient()
       .configure(x => {
@@ -18,15 +19,14 @@ export class App {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
       console.log(this.dateAndHeartRates)
-      this.heartRateChart = chartHeartRate(this.dateAndHeartRates)
+      this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
       this.calories = 0
       this.distance = 0
       if (checkpoints.length > 0) {
         this.calories = checkpoints[checkpoints.length - 1].calories || 0
         this.distance = checkpoints[checkpoints.length - 1].distance || 0
       }
-      /* initialise sample test data */
-      init_sample()
+
       /* Initialise twitter feed */
       setup_twitter_feed()
 
@@ -48,13 +48,27 @@ export class App {
 
       }.bind( this ) );
   }
-}
 
-let chartHeartRate = function (data) {
-  chart("calories", data)
-  chart("distance", data)
-  return chart("heartRate", data)
-};
+  nextDay() {
+    this.date.setDate(this.date.getDate()+1);
+    this.chartHeartRate(this.dateAndHeartRates)
+    console.log("Day displayed is now " + this.date.toDateString())
+  }
+
+  previousDay() {
+    this.date.setDate(this.date.getDate()-1);
+    this.chartHeartRate(this.dateAndHeartRates)
+    console.log("Day displayed is now " + this.date.toDateString())
+  }
+
+  chartHeartRate = function (data) {
+    console.log("Comparing dates for chart: " + data[0][0].toDateString() + "  and   " + this.date.toDateString())
+    data = data.filter(d => d[0].toDateString() === this.date.toDateString())
+    chart("calories", data)
+    chart("distance", data)
+    return chart("heartRate", data)
+  }
+}
 
 let chart = function (chartName, data) {
   return new Dygraph(
@@ -66,42 +80,6 @@ let chart = function (chartName, data) {
       //title: chartName,
     });
 };
-
-let init_sample = function () {
-  var g = new Dygraph(
-    document.getElementById("distance"),
-    "Date,km\n" +
-    "2008-05-07,75\n" +
-    "2008-05-08,70\n" +
-    "2008-05-09,80\n", {
-      rollPeriod: 7,
-      errorBars: true,
-      visibility: [true]
-    }
-  );
-  var g2 = new Dygraph(
-    document.getElementById("heartRate"),
-    "Date,hbps\n" +
-    "2008-05-07,75\n" +
-    "2008-05-08,70\n" +
-    "2008-05-09,80\n", {
-      rollPeriod: 7,
-      errorBars: true,
-      visibility: [true]
-    }
-  );
-  var g3 = new Dygraph(
-    document.getElementById("calories"),
-    "Date,calories\n" +
-    "2008-05-07,75\n" +
-    "2008-05-08,70\n" +
-    "2008-05-09,80\n", {
-      rollPeriod: 7,
-      errorBars: true,
-      visibility: [true]
-    }
-  );
-}
 
 let setup_twitter_feed = function() {
   !function (d, s, id) {
