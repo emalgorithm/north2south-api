@@ -1,0 +1,36 @@
+body {
+  padding-top: 70px;
+}
+#intro {
+  height: 70vh;
+}
+.component {
+  padding: 10vh;
+}
+#journey_desc {
+  padding-right: 10vw;
+  position: relative;
+  display: inline-block;
+  height: 100%;
+}
+#share_buttons {
+  position: absolute;
+  bottom: 0;
+}
+#journey_img {
+  padding-left: 10vh;
+}
+#heartRate {
+  width: 50vw;
+}
+#calories {
+  width: 100vw;
+}
+#distance {
+  width: 50vw;
+}
+#twitter_feed {
+  margin-top:auto;
+  margin-bottom:auto;
+  text-align:center;
+}

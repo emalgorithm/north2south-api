@@ -1,117 +1,117 @@
 <template>
-  <div class="container marketing">
-    <h1>${heading}</h1>
-    <div class="row">
-      <div class="col-md-4">
-        <h3>James Redden</h3>
-        <img src="../assets/images/JamesRedden.jpg" alt="Generic placeholder image" width="340" height="340">
-      </div>
-      <div class="col-md-8">
-        <h3>Description</h3>
-        <div>James in an explorer. He is going to the South Pole for a 30 day expedition in order to raise money for charities.</div>
+  <nav class="navbar navbar-default navbar-fixed-top" id="main_nav">
+    <div class="container">
+      <a href="#" class="navbar-brand">Home</a>
+    </div>
+  </nav>
+  <div id="intro">
+    <div class="col-md-6" id="journey_img">
+      <img src="../assets/images/south_pole.png" height="440" width="440" >
+    </div>
+    <div class="col-md-6" id="journey_desc">
+      <h3>Support James Redden on his expedition on the South pole</h3>
+      <a href="https://www.justgiving.com/Emanuele-Rossi/4w350m3/donate?amount=100.00&exitUrl=https%3A%2F%2Fnorth2south.herokuapp.com%2F%3FjgDonationId%3DJUSTGIVING-DONATION-ID&currency=GBP&reference=Imperial&defaultMessage=Thanks&utm_source=sdisponsor&utm_medium=buttons&utm_campaign=buttontype"><img src="../assets/images/donate-button.png" alt="Donate with JustGiving" /></a>
+
+      <div>Brief Description of journey</div>
+      <div class="ssk-group" id="share_buttons">
+        <a href="http://www.facebook.com/sharer.php?u=https://north2south.herokuapp.com/" class="ssk ssk-facebook"></a>
+        <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=https://north2south.herokuapp.com/" class="ssk ssk-twitter"></a>
+        <a href="https://plus.google.com/share?url=https://north2south.herokuapp.com/" class="ssk ssk-google-plus"></a>
+        <a href="http://pinterest.com/pin/create/button/?url=url=https://north2south.herokuapp.com/" class="ssk ssk-pinterest"></a>
       </div>
     </div>
   </div>
 
-  <!-- Marketing messaging and featurettes
-    ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
   <div class="container marketing">
-    <!-- START THE FEATURETTES -->
+    <h1>James' newest data</h1>
 
-    <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Have a look at James' heart rate. <span class="text-muted">Let's hope it keeps beating.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    <div class="container marketing">
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-4">
+          <h2 class="featurette-heading">Have a look at James' heart rate. <span class="text-muted">Let's hope it keeps beating.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-8">
+          <div id="heartRate" style="width: 50vw;"></div>
+          <form submit.trigger="nextDay()">
+            <button type="submit">Next Day</button>
+          </form>
+          <form submit.trigger="previousDay()">
+            <button type="submit">Previous Day</button>
+          </form>
+        </div>
+
       </div>
-      <div class="col-md-5">
-        <div id="graph" style="width:600px; height:300px;"></div>
-        <div id="heartRate"></div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-4">
+          <h2 class="featurette-heading">Today, James burnt ${calories} calories. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">You burn calories to provide energy for three main functions:
+            Basal Metabolic Rate (BMR).
+
+            Burning Calories for Activity.
+
+            Dietary Thermogenesis.
+        </div>
+        <div class="col-md-8">
+          <div id="calories" style="width: 50vw;"></div>
+        </div>
       </div>
-    </div>
 
-    <script type="text/javascript">
-      g = new Dygraph(
-        document.getElementById("graph"),
-        "Date,Temperature\n" +
-        "2008-05-07,75\n" +
-        "2008-05-08,70\n" +
-        "2008-05-09,80\n", {
-          rollPeriod: 7,
-          errorBars: true,
-          visibility: [true]
-        }
-      );
-    </script>
+      <hr class="featurette-divider">
 
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 col-md-push-5">
-        <h2 class="featurette-heading">Today, James burnt ${calories} calories. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">You burn calories to provide energy for three main functions:
-          Basal Metabolic Rate (BMR).
-
-          Burning Calories for Activity.
-
-          Dietary Thermogenesis.
+      <div class="row featurette">
+        <div class="col-md-4">
+          <h2 class="featurette-heading">Today, James walked for ${distance} meters.  <span class="text-muted">See for yourself.</span></h2>
+        </div>
+        <div class="col-md-8">
+          <div id="distance" style="width: 50vw;"></div>
+        </div>
       </div>
-      <div class="col-md-5 col-md-pull-7">
-        <div id="calories"></div>
+
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <h1>James path</h1>
+        map
+
       </div>
-    </div>
 
-    <hr class="featurette-divider">
+      <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Today, James walked for ${distance} meters.  <span class="text-muted">See for yourself.</span></h2>
+      <div class="container marketing">
+        <div class="row">
+          <div class="col-md-4">
+            <h3>James Redden</h3>
+            <img src="../assets/images/JamesRedden.jpg" alt="Generic placeholder image" width="340" height="340">
+          </div>
+          <div class="col-md-8">
+            <h3>Description</h3>
+            <div>James in an explorer. He is going to the South Pole for a 30 day expedition in order to raise money for charities.</div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-5">
-        <div id="distance"></div>
+
+      <hr class="featurette-divider">
+      <div class="container marketing" id="twitter_feed">
+
+        <!-- Twitter feed -->
+        <a class="twitter-timeline"  href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
       </div>
-    </div>
+      <hr class="featurette-divider">
 
-    <hr class="featurette-divider">
-
-    Share
-    <div class="ssk-group">
-      <a href="http://www.facebook.com/sharer.php?u=https://www.stackoverflow.com" class="ssk ssk-facebook"></a>
-      <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=https://www.stackoverflow.com" class="ssk ssk-twitter"></a>
-      <a href="https://plus.google.com/share?url=https://www.stackoverflow.com" class="ssk ssk-google-plus"></a>
-      <a href="http://pinterest.com/pin/create/button/?url=url=https://www.stackoverflow.com" class="ssk ssk-pinterest"></a>
-    </div>
-
-    <div class="row featurette">
-
-    </div>
-    <!-- /END THE FEATURETTES -->
-
-    <!-- Twitter feed -->
-    <a class="twitter-timeline"  href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
-    <script>
-      !function(d,s,id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-          js = d.createElement(s);
-          js.id = id;
-          js.src = p+"://platform.twitter.com/widgets.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }
-      }(document,"script","twitter-wjs");
-    </script>
-
-
-    <!-- FOOTER -->
-    <footer>
-      <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
-
-  </div><!-- /.container -->
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </div><!-- /.container -->
+  </div>
 </template>
