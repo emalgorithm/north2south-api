@@ -7,14 +7,14 @@
 
 Make sure you have recent versions of `docker` and `docker-compose`.
 
-For production container run:
+For production container run from the project root:
 
 ```
-docker-compose up
+npm run docker:prod
 ```
 
 For development container run:
 
 ```
-docker-compose -f docker-compose.dev.yml up
+npm run docker:dev
 ```
