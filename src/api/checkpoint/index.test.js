@@ -1,6 +1,13 @@
 import request from 'supertest-as-promised'
 import express from '../../services/express'
 import routes, { Checkpoint } from '.'
+import * as socket from './socket'
+
+const ioMock = {
+  emit: jest.fn()
+}
+
+socket.setUpSocketRoom(ioMock)
 
 const app = () => express(routes)
 

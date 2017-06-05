@@ -1,4 +1,11 @@
 import { Checkpoint } from '.'
+import * as socket from './socket'
+
+const ioMock = {
+  emit: jest.fn()
+}
+
+socket.setUpSocketRoom(ioMock)
 
 let checkpoint
 
