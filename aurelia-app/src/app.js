@@ -15,6 +15,8 @@ export class App {
         x.withBaseUrl('/');
       });
 
+
+    setup_twitter_feed()
     client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
@@ -26,10 +28,7 @@ export class App {
         this.calories = checkpoints[checkpoints.length - 1].calories || 0
         this.distance = checkpoints[checkpoints.length - 1].distance || 0
       }
-
       /* Initialise twitter feed */
-      setup_twitter_feed()
-
     }.bind(this));
   }
 
@@ -62,8 +61,8 @@ export class App {
   }
 
   chartHeartRate = function (data) {
-    console.log("Comparing dates for chart: " + data[0][0].toDateString() + "  and   " + this.date.toDateString())
     data = data.filter(d => d[0].toDateString() === this.date.toDateString())
+
     chart("calories", data)
     chart("distance", data)
     return chart("heartRate", data)
