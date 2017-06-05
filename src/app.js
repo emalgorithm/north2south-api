@@ -10,7 +10,7 @@ const app = express(api)
 const server = http.createServer(app)
 
 const socketio = io(server)
-socket.setUpSocket(socketio)
+socket.setUpSocketServer(socketio)
 
 mongoose.connect(mongo.uri)
 
