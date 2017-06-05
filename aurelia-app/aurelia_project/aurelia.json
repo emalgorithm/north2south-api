@@ -134,7 +134,7 @@
             "name": "aurelia-testing",
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
-            "env": "dev"
+            "env": "development"
           },
           {
             "name": "dygraphs",
