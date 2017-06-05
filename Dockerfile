@@ -9,7 +9,7 @@ COPY package.json .
 RUN npm install --production
 
 # Install Aurelia production dependencies
-# Make sure the app is built with 'au build --env prod' before building image
+# Make sure the app is built with 'au build --env production' before building image
 COPY aurelia-app/package.json aurelia-app/
 RUN cd aurelia-app && npm install --production && cd ..
 
