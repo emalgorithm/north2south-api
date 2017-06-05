@@ -25,6 +25,10 @@ export class App {
         this.calories = checkpoints[checkpoints.length - 1].calories || 0
         this.distance = checkpoints[checkpoints.length - 1].distance || 0
       }
+      /* initialise sample test data */
+      init_sample()
+      /* Initialise twitter feed */
+      setup_twitter_feed()
 
     }.bind(this));
   }
@@ -46,13 +50,13 @@ export class App {
   }
 }
 
-var chartHeartRate = function (data) {
+let chartHeartRate = function (data) {
   chart("calories", data)
   chart("distance", data)
   return chart("heartRate", data)
-}
+};
 
-var chart = function (chartName, data) {
+let chart = function (chartName, data) {
   return new Dygraph(
     document.getElementById(chartName),
     data,
@@ -61,4 +65,53 @@ var chart = function (chartName, data) {
       labels: ["Time", chartName],
       //title: chartName,
     });
+};
+
+let init_sample = function () {
+  var g = new Dygraph(
+    document.getElementById("distance"),
+    "Date,km\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n", {
+      rollPeriod: 7,
+      errorBars: true,
+      visibility: [true]
+    }
+  );
+  var g2 = new Dygraph(
+    document.getElementById("heartRate"),
+    "Date,hbps\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n", {
+      rollPeriod: 7,
+      errorBars: true,
+      visibility: [true]
+    }
+  );
+  var g3 = new Dygraph(
+    document.getElementById("calories"),
+    "Date,calories\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n", {
+      rollPeriod: 7,
+      errorBars: true,
+      visibility: [true]
+    }
+  );
 }
+
+let setup_twitter_feed = function() {
+  !function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id = id;
+      js.src = p + "://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, "script", "twitter-wjs");
+};
