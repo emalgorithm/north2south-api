@@ -5,20 +5,28 @@ var socket = io.connect();
 
 export class Southpole {
 
+  constructor() {
+    this.client = new HttpClient()
+      .configure(x => {
+        x.withBaseUrl('/');
+      });
+  }
+
   activate(params) {
     this.id = params.id;
     /* Load data associated with id */
-
+    console.log("ouaou");
+    this.client.get('journeys/' + this.id).then(function(response) {
+      console.log("here it is");
+      console.log(response);
+      alert(response);
+    }.bind(this));
+    console.log("qwe");
   }
 
   attached() {
 
-    let client = new HttpClient()
-      .configure(x => {
-        x.withBaseUrl('/');
-      });
-
-    client.get('checkpoints/{$id}').then(function (response) {
+    this.client.get('checkpoints/{$id}').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
       console.log(this.dateAndHeartRates)

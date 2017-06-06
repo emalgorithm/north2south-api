@@ -9,16 +9,13 @@ const journeySchema = new Schema({
   journey_id: {
     type: String
   },
+  checkpoints: {
+    type: String
+  },
   title: {
     type: String
   },
-  img: {
-    type: String
-  },
   description: {
-    type: String
-  },
-  explorer_info: {
     type: String
   },
   donate_url: {
@@ -35,10 +32,9 @@ journeySchema.methods = {
       id: this.id,
       user_id: this.user_id.view(full),
       journey_id: this.journey_id,
+      checkpoints: this.checkpoints,
       title: this.title,
-      img: this.img,
       description: this.description,
-      explorer_info: this.explorer_info,
       donate_url: this.donate_url,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

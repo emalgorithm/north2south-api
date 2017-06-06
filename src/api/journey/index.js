@@ -7,7 +7,7 @@ import { schema } from './model'
 export Journey, { schema } from './model'
 
 const router = new Router()
-const { journey_id, title, img, description, explorer_info, donate_url } = schema.tree
+const { journey_id, checkpoints, title, description, donate_url } = schema.tree
 
 /**
  * @api {post} /journeys Create journey
@@ -16,10 +16,9 @@ const { journey_id, title, img, description, explorer_info, donate_url } = schem
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam journey_id Journey's journey_id.
+ * @apiParam checkpoints Journey's checkpoints.
  * @apiParam title Journey's title.
- * @apiParam img Journey's img.
  * @apiParam description Journey's description.
- * @apiParam explorer_info Journey's explorer_info.
  * @apiParam donate_url Journey's donate_url.
  * @apiSuccess {Object} journey Journey's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -28,7 +27,7 @@ const { journey_id, title, img, description, explorer_info, donate_url } = schem
  */
 router.post('/',
   token({ required: true }),
-  body({ journey_id, title, img, description, explorer_info, donate_url }),
+  body({ journey_id, checkpoints, title, description, donate_url }),
   create)
 
 /**
@@ -61,10 +60,9 @@ router.get('/:id',
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam journey_id Journey's journey_id.
+ * @apiParam checkpoints Journey's checkpoints.
  * @apiParam title Journey's title.
- * @apiParam img Journey's img.
  * @apiParam description Journey's description.
- * @apiParam explorer_info Journey's explorer_info.
  * @apiParam donate_url Journey's donate_url.
  * @apiSuccess {Object} journey Journey's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -73,7 +71,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ journey_id, title, img, description, explorer_info, donate_url }),
+  body({ journey_id, checkpoints, title, description, donate_url }),
   update)
 
 /**
