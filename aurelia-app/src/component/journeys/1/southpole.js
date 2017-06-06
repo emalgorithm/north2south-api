@@ -1,5 +1,3 @@
-//import '../assets/css/journey.css';
-
 import {HttpClient} from 'aurelia-http-client';
 import Dygraph from '../node_modules/dygraphs/dist/dygraph';
 import io from '../node_modules/socket.io-client/dist/socket.io';
@@ -13,7 +11,6 @@ export class Southpole {
       .configure(x => {
         x.withBaseUrl('/');
       });
-
     client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
@@ -41,6 +38,7 @@ export class Southpole {
         this.distance = checkpoint.distance
 
       }.bind(this));
+    init_sample()
     setup_twitter_feed()
   }
 
