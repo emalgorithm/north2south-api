@@ -30,7 +30,10 @@ export class App {
         this.calories = checkpoints[checkpoints.length - 1].calories || 0
         this.distance = checkpoints[checkpoints.length - 1].distance || 0
       }
-      /* Initialise twitter feed */
+
+      // Add markers on the map for previous checkpoints
+      checkpoints.forEach(c => map.addMarker(c.latitude, c.longitude))
+
     }.bind(this));
 
     socket.on('checkpoint:save',
@@ -44,6 +47,7 @@ export class App {
         //Update other fields
         this.calories = checkpoint.calories
         this.distance = checkpoint.distance
+        map.addMarker(checkpoint.latitude, checkpoint.longitude);
 
       }.bind(this));
     setup_twitter_feed()
