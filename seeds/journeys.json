@@ -1,7 +1,7 @@
 [
   {
-    "journey_id": 1,
-    "user_id": 2,
+    "journey_id": "593727d9c1c04200d8cbcc7a",
+    "user_id": "593727ccc1c04200d8cbcc79",
     "title": "Kkilimanjaro",
     "img": "../aurelia-app/assets/images/users/2.jpg",
     "description": "Support my climb on Kkilimanjaro",
@@ -9,8 +9,8 @@
     "donate_url": "http://emanuelerossi.co.uk/"
   },
   {
-    "journey_id": 2,
-    "user_id": 3,
+    "journey_id": "59372894ff82580150333ee3",
+    "user_id": "593727d9c1c04200d8cbcc7a",
     "title": "Pintos land",
     "img": "../aurelia-app/assets/images/users/1.jpg",
     "description": "Support my quest in Pintos land",
@@ -18,8 +18,8 @@
     "donate_url": "https://www.stackoverflow.com"
   },
   {
-    "journey_id": 3,
-    "user_id": 1,
+    "journey_id": "593728a0ff82580150333ee4",
+    "user_id": "593727b7c1c04200d8cbcc78",
     "title": "Support James Redden on his expedition on the South pole",
     "img": "../aurelia-app/assets/images/users/3.jpg",
     "description": "Brief Description of journey",
