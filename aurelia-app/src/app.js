@@ -22,7 +22,6 @@ export class App {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
       console.log(this.dateAndHeartRates)
-      alert(this.dateAndHeartRates)
       this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
       this.calories = 0
       this.distance = 0
@@ -62,7 +61,6 @@ export class App {
   }
 
   chartHeartRate = function (data) {
-    alert(data);
     if (data <= 0) return;
 
     data = data.filter(d => d[0].toDateString() === this.date.toDateString())
