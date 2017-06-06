@@ -11,15 +11,15 @@ export class App {
     config.map([
       {
         route: ['', 'home'], name: 'home',
-        moduleId: './home', nav: true, title: 'Home'
+        moduleId: './components/home/home', nav: true, title: 'Home'
       },
       {
         route: 'about', name: 'about',
-        moduleId: './about', nav: true, title: 'About'
+        moduleId: './components/about/about', nav: true, title: 'About'
       },
       {
-        route: 'journeys/southpole', name: 'southpole',
-        moduleId: './southpole', nav: true, title: 'Trip to South pole'
+        route: 'journeys/1', name: 'journey1',
+        moduleId: './components/journeys/1/1', nav: true, title: 'Trip to South pole'
       }
     ]);
 

@@ -1,6 +1,6 @@
 import {HttpClient} from 'aurelia-http-client';
-import Dygraph from '../node_modules/dygraphs/dist/dygraph';
-import io from '../node_modules/socket.io-client/dist/socket.io';
+import Dygraph from '../../../../node_modules/dygraphs/dist/dygraph';
+import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
 
 export class Southpole {
@@ -11,6 +11,7 @@ export class Southpole {
       .configure(x => {
         x.withBaseUrl('/');
       });
+
     client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
