@@ -6,7 +6,7 @@ import { schema } from './model'
 export Checkpoint, { schema } from './model'
 
 const router = new Router()
-const { heartRate, calories, distance } = schema.tree
+const { heartRate, calories, distance, longitude, latitude, createdAt } = schema.tree
 
 /**
  * @api {post} /checkpoints Create checkpoint
@@ -18,7 +18,7 @@ const { heartRate, calories, distance } = schema.tree
  * @apiError 404 Checkpoint not found.
  */
 router.post('/',
-  body({ heartRate, calories, distance }),
+  body({ heartRate, calories, distance, longitude, latitude, createdAt }),
   create)
 
 /**
@@ -54,7 +54,7 @@ router.get('/:id',
  * @apiError 404 Checkpoint not found.
  */
 router.put('/:id',
-  body({ heartRate, calories, distance }),
+  body({ heartRate, calories, distance, longitude, latitude, createdAt }),
   update)
 
 /**

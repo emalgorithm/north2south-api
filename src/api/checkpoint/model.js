@@ -4,9 +4,10 @@ import { onSave } from './socket'
 const checkpointSchema = new Schema({
   heartRate: Number,
   calories: Number,
-  distance: Number
-}, {
-  timestamps: true
+  distance: Number,
+  longitude: Number,
+  latitude: Number,
+  createdAt: Date
 })
 
 checkpointSchema.methods = {
@@ -17,8 +18,9 @@ checkpointSchema.methods = {
       heartRate: this.heartRate,
       calories: this.calories,
       distance: this.distance,
+      longitude: this.longitude,
+      latitude: this.latitude,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
     }
 
     return full ? {
