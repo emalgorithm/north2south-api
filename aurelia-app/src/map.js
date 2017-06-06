@@ -13,7 +13,8 @@ exports.startMap = function() {
 };
 
 var labelIndex = 0;
-var map = null
+var map = null;
+var coordinates = []
 
 function initMap() {
   // In the following example, markers appear when the user clicks on the map.
@@ -27,6 +28,10 @@ function initMap() {
 
 // Adds a marker to the map.
 function addMarker(latitude, longitude) {
+  if(isNaN(latitude) || isNaN(longitude)) {
+    return;
+  }
+
   var location = new google.maps.LatLng(latitude, longitude);
 
   var marker = new google.maps.Marker({
@@ -36,6 +41,27 @@ function addMarker(latitude, longitude) {
   });
 
   labelIndex++;
+
+  coordinates.push({
+    lat: latitude,
+    lng: longitude
+  })
+
+  drawPath()
+}
+
+function drawPath() {
+  console.log("drawPath is being called")
+  console.log(coordinates)
+  var path = new google.maps.Polyline({
+    path: coordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  path.setMap(map);
 }
 
 exports.addMarker = addMarker;
