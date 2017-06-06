@@ -13,21 +13,20 @@ beforeEach(async () => {
   const anotherUser = await User.create({ email: 'b@b.com', password: '123456' })
   userSession = signSync(user.id)
   anotherSession = signSync(anotherUser.id)
-  journey = await Journey.create({ user_id: user })
+  journey = await Journey.create({ userId: user })
 })
 
 test('POST /journeys 201 (user)', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ access_token: userSession, journey_id: 'test', checkpoints: 'test', title: 'test', description: 'test', donate_url: 'test' })
+    .send({ access_token: userSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.journey_id).toEqual('test')
   expect(body.checkpoints).toEqual('test')
   expect(body.title).toEqual('test')
   expect(body.description).toEqual('test')
-  expect(body.donate_url).toEqual('test')
-  expect(typeof body.user_id).toEqual('object')
+  expect(body.donateUrl).toEqual('test')
+  expect(typeof body.userId).toEqual('object')
 })
 
 test('POST /journeys 401', async () => {
@@ -60,22 +59,21 @@ test('GET /journeys/:id 404', async () => {
 test('PUT /journeys/:id 200 (user)', async () => {
   const { status, body } = await request(app())
     .put(`/${journey.id}`)
-    .send({ access_token: userSession, journey_id: 'test', checkpoints: 'test', title: 'test', description: 'test', donate_url: 'test' })
+    .send({ access_token: userSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(journey.id)
-  expect(body.journey_id).toEqual('test')
   expect(body.checkpoints).toEqual('test')
   expect(body.title).toEqual('test')
   expect(body.description).toEqual('test')
-  expect(body.donate_url).toEqual('test')
-  expect(typeof body.user_id).toEqual('object')
+  expect(body.donateUrl).toEqual('test')
+  expect(typeof body.userId).toEqual('object')
 })
 
 test('PUT /journeys/:id 401 (user) - another user', async () => {
   const { status } = await request(app())
     .put(`/${journey.id}`)
-    .send({ access_token: anotherSession, journey_id: 'test', checkpoints: 'test', title: 'test', description: 'test', donate_url: 'test' })
+    .send({ access_token: anotherSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(401)
 })
 
@@ -88,7 +86,7 @@ test('PUT /journeys/:id 401', async () => {
 test('PUT /journeys/:id 404 (user)', async () => {
   const { status } = await request(app())
     .put('/123456789098765432123456')
-    .send({ access_token: anotherSession, journey_id: 'test', checkpoints: 'test', title: 'test', description: 'test', donate_url: 'test' })
+    .send({ access_token: anotherSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(404)
 })
 

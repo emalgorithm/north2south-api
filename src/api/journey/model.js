@@ -1,13 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
 const journeySchema = new Schema({
-  user_id: {
+  userId: {
     type: Schema.ObjectId,
     ref: 'User',
     required: true
-  },
-  journey_id: {
-    type: String
   },
   checkpoints: {
     type: String
@@ -18,7 +15,7 @@ const journeySchema = new Schema({
   description: {
     type: String
   },
-  donate_url: {
+  donateUrl: {
     type: String
   }
 }, {
@@ -30,12 +27,11 @@ journeySchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      user_id: this.user_id.view(full),
-      journey_id: this.journey_id,
+      userId: this.userId.view(full),
       checkpoints: this.checkpoints,
       title: this.title,
       description: this.description,
-      donate_url: this.donate_url,
+      donateUrl: this.donateUrl,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
