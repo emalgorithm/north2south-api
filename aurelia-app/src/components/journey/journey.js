@@ -6,7 +6,9 @@ var socket = io.connect();
 export class Southpole {
 
   activate(params) {
-    this.id = id;
+    this.id = params.id;
+    /* Load data associated with id */
+
   }
 
   attached() {
