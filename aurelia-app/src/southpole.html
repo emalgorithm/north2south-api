@@ -1,94 +1,96 @@
-<div id="intro">
-  <div class="col-md-5">
-    <img id="journey_img" class="img-responsive center-block" src="../assets/images/JamesRedden.jpg" alt="Generic placeholder image">
-  </div>
-  <div class="col-md-7" id="journey_desc">
-
-    <hr id="top_line">
-    <h1 class="title_text">Support James Redden on his expedition on the South pole</h1>
-    <div>James in an explorer. He is going to the South Pole for a 30 day expedition in order to raise money for charities.</div>
-
-    <a href="https://www.justgiving.com/Emanuele-Rossi/4w350m3/donate?amount=100.00&exitUrl=https%3A%2F%2Fnorth2south.herokuapp.com%2F%3FjgDonationId%3DJUSTGIVING-DONATION-ID&currency=GBP&reference=Imperial&defaultMessage=Thanks&utm_source=sdisponsor&utm_medium=buttons&utm_campaign=buttontype"><img src="../assets/images/donate-button.png" alt="Donate with JustGiving" /></a>
-
-    <div>Brief Description of journey</div>
-    <div class="ssk-group" id="share_buttons">
-      <a href="http://www.facebook.com/sharer.php?u=https://north2south.herokuapp.com/" class="ssk ssk-facebook"></a>
-      <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=https://north2south.herokuapp.com/" class="ssk ssk-twitter"></a>
-      <a href="https://plus.google.com/share?url=https://north2south.herokuapp.com/" class="ssk ssk-google-plus"></a>
-      <a href="http://pinterest.com/pin/create/button/?url=url=https://north2south.herokuapp.com/" class="ssk ssk-pinterest"></a>
+<template>
+  <div id="intro">
+    <div class="col-md-5">
+      <img id="journey_img" class="img-responsive center-block" src="../assets/images/JamesRedden.jpg" alt="Generic placeholder image">
     </div>
-  </div>
-</div>
+    <div class="col-md-7" id="journey_desc">
 
-<div class="container marketing">
+      <hr id="top_line">
+      <h1 class="title_text">Support James Redden on his expedition on the South pole</h1>
+      <div>James in an explorer. He is going to the South Pole for a 30 day expedition in order to raise money for charities.</div>
 
-  <hr class="featurette-divider">
-  <h1 class="title_text">Data dashboard</h1>
-  <br>
-  <div class="row featurette">
-    <div class="col-md-4">
-      <h3 class="featurette-heading">Have a look at James' heart rate. <span class="text-muted">Let's hope it keeps beating.</span></h3>
-    </div>
-    <div class="col-md-8">
-      <div id="heartRate" style="width: 50vw;"></div>
-      <form submit.trigger="nextDay()">
-        <button type="submit">Next Day</button>
-      </form>
-      <form submit.trigger="previousDay()">
-        <button type="submit">Previous Day</button>
-      </form>
+      <a href="https://www.justgiving.com/Emanuele-Rossi/4w350m3/donate?amount=100.00&exitUrl=https%3A%2F%2Fnorth2south.herokuapp.com%2F%3FjgDonationId%3DJUSTGIVING-DONATION-ID&currency=GBP&reference=Imperial&defaultMessage=Thanks&utm_source=sdisponsor&utm_medium=buttons&utm_campaign=buttontype"><img src="../assets/images/donate-button.png" alt="Donate with JustGiving" /></a>
 
+      <div>Brief Description of journey</div>
+      <div class="ssk-group" id="share_buttons">
+        <a href="http://www.facebook.com/sharer.php?u=https://north2south.herokuapp.com/" class="ssk ssk-facebook"></a>
+        <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=https://north2south.herokuapp.com/" class="ssk ssk-twitter"></a>
+        <a href="https://plus.google.com/share?url=https://north2south.herokuapp.com/" class="ssk ssk-google-plus"></a>
+        <a href="http://pinterest.com/pin/create/button/?url=url=https://north2south.herokuapp.com/" class="ssk ssk-pinterest"></a>
+      </div>
     </div>
   </div>
 
-  <hr class="featurette-divider">
+  <div class="container marketing">
 
-  <div class="row featurette">
-    <div class="col-md-4">
-      <h3 class="featurette-heading">Today, James burnt ${calories} calories. <span class="text-muted">See for yourself.</span></h3>
-      <p class="lead">You burn calories to provide energy for three main functions:
-        Basal Metabolic Rate (BMR).
+    <hr class="featurette-divider">
+    <h1 class="title_text">Data dashboard</h1>
+    <br>
+    <div class="row featurette">
+      <div class="col-md-4">
+        <h3 class="featurette-heading">Have a look at James' heart rate. <span class="text-muted">Let's hope it keeps beating.</span></h3>
+      </div>
+      <div class="col-md-8">
+        <div id="heartRate" style="width: 50vw;"></div>
+        <form submit.trigger="nextDay()">
+          <button type="submit">Next Day</button>
+        </form>
+        <form submit.trigger="previousDay()">
+          <button type="submit">Previous Day</button>
+        </form>
 
-        Burning Calories for Activity.
-
-        Dietary Thermogenesis.
+      </div>
     </div>
-    <div class="col-md-8">
-      <div id="calories" style="width: 50vw;"></div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-4">
+        <h3 class="featurette-heading">Today, James burnt ${calories} calories. <span class="text-muted">See for yourself.</span></h3>
+        <p class="lead">You burn calories to provide energy for three main functions:
+          Basal Metabolic Rate (BMR).
+
+          Burning Calories for Activity.
+
+          Dietary Thermogenesis.
+      </div>
+      <div class="col-md-8">
+        <div id="calories" style="width: 50vw;"></div>
+      </div>
     </div>
-  </div>
 
-  <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-  <div class="row featurette">
-    <div class="col-md-4">
-      <h3 class="featurette-heading">Today, James walked for ${distance} meters.  <span class="text-muted">See for yourself.</span></h3>
+    <div class="row featurette">
+      <div class="col-md-4">
+        <h3 class="featurette-heading">Today, James walked for ${distance} meters.  <span class="text-muted">See for yourself.</span></h3>
+      </div>
+      <div class="col-md-8">
+        <div id="distance" style="width: 50vw;"></div>
+      </div>
     </div>
-    <div class="col-md-8">
-      <div id="distance" style="width: 50vw;"></div>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <h1 class="title_text">James path</h1>
+      <google-map id="map" latitude="37.323" longitude="-122.0527"></google-map>
     </div>
+
+
+    <hr class="featurette-divider">
+    <div class="container marketing" id="twitter_feed">
+
+      <!-- Twitter feed -->
+      <a class="twitter-timeline" href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
+    </div>
+    <hr class="featurette-divider">
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
   </div>
-
-
-  <hr class="featurette-divider">
-
-  <div class="row featurette">
-    <h1 class="title_text">James path</h1>
-    <google-map id="map" latitude="37.323" longitude="-122.0527"></google-map>
-  </div>
-
-
-  <hr class="featurette-divider">
-  <div class="container marketing" id="twitter_feed">
-
-    <!-- Twitter feed -->
-    <a class="twitter-timeline" href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
-  </div>
-  <hr class="featurette-divider">
-
-  <!-- FOOTER -->
-  <footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-</div>
+</template>

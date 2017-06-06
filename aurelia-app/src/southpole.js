@@ -1,4 +1,9 @@
-import '../assets/css/journey.css';
+//import '../assets/css/journey.css';
+
+import {HttpClient} from 'aurelia-http-client';
+import Dygraph from '../node_modules/dygraphs/dist/dygraph';
+import io from '../node_modules/socket.io-client/dist/socket.io';
+var socket = io.connect();
 
 export class Southpole {
 
