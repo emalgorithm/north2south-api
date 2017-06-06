@@ -1,0 +1,29 @@
+[
+  {
+    "journey_id": 1,
+    "user_id": 2,
+    "title": "Kkilimanjaro",
+    "img": "../aurelia-app/assets/images/users/2.jpg",
+    "description": "Support my climb on Kkilimanjaro",
+    "explorer_info": "I like ML and charity",
+    "donate_url": "http://emanuelerossi.co.uk/"
+  },
+  {
+    "journey_id": 2,
+    "user_id": 3,
+    "title": "Pintos land",
+    "img": "../aurelia-app/assets/images/users/1.jpg",
+    "description": "Support my quest in Pintos land",
+    "explorer_info": "int **x = ** (char ****) p;",
+    "donate_url": "https://www.stackoverflow.com"
+  },
+  {
+    "journey_id": 3,
+    "user_id": 1,
+    "title": "Support James Redden on his expedition on the South pole",
+    "img": "../aurelia-app/assets/images/users/3.jpg",
+    "description": "Brief Description of journey",
+    "explorer_info": "James in an explorer. He is going to the South Pole for a 30 day expedition in order to raise money for charities.",
+    "donate_url": "https://www.stackoverflow.com"
+  }
+]

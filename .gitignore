@@ -65,4 +65,4 @@ jest/
 aurelia-app/scripts/
 
 # Seed for dev users
-seeds/users.json
+# seeds/users.json
