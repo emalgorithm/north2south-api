@@ -18,8 +18,8 @@ export class App {
         moduleId: './components/about/about', nav: true, title: 'About'
       },
       {
-        route: 'journeys/1', name: 'journey1',
-        moduleId: './components/journeys/1/1', nav: true, title: 'Trip to South pole'
+        route: 'journey/:id', name: 'journey',
+        moduleId: './components/journey/journey', nav: true, href: '#/journey/1', title: 'Trip to South pole'
       }
     ]);
 

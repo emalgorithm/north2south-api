@@ -5,6 +5,10 @@ var socket = io.connect();
 
 export class Southpole {
 
+  activate(params) {
+    this.id = id;
+  }
+
   attached() {
 
     let client = new HttpClient()
@@ -12,7 +16,7 @@ export class Southpole {
         x.withBaseUrl('/');
       });
 
-    client.get('checkpoints').then(function (response) {
+    client.get('checkpoints/{$id}').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
       console.log(this.dateAndHeartRates)
