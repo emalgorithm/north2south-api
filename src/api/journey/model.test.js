@@ -5,7 +5,7 @@ let user, journey
 
 beforeEach(async () => {
   user = await User.create({ email: 'a@a.com', password: '123456' })
-  journey = await Journey.create({ userId: user, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
+  journey = await Journey.create({ userId: user, checkpoints: [], title: 'test', description: 'test', donateUrl: 'test' })
 })
 
 describe('view', () => {

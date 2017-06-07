@@ -19,10 +19,10 @@ beforeEach(async () => {
 test('POST /journeys 201 (user)', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ access_token: userSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
+    .send({ access_token: userSession, checkpoints: [], title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.checkpoints).toEqual('test')
+  expect(body.checkpoints).toEqual([])
   expect(body.title).toEqual('test')
   expect(body.description).toEqual('test')
   expect(body.donateUrl).toEqual('test')
@@ -59,11 +59,11 @@ test('GET /journeys/:id 404', async () => {
 test('PUT /journeys/:id 200 (user)', async () => {
   const { status, body } = await request(app())
     .put(`/${journey.id}`)
-    .send({ access_token: userSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
+    .send({ access_token: userSession, checkpoints: [], title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(journey.id)
-  expect(body.checkpoints).toEqual('test')
+  expect(body.checkpoints).toEqual([])
   expect(body.title).toEqual('test')
   expect(body.description).toEqual('test')
   expect(body.donateUrl).toEqual('test')
@@ -73,7 +73,7 @@ test('PUT /journeys/:id 200 (user)', async () => {
 test('PUT /journeys/:id 401 (user) - another user', async () => {
   const { status } = await request(app())
     .put(`/${journey.id}`)
-    .send({ access_token: anotherSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
+    .send({ access_token: anotherSession, checkpoints: [], title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(401)
 })
 
@@ -86,7 +86,7 @@ test('PUT /journeys/:id 401', async () => {
 test('PUT /journeys/:id 404 (user)', async () => {
   const { status } = await request(app())
     .put('/123456789098765432123456')
-    .send({ access_token: anotherSession, checkpoints: 'test', title: 'test', description: 'test', donateUrl: 'test' })
+    .send({ access_token: anotherSession, checkpoints: [], title: 'test', description: 'test', donateUrl: 'test' })
   expect(status).toBe(404)
 })
 
