@@ -1,10 +1,12 @@
 import _ from 'lodash'
 import { success, notFound } from '../../services/response/'
 import { Checkpoint } from '.'
+import { Journey } from '../journey'
 
 export const create = ({ bodymen: { body } }, res, next) =>
-  Checkpoint.create(body)
-    .then((checkpoint) => checkpoint.view(true))
+  Journey.findById(body.journeyId).exec()
+    .then(notFound(res))
+    .then((journey) => journey.addCheckpoint(body))
     .then(success(res, 201))
     .catch(next)
 

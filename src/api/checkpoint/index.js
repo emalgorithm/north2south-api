@@ -3,22 +3,25 @@ import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
+import { schema as journeySchema } from '../journey'
 export Checkpoint, { schema } from './model'
 
 const router = new Router()
 const { heartRate, calories, distance, longitude, latitude, createdAt } = schema.tree
+const { journeyId } = journeySchema.tree
 
 /**
  * @api {post} /checkpoints Create checkpoint
  * @apiName CreateCheckpoint
  * @apiGroup Checkpoint
+ * @apiParam journeyId The journey this checkpoint belongs to
  * @apiParam heartRate Checkpoint's heartRate.
  * @apiSuccess {Object} checkpoint Checkpoint's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Checkpoint not found.
  */
 router.post('/',
-  body({ heartRate, calories, distance, longitude, latitude, createdAt }),
+  body({ journeyId, heartRate, calories, distance, longitude, latitude, createdAt }),
   create)
 
 /**
