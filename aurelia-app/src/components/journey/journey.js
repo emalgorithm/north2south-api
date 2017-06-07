@@ -1,6 +1,6 @@
 import {HttpClient} from 'aurelia-http-client';
 import Dygraph from '../../../../node_modules/dygraphs/dist/dygraph';
-import map from 'map';
+import map from 'components/journey/map';
 import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
 
@@ -11,6 +11,7 @@ export class Southpole {
       .configure(x => {
         x.withBaseUrl('/');
       });
+    this.date = new Date();
   }
 
   activate(params) {
@@ -27,18 +28,18 @@ export class Southpole {
 
   attached() {
 
-    // this.client.get('checkpoints/{$id}').then(function (response) {
-    //   var checkpoints = JSON.parse(response.response);
-    //   this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
-    //   this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
-    //   this.calories = 0
-    //   this.distance = 0
-    //   if (checkpoints.length > 0) {
-    //     this.calories = checkpoints[checkpoints.length - 1].calories || 0
-    //     this.distance = checkpoints[checkpoints.length - 1].distance || 0
-    //   }
-    //   /* Initialise twitter feed */
-    // }.bind(this));
+    this.client.get('checkpoints').then(function (response) {
+      var checkpoints = JSON.parse(response.response);
+      this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
+      this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
+      this.calories = 0
+      this.distance = 0
+      if (checkpoints.length > 0) {
+        this.calories = checkpoints[checkpoints.length - 1].calories || 0
+        this.distance = checkpoints[checkpoints.length - 1].distance || 0
+      }
+      /* Initialise twitter feed */
+    }.bind(this));
 
     socket.on('checkpoint:save',
       function (checkpoint) {
