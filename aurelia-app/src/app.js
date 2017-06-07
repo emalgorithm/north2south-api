@@ -22,5 +22,6 @@ export class App {
         moduleId: './components/journey/journey', nav: true, href: '#/journey/1', title: 'Trip to South pole'
       }
     ]);
+    this.router = router;
   }
 }
