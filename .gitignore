@@ -63,6 +63,3 @@ jest/
 
 # Aurelia generated bundle
 aurelia-app/scripts/
-
-# Seed for dev users
-# seeds/users.json

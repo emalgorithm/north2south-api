@@ -1,6 +1,6 @@
 [
   {
-    "id": "592f072f362d3200591d51e0",
+    "_id": { "$oid": "592f072f362d3200591d51e0" },
     "heartRate": 85,
     "calories": 1442,
     "distance": 2396,
@@ -8,7 +8,7 @@
     "updatedAt": "2017-05-31T18:10:55.165Z"
   },
   {
-    "id": "592f0725362d3200591d51df",
+    "_id": { "$oid": "592f0725362d3200591d51df" },
     "heartRate": 73,
     "calories": 1342,
     "distance": 2096,
@@ -16,7 +16,7 @@
     "updatedAt": "2017-05-31T18:10:45.004Z"
   },
   {
-    "id": "592f071a362d3200591d51de",
+    "_id": { "$oid": "592f071a362d3200591d51de" },
     "heartRate": 83,
     "calories": 1222,
     "distance": 2026,
@@ -24,7 +24,7 @@
     "updatedAt": "2017-05-31T18:10:34.363Z"
   },
   {
-    "id": "592f070f362d3200591d51dd",
+    "_id": { "$oid": "592f070f362d3200591d51dd" },
     "heartRate": 75,
     "calories": 1122,
     "distance": 1946,
@@ -32,7 +32,7 @@
     "updatedAt": "2017-05-31T18:10:23.692Z"
   },
   {
-    "id": "592f06d8362d3200591d51db",
+    "_id": { "$oid": "592f06d8362d3200591d51db" },
     "heartRate": 77,
     "calories": 910,
     "distance": 1600,
@@ -40,7 +40,7 @@
     "updatedAt": "2017-05-31T18:09:28.494Z"
   },
   {
-    "id": "592f06cf362d3200591d51da",
+    "_id": { "$oid": "592f06cf362d3200591d51da" },
     "heartRate": 73,
     "calories": 860,
     "distance": 1411,
@@ -48,7 +48,7 @@
     "updatedAt": "2017-05-31T18:09:19.661Z"
   },
   {
-    "id": "592f06c2362d3200591d51d9",
+    "_id": { "$oid": "592f06c2362d3200591d51d9" },
     "heartRate": 66,
     "calories": 820,
     "distance": 1209,
@@ -56,7 +56,7 @@
     "updatedAt": "2017-05-31T18:09:06.012Z"
   },
   {
-    "id": "592f06b1362d3200591d51d8",
+    "_id": { "$oid": "592f06b1362d3200591d51d8" },
     "heartRate": 67,
     "calories": 770,
     "distance": 1090,
@@ -64,7 +64,7 @@
     "updatedAt": "2017-05-31T18:08:49.393Z"
   },
   {
-    "id": "592f067d362d3200591d51d7",
+    "_id": { "$oid": "592f067d362d3200591d51d7" },
     "heartRate": 70,
     "calories": 731,
     "distance": 1009,
@@ -72,7 +72,7 @@
     "updatedAt": "2017-05-31T18:07:57.418Z"
   },
   {
-    "id": "592f066f362d3200591d51d6",
+    "_id": { "$oid": "592f066f362d3200591d51d6" },
     "heartRate": 90,
     "calories": 631,
     "distance": 982,
@@ -80,7 +80,7 @@
     "updatedAt": "2017-05-31T18:07:43.321Z"
   },
   {
-    "id": "592f0661362d3200591d51d5",
+    "_id": { "$oid": "592f0661362d3200591d51d5" },
     "heartRate": 110,
     "calories": 529,
     "distance": 733,
@@ -88,7 +88,7 @@
     "updatedAt": "2017-05-31T18:07:29.811Z"
   },
   {
-    "id": "592f0652362d3200591d51d4",
+    "_id": { "$oid": "592f0652362d3200591d51d4" },
     "heartRate": 80,
     "calories": 400,
     "distance": 600,
@@ -96,7 +96,7 @@
     "updatedAt": "2017-05-31T18:07:14.499Z"
   },
   {
-    "id": "592f0648362d3200591d51d3",
+    "_id": { "$oid": "592f0648362d3200591d51d3" },
     "heartRate": 66,
     "calories": 160,
     "distance": 400,
@@ -104,7 +104,7 @@
     "updatedAt": "2017-05-31T18:07:04.936Z"
   },
   {
-    "id": "592f063c362d3200591d51d2",
+    "_id": { "$oid": "592f063c362d3200591d51d2" },
     "heartRate": 65,
     "calories": 100,
     "distance": 300,
@@ -112,7 +112,7 @@
     "updatedAt": "2017-05-31T18:06:52.990Z"
   },
   {
-    "id": "592f062c362d3200591d51d1",
+    "_id": { "$oid": "592f062c362d3200591d51d1" },
     "heartRate": 60,
     "calories": 0,
     "distance": 0,
