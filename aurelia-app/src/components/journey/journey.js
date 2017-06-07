@@ -1,6 +1,6 @@
 import {HttpClient} from 'aurelia-http-client';
 import Dygraph from '../../../node_modules/dygraphs/dist/dygraph';
-import map from 'map';
+import map from '../../map';
 import io from '../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
 
