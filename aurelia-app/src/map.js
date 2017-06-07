@@ -7,7 +7,7 @@ exports.startMap = function() {
   scriptElement.async = true;
   scriptElement.defer = true;
   scriptElement.onload = () => {
-    console.log("Google maps script element has been loaded");
+    Logger.info("Google maps script element has been loaded");
   };
   document.querySelector('head').appendChild(scriptElement);
 };
@@ -21,7 +21,7 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
-    zoom: 8
+    zoom: 2
   });
 
 }
@@ -31,6 +31,8 @@ function addMarker(latitude, longitude) {
   if(isNaN(latitude) || isNaN(longitude)) {
     return;
   }
+
+  Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
 
   var location = new google.maps.LatLng(latitude, longitude);
 
@@ -51,12 +53,12 @@ function addMarker(latitude, longitude) {
 }
 
 function drawPath() {
-  console.log("drawPath is being called")
-  console.log(coordinates)
+  Logger.info("drawPath is being called")
+  Logger.info(coordinates)
   var path = new google.maps.Polyline({
     path: coordinates,
     geodesic: true,
-    strokeColor: '#FF0000',
+    strokeColor: '#ff4f4a',
     strokeOpacity: 1.0,
     strokeWeight: 2
   });

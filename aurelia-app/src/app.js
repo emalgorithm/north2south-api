@@ -22,7 +22,6 @@ export class App {
     client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
       this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
-      console.log(this.dateAndHeartRates)
       this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
       this.calories = 0
       this.distance = 0
@@ -38,7 +37,7 @@ export class App {
 
     socket.on('checkpoint:save',
       function (checkpoint) {
-        console.log("Getting socket updates:  " + checkpoint)
+        Logger.info("Getting socket updates:  " + checkpoint)
 
         // Update chart real time
         this.dateAndHeartRates.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
@@ -57,17 +56,17 @@ export class App {
   nextDay() {
     this.date.setDate(this.date.getDate()+1);
     this.chartHeartRate(this.dateAndHeartRates)
-    console.log("Day displayed is now " + this.date.toDateString())
+    Logger.info("Day displayed is now " + this.date.toDateString())
   }
 
   previousDay() {
     this.date.setDate(this.date.getDate()-1);
     this.chartHeartRate(this.dateAndHeartRates)
-    console.log("Day displayed is now " + this.date.toDateString())
+    Logger.info("Day displayed is now " + this.date.toDateString())
   }
 
   chartHeartRate = function (data) {
-    if (data <= 0) return;
+    if (data.length == 0) return;
 
     data = data.filter(d => d[0].toDateString() === this.date.toDateString())
 
