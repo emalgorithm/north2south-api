@@ -19,8 +19,6 @@ describe('view', () => {
     expect(typeof view).toBe('object')
     expect(view.id).toBe(checkpoint.id)
     expect(view.heartRate).toBe(checkpoint.heartRate)
-    expect(view.createdAt).toBeTruthy()
-    expect(view.updatedAt).toBeTruthy()
   })
 
   it('returns full view', () => {
@@ -28,7 +26,5 @@ describe('view', () => {
     expect(typeof view).toBe('object')
     expect(view.id).toBe(checkpoint.id)
     expect(view.heartRate).toBe(checkpoint.heartRate)
-    expect(view.createdAt).toBeTruthy()
-    expect(view.updatedAt).toBeTruthy()
   })
 })
