@@ -137,9 +137,9 @@
             "env": "development"
           },
           {
-            "name": "dygraph",
-            "path": "../node_modules/dygraphs/dist",
-            "main": "dygraph"
+            "name": "dygraphs",
+            "path": "../node_modules/dygraphs/",
+            "main": "dygraphs"
           }
         ]
       }

@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import { onSave } from './socket'
+import { Journey } from '../journey'
 
 const checkpointSchema = new Schema({
   heartRate: Number,
@@ -27,12 +28,18 @@ checkpointSchema.methods = {
       ...view
       // add properties for a full view
     } : view
+  },
+
+  addToJourney (journeyId) {
+    const self = this
+    return Journey.findByIdAndUpdate(
+      journeyId,{ $push: {checkpoints: self.id } })
+      .then((journey) => journey ? self : null)
   }
 }
 
-checkpointSchema.post('save', function (doc) {
-  onSave(doc);
-});
+checkpointSchema.pre('save', function(next) { this.wasNew = this.isNew; next() })
+checkpointSchema.post('save', function(c) { if (c.wasNew) onSave(c) })
 
 const model = mongoose.model('Checkpoint', checkpointSchema)
 

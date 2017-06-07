@@ -7,7 +7,10 @@ const journeySchema = new Schema({
     required: true
   },
   checkpoints: {
-    type: String
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'Checkpoint'
+    }]
   },
   title: {
     type: String
