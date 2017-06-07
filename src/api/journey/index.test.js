@@ -2,6 +2,7 @@ import request from 'supertest-as-promised'
 import { signSync } from '../../services/jwt'
 import express from '../../services/express'
 import { User } from '../user'
+import { Checkpoint } from '../checkpoint' // needed by ref in Journey
 import routes, { Journey } from '.'
 
 const app = () => express(routes)

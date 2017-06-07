@@ -1,14 +1,13 @@
 import _ from 'lodash'
 import { success, notFound } from '../../services/response/'
 import { Checkpoint } from '.'
-import { Journey } from '../journey'
 
 export const create = ({ bodymen: { body } }, res, next) =>
-  Journey.findById(body.journeyId).exec()
-    .then(notFound(res))
-    .then((journey) => journey.addCheckpoint(body))
-    .then(success(res, 201))
-    .catch(next)
+    Checkpoint.create(body)
+      .then((checkpoint) => checkpoint.addToJourney(body.journeyId))
+      .then((checkpoint) => checkpoint ? checkpoint.view(true): null)
+      .then(success(res, 201))
+      .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Checkpoint.find(query, select, cursor)

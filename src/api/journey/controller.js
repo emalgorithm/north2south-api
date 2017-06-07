@@ -11,6 +11,7 @@ export const create = ({ user, bodymen: { body } }, res, next) =>
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Journey.find(query, select, cursor)
     .populate('userId')
+    .populate('checkpoints')
     .then((journeys) => journeys.map((journey) => journey.view(true)))
     .then(success(res))
     .catch(next)
@@ -18,6 +19,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 export const show = ({ params }, res, next) =>
   Journey.findById(params.id)
     .populate('userId')
+    .populate('checkpoints')
     .then(notFound(res))
     .then((journey) => journey ? journey.view(true) : null)
     .then(success(res))
