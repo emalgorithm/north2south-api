@@ -16,17 +16,12 @@ export class Southpole {
   activate(params) {
     this.id = params.id;
     /* Load data associated with id */
-    console.log("ouaou");
     this.client.get('journeys/' + this.id).then(function(response) {
-      console.log("here it is");
-      console.log(response);
-      alert(response);
+      this.journey = JSON.parse(response.response);
     }.bind(this));
-    console.log("qwe");
   }
 
   attached() {
-
     // this.client.get('checkpoints/{$id}').then(function (response) {
     //   var checkpoints = JSON.parse(response.response);
     //   this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
