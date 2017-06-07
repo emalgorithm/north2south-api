@@ -38,7 +38,12 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  query(),
+  query({
+    owner: {
+      type: String,
+      paths: ['userId']
+    }
+  }),
   index)
 
 /**
