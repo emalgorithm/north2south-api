@@ -6,6 +6,8 @@ var socket = io.connect();
 
 export class Southpole {
 
+  journey;
+
   constructor() {
     this.client = new HttpClient()
       .configure(x => {
