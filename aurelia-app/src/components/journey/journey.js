@@ -38,10 +38,7 @@ export class Southpole {
     this.map = this.component.currentViewModel;
     console.log(this.map)
 
-    this.client.get('checkpoints').then(function (response) {
-      this.checkpoints = JSON.parse(response.response);
-      Logger.info("Received checkpoints from server");
-    }.bind(this));
+
 
     socket.on('checkpoint:save',
       function (checkpoint) {
@@ -59,9 +56,13 @@ export class Southpole {
 
   onMapLoaded() {
     return (function() {
-      this.checkpoints.forEach(function (checkpoint) {
-        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      }.bind(this))
+      this.client.get('checkpoints').then(function (response) {
+        this.checkpoints = JSON.parse(response.response);
+        Logger.info("Received checkpoints from server");
+        this.checkpoints.forEach(function (checkpoint) {
+          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+        }.bind(this))
+      }.bind(this));
     }.bind(this));
   }
 }
