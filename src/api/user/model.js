@@ -26,6 +26,10 @@ const userSchema = new Schema({
     index: true,
     trim: true
   },
+  surname: {
+    type: String,
+    trim: true
+  },
   services: {
     facebook: String,
     google: String
@@ -71,7 +75,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'name', 'picture', 'surname']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
