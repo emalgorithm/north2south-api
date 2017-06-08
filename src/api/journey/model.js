@@ -15,6 +15,9 @@ const journeySchema = new Schema({
   title: {
     type: String
   },
+  charities: {
+    type: [String]
+  },
   description: {
     type: String
   },
@@ -33,6 +36,7 @@ journeySchema.methods = {
       userId: this.userId.view(full),
       checkpoints: this.checkpoints,
       title: this.title,
+      charities: this.charities,
       description: this.description,
       donateUrl: this.donateUrl,
       createdAt: this.createdAt,
