@@ -7,9 +7,7 @@ export class Map {
 
   activate() {
     Logger.info("Inside Map attached() method");
-    window.initMap = this.initMap();
-
-    this.addMapScript()
+    this.addMapScript(this.initMap())
   }
 
   initMap() {
@@ -19,19 +17,18 @@ export class Map {
         center: {lat: -34.397, lng: 150.644},
         zoom: 2
       });
-      Logger.info("Inside initMap, GoogleMap is: ");
-      console.log(this);
     }.bind(this));
   }
 
-  addMapScript() {
+  addMapScript(callback) {
     // Add script which loads the map, and then has a callback to initMap
     let scriptElement = document.createElement('script');
-    scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
+    scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk";
     scriptElement.async = true;
     scriptElement.defer = true;
     scriptElement.onload = () => {
       Logger.info("Google maps script element has been loaded");
+      callback();
     };
     document.querySelector('head').appendChild(scriptElement);
   }
@@ -42,8 +39,6 @@ export class Map {
     }
 
     Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
-    Logger.info("GoogleMap is: ");
-    console.log(this.googleMap);
 
     var location = new google.maps.LatLng(latitude, longitude);
 
