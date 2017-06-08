@@ -10,7 +10,7 @@ export class Map {
     this.eventAggregator = EventAggregator;
   }
 
-  activate() {
+  attached() {
     Logger.info("Inside Map attached() method");
     this.addMapScript(this.initMap())
   }
