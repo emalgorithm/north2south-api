@@ -12,14 +12,14 @@
     "userId": { "$oid": "593727b7c1c04200d8cbcc78" },
     "title": "Support James Redden on his expedition on the South pole",
     "charities": ["3", "4"],
-    "description": "The Route will start off at the xth degree on the polar ice and finish at the yth degree, the south pole, covering a distance of zkm.",
+    "description": "The Route will start off at the 6th degree on the polar ice and finish at the 1st degree, the south pole, covering a distance of 123km.",
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes"
   },
   {
     "_id": { "$oid": "59372894ff82580150333ee3" },
     "userId": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "title": "Support Pani's quest in Pintos land",
-    "charities": ["1", "5"],
+    "charities": ["1", "6"],
     "description": "Join my trip in an attempt to face the most scaring pointers of the world. \n\n\n\n\n\n\n int **p = ** (int ****) x; \n Oh dear.. Look at that!",
     "donateUrl": "https://www.stackoverflow.com"
   }

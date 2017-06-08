@@ -1,16 +1,16 @@
 <template>
   <div id="intro">
     <div class="col-md-5">
-      <img id="journey_img" class="img-responsive center-block" src="../../../assets/images/users/${journey.user.picture}.jpg" alt="Generic placeholder image">
+      <img id="journey_img" class="img-responsive center-block" src="../../../assets/images/users/${journey.userId.picture}.jpg" alt="Generic placeholder image">
     </div>
     <div class="col-md-7" id="journey_desc">
 
       <hr id="top_line">
       <h1 class="title_text">${journey.title}</h1>
-      <div>${journey.user.bio}</div>
+      <div>${journey.userId.bio}</div>
      <a href="${journey.donateUrl}" target="_blank"><img src="../../../assets/images/donate-button.png" alt="Donate with VirginMoney" height="30"/></a>
 
-      <div>Brief Description of journey</div>
+      <div><h3>${journey.description}</h3></div>
       <div class="ssk-group" id="share_buttons">
         <a href="http://www.facebook.com/sharer.php?u=${url}" class="ssk ssk-facebook"></a>
         <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=${url}" class="ssk ssk-twitter"></a>
