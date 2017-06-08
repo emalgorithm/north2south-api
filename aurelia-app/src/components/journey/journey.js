@@ -1,19 +1,26 @@
 import {HttpClient} from 'aurelia-http-client';
-import Dygraph from '../../../../node_modules/dygraphs/dist/dygraph';
-import map from 'components/journey/map';
 import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
+import { inject } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
+@inject(EventAggregator)
 export class Southpole {
 
   journey;
 
-  constructor() {
+  constructor(EventAggregator) {
     this.client = new HttpClient()
       .configure(x => {
         x.withBaseUrl('/');
       });
     this.date = new Date();
+    this.checkpoints = [];
+
+    // Create an event aggregate (pub-sub) and subscribe to the event of when the map loads, so we can add marks
+    // after that
+    this.eventAggregator = EventAggregator;
+    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
   }
 
   activate(params) {
@@ -23,72 +30,42 @@ export class Southpole {
     this.client.get('journeys/' + this.id).then(function(response) {
       this.journey = JSON.parse(response.response);
     }.bind(this));
+
   }
 
   attached() {
+    Logger.info("Inside journey attached(), the map is: ");
+    this.map = this.component.currentViewModel;
+    console.log(this.map)
 
-    this.client.get('checkpoints').then(function (response) {
-      var checkpoints = JSON.parse(response.response);
-      this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
-      this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
-      this.calories = 0
-      this.distance = 0
-      if (checkpoints.length > 0) {
-        this.calories = checkpoints[checkpoints.length - 1].calories || 0
-        this.distance = checkpoints[checkpoints.length - 1].distance || 0
-      }
-      /* Initialise twitter feed */
-    }.bind(this));
+
 
     socket.on('checkpoint:save',
       function (checkpoint) {
         Logger.info("Getting socket updates:  " + checkpoint)
 
-        // Update chart real time
-        this.dateAndHeartRates.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
-        this.heartRateChart.updateOptions( { 'file': this.dateAndHeartRates } );
-
         //Update other fields
         this.calories = checkpoint.calories
         this.distance = checkpoint.distance
 
-        map.addMarker(checkpoint.latitude, checkpoint.longitude);
+        //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
       }.bind(this));
+
     setup_twitter_feed()
-    map.startMap()
   }
 
-  nextDay() {
-    this.date.setDate(this.date.getDate()+1);
-    this.chartHeartRate(this.dateAndHeartRates)
-    console.log("Day displayed is now " + this.date.toDateString())
-  }
-
-  previousDay() {
-    this.date.setDate(this.date.getDate()-1);
-    this.chartHeartRate(this.dateAndHeartRates)
-    console.log("Day displayed is now " + this.date.toDateString())
-  }
-
-  chartHeartRate = function (data) {
-    data = data.filter(d => d[0].toDateString() === this.date.toDateString())
-
-    chart("calories", data)
-    chart("distance", data)
-    return chart("heartRate", data)
+  onMapLoaded() {
+    return (function() {
+      this.client.get('checkpoints').then(function (response) {
+        this.checkpoints = JSON.parse(response.response);
+        Logger.info("Received checkpoints from server");
+        this.checkpoints.forEach(function (checkpoint) {
+          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+        }.bind(this))
+      }.bind(this));
+    }.bind(this));
   }
 }
-
-let chart = function (chartName, data) {
-  return new Dygraph(
-    document.getElementById(chartName),
-    data,
-    {
-      legend: 'always',
-      labels: ["Time", chartName],
-      //title: chartName,
-    });
-};
 
 let setup_twitter_feed = function() {
   !function (d, s, id) {

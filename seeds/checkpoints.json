@@ -4,6 +4,8 @@
     "heartRate": 85,
     "calories": 1442,
     "distance": 2396,
+    "longitude": 0.0,
+    "latitude": 10.65,
     "createdAt": "2017-05-31T18:10:55.165Z",
     "updatedAt": "2017-05-31T18:10:55.165Z"
   },
@@ -12,6 +14,8 @@
     "heartRate": 73,
     "calories": 1342,
     "distance": 2096,
+    "longitude": 34.0,
+    "latitude": 30.65,
     "createdAt": "2017-05-31T18:10:45.004Z",
     "updatedAt": "2017-05-31T18:10:45.004Z"
   },

@@ -1,68 +1,79 @@
-exports.startMap = function() {
-  window.initMap = initMap;
+import { inject } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
-  // Add script which loads the map, and then has a callback to initMap
-  let scriptElement = document.createElement('script');
-  scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
-  scriptElement.async = true;
-  scriptElement.defer = true;
-  scriptElement.onload = () => {
-    Logger.info("Google maps script element has been loaded");
-  };
-  document.querySelector('head').appendChild(scriptElement);
-};
-
-var labelIndex = 0;
-var map = null;
-var coordinates = []
-
-function initMap() {
-  // In the following example, markers appear when the user clicks on the map.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 2
-  });
-
-}
-
-// Adds a marker to the map.
-function addMarker(latitude, longitude) {
-  if(isNaN(latitude) || isNaN(longitude)) {
-    return;
+@inject(EventAggregator)
+export class Map {
+  constructor(EventAggregator) {
+    Logger.info("Inside Map constructor");
+    this.labelIndex = 0;
+    this.coordinates = [];
+    this.eventAggregator = EventAggregator;
   }
 
-  Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
+  activate() {
+    Logger.info("Inside Map attached() method");
+    this.addMapScript(this.initMap())
+  }
 
-  var location = new google.maps.LatLng(latitude, longitude);
+  initMap() {
+    // In the following example, markers appear when the user clicks on the map.
+    return (function() {
+      this.googleMap = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 2
+      });
+    }.bind(this));
+  }
 
-  var marker = new google.maps.Marker({
-    position: location,
-    label: labelIndex.toString(),
-    map: map
-  });
+  addMapScript(callback) {
+    // Add script which loads the map, and then has a callback to initMap
+    let scriptElement = document.createElement('script');
+    scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk";
+    scriptElement.async = true;
+    scriptElement.defer = true;
+    scriptElement.onload = () => {
+      Logger.info("Google maps script element has been loaded");
+      callback();
+      this.eventAggregator.publish("mapLoaded");
+    };
+    document.querySelector('head').appendChild(scriptElement);
+  }
 
-  labelIndex++;
+  addMarker(latitude, longitude) {
+    if(isNaN(latitude) || isNaN(longitude)) {
+      return;
+    }
 
-  coordinates.push({
-    lat: latitude,
-    lng: longitude
-  })
+    Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
 
-  drawPath()
+    var location = new google.maps.LatLng(latitude, longitude);
+
+    var marker = new google.maps.Marker({
+      position: location,
+      label: this.labelIndex.toString(),
+      map: this.googleMap
+    });
+
+    this.labelIndex++;
+
+    this.coordinates.push({
+      lat: latitude,
+      lng: longitude
+    });
+
+    this.drawPath()
+  }
+
+  drawPath() {
+    Logger.info("drawPath is being called")
+    var path = new google.maps.Polyline({
+      path: this.coordinates,
+      geodesic: true,
+      strokeColor: '#ff4f4a',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    path.setMap(this.googleMap);
+  }
 }
-
-function drawPath() {
-  Logger.info("drawPath is being called")
-  Logger.info(coordinates)
-  var path = new google.maps.Polyline({
-    path: coordinates,
-    geodesic: true,
-    strokeColor: '#ff4f4a',
-    strokeOpacity: 1.0,
-    strokeWeight: 2
-  });
-
-  path.setMap(map);
-}
-
-exports.addMarker = addMarker;

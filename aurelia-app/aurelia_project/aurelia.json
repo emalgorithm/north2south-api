@@ -135,11 +135,6 @@
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
             "env": "development"
-          },
-          {
-            "name": "dygraph",
-            "path": "../node_modules/dygraphs/dist/",
-            "main": "dygraph"
           }
         ]
       }
