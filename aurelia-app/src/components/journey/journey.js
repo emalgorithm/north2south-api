@@ -1,10 +1,7 @@
 import {HttpClient} from 'aurelia-http-client';
-//import {Map} from './map';
-import {inject} from 'aurelia-framework';
 import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
 
-//@inject(Map)
 export class Southpole {
 
   journey;
@@ -15,8 +12,6 @@ export class Southpole {
         x.withBaseUrl('/');
       });
     this.date = new Date();
-    //Logger.info("Injecting map: " + map + " in journey")
-    //this.map = map;
   }
 
   activate(params) {
@@ -29,22 +24,16 @@ export class Southpole {
   }
 
   attached() {
+    Logger.info("Inside journey attached(), the map is: ");
+    this.map = this.component.currentViewModel;
+    console.log(this.map)
 
     this.client.get('checkpoints').then(function (response) {
       var checkpoints = JSON.parse(response.response);
-      this.dateAndHeartRates = checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
-      //this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
-      this.calories = 0
-      this.distance = 0
-      if (checkpoints.length > 0) {
-        this.calories = checkpoints[checkpoints.length - 1].calories || 0
-        this.distance = checkpoints[checkpoints.length - 1].distance || 0
-      }
 
-      // checkpoints.forEach(function (checkpoint) {
-      //   Logger.info(this);
-      //   this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      // }.bind(this))
+      checkpoints.forEach(function (checkpoint) {
+        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      }.bind(this))
 
     }.bind(this));
 
@@ -52,18 +41,17 @@ export class Southpole {
       function (checkpoint) {
         Logger.info("Getting socket updates:  " + checkpoint)
 
-        // Update chart real time
-        this.dateAndHeartRates.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
-        //this.heartRateChart.updateOptions( { 'file': this.dateAndHeartRates } );
-
         //Update other fields
         this.calories = checkpoint.calories
         this.distance = checkpoint.distance
 
         //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
       }.bind(this));
+
     setup_twitter_feed()
   }
+
+
 }
 
 let setup_twitter_feed = function() {
