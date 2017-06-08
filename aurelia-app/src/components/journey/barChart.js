@@ -15,30 +15,31 @@ export class BarChart {
   loadChart() {
     return (function () {
       google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(this.drawChart);
+      google.charts.setOnLoadCallback(this.drawChart());
     }.bind(this));
   }
 
   drawChart() {
-    Logger.info("Drawing chart");
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses', 'Profit'],
-      ['2014', 1000, 400, 200],
-      ['2015', 1170, 460, 250],
-      ['2016', 660, 1120, 300],
-      ['2017', 1030, 540, 350]
-    ]);
+    return (function() {
+      Logger.info("Drawing chart");
+      var data = google.visualization.arrayToDataTable([
+        ["Day", this.name],
+        ['2014', 2000],
+        ['2015', 2170],
+        ['2016', 2660],
+        ['2017', 3030]
+      ]);
 
-    var options = {
-      chart: {
-        title: 'Company Performance',
-        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-      }
-    };
+      var options = {
+        chart: {
+          title: 'Calories burnt',
+        }
+      };
 
-    var chart = new google.charts.Bar(document.getElementById('calories'));
+      var chart = new google.charts.Bar(document.getElementById('calories'));
 
-    chart.draw(data, google.charts.Bar.convertOptions(options));
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }.bind(this));
   }
 
   addChartScript(callback) {
