@@ -1,73 +1,147 @@
-function startMap() {
-  window.initMap = initMap;
-
-  addMapScript()
-};
-
-function addMapScript() {
-  // Add script which loads the map, and then has a callback to initMap
-  let scriptElement = document.createElement('script');
-  scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
-  scriptElement.async = true;
-  scriptElement.defer = true;
-  scriptElement.onload = () => {
-    Logger.info("Google maps script element has been loaded");
-  };
-  document.querySelector('head').appendChild(scriptElement);
-}
-
-var labelIndex = 0;
-var map = null;
-var coordinates = []
-
-function initMap() {
-  // In the following example, markers appear when the user clicks on the map.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 2
-  });
-
-}
-
-// Adds a marker to the map.
-function addMarker(latitude, longitude) {
-  if(isNaN(latitude) || isNaN(longitude)) {
-    return;
+export class Map {
+  constructor() {
+    Logger.info("Inside Map constructor");
+    this.labelIndex = 0;
+    this.coordinates = [];
   }
 
-  Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
+  activate() {
+    Logger.info("Inside Map attached() method");
+    window.initMap = this.initMap;
 
-  var location = new google.maps.LatLng(latitude, longitude);
+    this.addMapScript()
+  }
 
-  var marker = new google.maps.Marker({
-    position: location,
-    label: labelIndex.toString(),
-    map: map
-  });
+  initMap() {
+    // In the following example, markers appear when the user clicks on the map.
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 2
+    });
+  }
 
-  labelIndex++;
+  addMapScript() {
+    // Add script which loads the map, and then has a callback to initMap
+    let scriptElement = document.createElement('script');
+    scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
+    scriptElement.async = true;
+    scriptElement.defer = true;
+    scriptElement.onload = () => {
+      Logger.info("Google maps script element has been loaded");
+    };
+    document.querySelector('head').appendChild(scriptElement);
+  }
 
-  coordinates.push({
-    lat: latitude,
-    lng: longitude
-  })
+  addMarker(latitude, longitude) {
+    if(isNaN(latitude) || isNaN(longitude)) {
+      return;
+    }
 
-  drawPath()
+    Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
+
+    var location = new google.maps.LatLng(latitude, longitude);
+
+    var marker = new google.maps.Marker({
+      position: location,
+      label: this.labelIndex.toString(),
+      map: this.map
+    });
+
+    this.labelIndex++;
+
+    this.coordinates.push({
+      lat: latitude,
+      lng: longitude
+    });
+
+    this.drawPath()
+  }
+
+  drawPath() {
+    Logger.info("drawPath is being called")
+    Logger.info(this.coordinates)
+    var path = new google.maps.Polyline({
+      path: this.coordinates,
+      geodesic: true,
+      strokeColor: '#ff4f4a',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    path.setMap(this.map);
+  }
 }
 
-function drawPath() {
-  Logger.info("drawPath is being called")
-  Logger.info(coordinates)
-  var path = new google.maps.Polyline({
-    path: coordinates,
-    geodesic: true,
-    strokeColor: '#ff4f4a',
-    strokeOpacity: 1.0,
-    strokeWeight: 2
-  });
-
-  path.setMap(map);
-}
-
-exports.startMap = startMap;
-exports.addMarker = addMarker;
+// function startMap() {
+//   window.initMap = initMap;
+//
+//   addMapScript()
+// };
+//
+// function addMapScript() {
+//   // Add script which loads the map, and then has a callback to initMap
+//   let scriptElement = document.createElement('script');
+//   scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
+//   scriptElement.async = true;
+//   scriptElement.defer = true;
+//   scriptElement.onload = () => {
+//     Logger.info("Google maps script element has been loaded");
+//   };
+//   document.querySelector('head').appendChild(scriptElement);
+// }
+//
+// var labelIndex = 0;
+// var map = null;
+// var coordinates = []
+//
+// function initMap() {
+//   // In the following example, markers appear when the user clicks on the map.
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: -34.397, lng: 150.644},
+//     zoom: 2
+//   });
+//
+// }
+//
+// // Adds a marker to the map.
+// function addMarker(latitude, longitude) {
+//   if(isNaN(latitude) || isNaN(longitude)) {
+//     return;
+//   }
+//
+//   Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
+//
+//   var location = new google.maps.LatLng(latitude, longitude);
+//
+//   var marker = new google.maps.Marker({
+//     position: location,
+//     label: labelIndex.toString(),
+//     map: map
+//   });
+//
+//   labelIndex++;
+//
+//   coordinates.push({
+//     lat: latitude,
+//     lng: longitude
+//   })
+//
+//   drawPath()
+// }
+//
+// function drawPath() {
+//   Logger.info("drawPath is being called")
+//   Logger.info(coordinates)
+//   var path = new google.maps.Polyline({
+//     path: coordinates,
+//     geodesic: true,
+//     strokeColor: '#ff4f4a',
+//     strokeOpacity: 1.0,
+//     strokeWeight: 2
+//   });
+//
+//   path.setMap(map);
+// }
+//
+// exports.startMap = startMap;
+// exports.addMarker = addMarker;
