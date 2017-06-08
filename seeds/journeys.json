@@ -4,6 +4,28 @@
     "userId": { "$oid": "593727ccc1c04200d8cbcc79" },
     "title": "Support Emanuele on his brave post-exam climb on mount KKilimanjaro",
     "charities": ["1", "2"],
+    "checkpoints": [
+      {
+        "_id": { "$oid": "592f072f362d3200591d51e0" },
+        "heartRate": 85,
+        "calories": 1442,
+        "distance": 2396,
+        "longitude": 0.0,
+        "latitude": 10.65,
+        "createdAt": "2017-06-08T18:10:55.165Z",
+        "updatedAt": "2017-06-08T18:10:55.165Z"
+      },
+      {
+        "_id": { "$oid": "592f0725362d3200591d51df" },
+        "heartRate": 73,
+        "calories": 1342,
+        "distance": 2096,
+        "longitude": 34.0,
+        "latitude": 30.65,
+        "createdAt": "2017-06-08T18:10:45.004Z",
+        "updatedAt": "2017-06-08T18:10:45.004Z"
+      }
+    ],
     "description": "On an attempt to support Unicef and the British Heart foundation me and a few collegaues from Imperial College London are climbing mount KKilimanjaro.",
     "donateUrl": "http://emanuelerossi.co.uk/"
   },
@@ -12,6 +34,40 @@
     "userId": { "$oid": "593727b7c1c04200d8cbcc78" },
     "title": "Support James Redden on his expedition on the South pole",
     "charities": ["3", "4"],
+    "checkpoints": [
+      {
+        "_id": { "$oid": "592f071a362d3200591d51de" },
+        "heartRate": 83,
+        "calories": 1222,
+        "distance": 2026,
+        "createdAt": "2017-06-08T18:10:34.363Z",
+        "updatedAt": "2017-06-08T18:10:34.363Z"
+      },
+      {
+        "_id": { "$oid": "592f070f362d3200591d51dd" },
+        "heartRate": 75,
+        "calories": 1122,
+        "distance": 1946,
+        "createdAt": "2017-06-08T18:10:23.692Z",
+        "updatedAt": "2017-06-08T18:10:23.692Z"
+      },
+      {
+        "_id": { "$oid": "592f06d8362d3200591d51db" },
+        "heartRate": 77,
+        "calories": 910,
+        "distance": 1600,
+        "createdAt": "2017-06-08T18:09:28.494Z",
+        "updatedAt": "2017-06-08T18:09:28.494Z"
+      },
+      {
+        "_id": { "$oid": "592f06cf362d3200591d51da" },
+        "heartRate": 73,
+        "calories": 860,
+        "distance": 1411,
+        "createdAt": "2017-06-08T18:09:19.661Z",
+        "updatedAt": "2017-06-08T18:09:19.661Z"
+      }
+    ],
     "description": "The Route will start off at the 6th degree on the polar ice and finish at the 1st degree, the south pole, covering a distance of 123km.",
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes"
   },
