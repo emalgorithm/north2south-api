@@ -24,6 +24,7 @@ export class Southpole {
   }
 
   activate(params) {
+    this.url = window.location.href;
     this.id = params.id;
     /* Load data associated with id */
     this.client.get('journeys/' + this.id).then(function(response) {
