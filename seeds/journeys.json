@@ -40,6 +40,8 @@
         "heartRate": 83,
         "calories": 1222,
         "distance": 2026,
+        "longitude": 51.556582,
+        "latitude": -0.089607,
         "createdAt": "2017-06-06T18:10:34.363Z",
         "updatedAt": "2017-06-06T18:10:34.363Z"
       },
@@ -48,6 +50,8 @@
         "heartRate": 75,
         "calories": 1122,
         "distance": 1946,
+        "longitude": 51.089723,
+        "latitude": -0.814705,
         "createdAt": "2017-06-05T18:10:23.692Z",
         "updatedAt": "2017-06-05T18:10:23.692Z"
       },
@@ -56,6 +60,8 @@
         "heartRate": 77,
         "calories": 910,
         "distance": 1600,
+        "longitude": 52.099757,
+        "latitude": -2.517586,
         "createdAt": "2017-06-04T18:09:28.494Z",
         "updatedAt": "2017-06-04T18:09:28.494Z"
       },
@@ -64,6 +70,8 @@
         "heartRate": 73,
         "calories": 860,
         "distance": 1411,
+        "longitude": 54.0,
+        "latitude": -3.517586,
         "createdAt": "2017-06-03T18:09:19.661Z",
         "updatedAt": "2017-06-03T18:09:19.661Z"
       }

@@ -4,8 +4,8 @@
     "heartRate": 85,
     "calories": 1442,
     "distance": 2396,
-    "longitude": 0.0,
-    "latitude": 10.65,
+    "longitude": -0.089607,
+    "latitude": 51.556582,
     "createdAt": "2017-06-08T18:10:55.165Z",
     "updatedAt": "2017-06-08T18:10:55.165Z"
   },
@@ -14,8 +14,8 @@
     "heartRate": 73,
     "calories": 1342,
     "distance": 2096,
-    "longitude": 34.0,
-    "latitude": 30.65,
+    "longitude": -0.814705,
+    "latitude": 51.089723,
     "createdAt": "2017-06-07T18:10:45.004Z",
     "updatedAt": "2017-06-07T18:10:45.004Z"
   },
@@ -24,6 +24,8 @@
     "heartRate": 83,
     "calories": 1222,
     "distance": 2026,
+    "longitude": 51.556582,
+    "latitude": -0.089607,
     "createdAt": "2017-06-06T18:10:34.363Z",
     "updatedAt": "2017-06-06T18:10:34.363Z"
   },
@@ -32,6 +34,8 @@
     "heartRate": 75,
     "calories": 1122,
     "distance": 1946,
+    "longitude": 51.089723,
+    "latitude": -0.814705,
     "createdAt": "2017-06-05T18:10:23.692Z",
     "updatedAt": "2017-06-05T18:10:23.692Z"
   },
@@ -40,6 +44,8 @@
     "heartRate": 77,
     "calories": 910,
     "distance": 1600,
+    "longitude": 52.099757,
+    "latitude": -2.517586,
     "createdAt": "2017-06-04T18:09:28.494Z",
     "updatedAt": "2017-06-04T18:09:28.494Z"
   },
@@ -48,6 +54,8 @@
     "heartRate": 73,
     "calories": 860,
     "distance": 1411,
+    "longitude": 54.0,
+    "latitude": -3.517586,
     "createdAt": "2017-06-03T18:09:19.661Z",
     "updatedAt": "2017-06-03T18:09:19.661Z"
   },
@@ -56,6 +64,8 @@
     "heartRate": 66,
     "calories": 820,
     "distance": 1209,
+    "longitude": 45,
+    "latitude": -6.517586,
     "createdAt": "2017-06-08T18:09:06.012Z",
     "updatedAt": "2017-06-08T18:09:06.012Z"
   },
@@ -64,6 +74,8 @@
     "heartRate": 67,
     "calories": 770,
     "distance": 1090,
+    "longitude": 60,
+    "latitude": -3.617586,
     "createdAt": "2017-06-08T18:08:49.393Z",
     "updatedAt": "2017-06-08T18:08:49.393Z"
   },
@@ -72,6 +84,8 @@
     "heartRate": 70,
     "calories": 731,
     "distance": 1009,
+    "longitude": 45,
+    "latitude": -2.517586,
     "createdAt": "2017-06-08T18:07:57.418Z",
     "updatedAt": "2017-06-08T18:07:57.418Z"
   },
@@ -80,6 +94,8 @@
     "heartRate": 90,
     "calories": 631,
     "distance": 982,
+    "longitude": 23,
+    "latitude": 30.65,
     "createdAt": "2017-06-08T18:07:43.321Z",
     "updatedAt": "2017-06-08T18:07:43.321Z"
   },
@@ -88,6 +104,8 @@
     "heartRate": 110,
     "calories": 529,
     "distance": 733,
+    "longitude": 23,
+    "latitude": 0,
     "createdAt": "2017-06-08T18:07:29.811Z",
     "updatedAt": "2017-06-08T18:07:29.811Z"
   },
@@ -96,6 +114,8 @@
     "heartRate": 80,
     "calories": 400,
     "distance": 600,
+    "longitude": 12,
+    "latitude": 20.2,
     "createdAt": "2017-06-08T18:07:14.499Z",
     "updatedAt": "2017-06-08T18:07:14.499Z"
   },
@@ -104,6 +124,8 @@
     "heartRate": 66,
     "calories": 160,
     "distance": 400,
+    "longitude": 13,
+    "latitude": -5,
     "createdAt": "2017-06-08T18:07:04.936Z",
     "updatedAt": "2017-06-08T18:07:04.936Z"
   },
@@ -112,6 +134,8 @@
     "heartRate": 65,
     "calories": 100,
     "distance": 300,
+    "longitude": 2,
+    "latitude": 1.5,
     "createdAt": "2017-06-08T18:06:52.990Z",
     "updatedAt": "2017-06-08T18:06:52.990Z"
   },
@@ -120,6 +144,8 @@
     "heartRate": 60,
     "calories": 0,
     "distance": 0,
+    "longitude": 12.12,
+    "latitude": -2.517586,
     "createdAt": "2017-06-08T18:06:36.045Z",
     "updatedAt": "2017-06-08T18:06:36.045Z"
   }
