@@ -47,7 +47,7 @@
         <h3 class="featurette-heading">Today, ${journey.user.name} burned ${calories} calories. <span class="text-muted">See for yourself.</span></h3>
       </div>
       <div class="col-md-8">
-        <compose view-model="./barChart" model.bind="{ chartName : 'calories' }" ></compose>
+        <compose view-model.ref="caloriesComponent" view-model="./barChart" model.bind="{ chartName : 'calories' }" ></compose>
       </div>
     </div>
 
@@ -58,7 +58,7 @@
         <h3 class="featurette-heading">Today, ${journey.user.name} walked for ${distance} meters.  <span class="text-muted">See for yourself.</span></h3>
       </div>
       <div class="col-md-8">
-        <div id="distance" style="width: 50vw;"></div>
+        <!--<compose view-model="./barChart" model.bind="{ chartName : 'distance' }" ></compose>-->
       </div>
     </div>
 

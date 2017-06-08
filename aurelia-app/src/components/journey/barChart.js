@@ -21,13 +21,14 @@ export class BarChart {
 
   drawChart() {
     return (function() {
-      Logger.info("Drawing chart");
+      Logger.info("Drawing chart: " + this.name);
       var data = google.visualization.arrayToDataTable([
         ["Day", this.name],
-        ['2014', 2000],
-        ['2015', 2170],
-        ['2016', 2660],
-        ['2017', 3030]
+        ['03', 2000],
+        ['04', 3170],
+        ['05', 2660],
+        ['06', 3030],
+        ['07', 2730]
       ]);
 
       var options = {
@@ -36,7 +37,7 @@ export class BarChart {
         }
       };
 
-      var chart = new google.charts.Bar(document.getElementById('calories'));
+      var chart = new google.charts.Bar(document.getElementById(this.name));
 
       chart.draw(data, google.charts.Bar.convertOptions(options));
     }.bind(this));

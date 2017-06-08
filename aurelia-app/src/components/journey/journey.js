@@ -16,6 +16,7 @@ export class Southpole {
       });
     this.date = new Date();
     this.checkpoints = [];
+    this.distance = 0;
 
     // Create an event aggregate (pub-sub) and subscribe to the event of when the map loads, so we can add marks
     // after that
@@ -36,19 +37,18 @@ export class Southpole {
   attached() {
     Logger.info("Inside journey attached(), the map is: ");
     this.map = this.component.currentViewModel;
-    console.log(this.map)
-
-
+    this.caloriesChart = this.caloriesComponent.currentViewModel;
+    console.log(this.map);
 
     socket.on('checkpoint:save',
       function (checkpoint) {
-        Logger.info("Getting socket updates:  " + checkpoint)
+        Logger.info("Getting socket updates:  " + checkpoint);
 
         //Update other fields
-        this.calories = checkpoint.calories
-        this.distance = checkpoint.distance
+        this.calories = checkpoint.calories;
+        this.distance = checkpoint.distance;
 
-        //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
       }.bind(this));
 
     setup_twitter_feed()
@@ -60,8 +60,15 @@ export class Southpole {
         this.checkpoints = JSON.parse(response.response);
         Logger.info("Received checkpoints from server");
         this.checkpoints.forEach(function (checkpoint) {
+          if (checkpoint.distance && checkpoint.calories) {
+            this.distance = checkpoint.distance;
+            this.calories = checkpoint.calories;
+          }
+
           this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
         }.bind(this))
+
+
       }.bind(this));
     }.bind(this));
   }
