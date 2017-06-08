@@ -1,6 +1,10 @@
-exports.startMap = function() {
+function startMap() {
   window.initMap = initMap;
 
+  addMapScript()
+};
+
+function addMapScript() {
   // Add script which loads the map, and then has a callback to initMap
   let scriptElement = document.createElement('script');
   scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
@@ -10,7 +14,7 @@ exports.startMap = function() {
     Logger.info("Google maps script element has been loaded");
   };
   document.querySelector('head').appendChild(scriptElement);
-};
+}
 
 var labelIndex = 0;
 var map = null;
@@ -65,4 +69,5 @@ function drawPath() {
   path.setMap(map);
 }
 
+exports.startMap = startMap;
 exports.addMarker = addMarker;
