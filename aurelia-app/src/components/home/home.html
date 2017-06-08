@@ -9,12 +9,14 @@
       <div repeat.for="j of journeys">
         <div class="col-md-10 postShort">
           <h1>${j.title}</h1>
-          <img src="../../../assets/images/users/1.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail post-img">
+          ${j.userId}
+          <img src="../../../assets/images/users/${j.userId.picture}.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail post-img">
           <post><p>
             <h3>${j.description}</h3>
           </p></post>
-          <img src="../../../assets/images/charities/1.png" alt="charity img" class="img-responsive thumb margin10 img-thumbnail charity">
-          <img src="../../../assets/images/charities/2.png" alt="charity img" class="img-responsive thumb margin10 img-thumbnail charity">
+          <div repeat.for="c of j.charities">
+            <img src="../../../assets/images/charities/${c}.png" alt="charity img" class="img-responsive thumb margin10 img-thumbnail charity">
+          </div>
           <a class="btn btn-post pull-right marginBottom10" href="#/journey/${j.id}">READ MORE</a>
         </div>
       </div>
