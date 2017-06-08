@@ -1,8 +1,13 @@
+import { inject } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
+
+@inject(EventAggregator)
 export class Map {
-  constructor() {
+  constructor(EventAggregator) {
     Logger.info("Inside Map constructor");
     this.labelIndex = 0;
     this.coordinates = [];
+    this.eventAggregator = EventAggregator;
   }
 
   activate() {
@@ -29,6 +34,7 @@ export class Map {
     scriptElement.onload = () => {
       Logger.info("Google maps script element has been loaded");
       callback();
+      this.eventAggregator.publish("mapLoaded");
     };
     document.querySelector('head').appendChild(scriptElement);
   }

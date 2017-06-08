@@ -1,17 +1,26 @@
 import {HttpClient} from 'aurelia-http-client';
 import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
+import { inject } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
+@inject(EventAggregator)
 export class Southpole {
 
   journey;
 
-  constructor() {
+  constructor(EventAggregator) {
     this.client = new HttpClient()
       .configure(x => {
         x.withBaseUrl('/');
       });
     this.date = new Date();
+    this.checkpoints = [];
+
+    // Create an event aggregate (pub-sub) and subscribe to the event of when the map loads, so we can add marks
+    // after that
+    this.eventAggregator = EventAggregator;
+    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
   }
 
   activate(params) {
@@ -29,12 +38,8 @@ export class Southpole {
     console.log(this.map)
 
     this.client.get('checkpoints').then(function (response) {
-      var checkpoints = JSON.parse(response.response);
-
-      checkpoints.forEach(function (checkpoint) {
-        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      }.bind(this))
-
+      this.checkpoints = JSON.parse(response.response);
+      Logger.info("Received checkpoints from server");
     }.bind(this));
 
     socket.on('checkpoint:save',
@@ -51,7 +56,13 @@ export class Southpole {
     setup_twitter_feed()
   }
 
-
+  onMapLoaded() {
+    return (function() {
+      this.checkpoints.forEach(function (checkpoint) {
+        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      }.bind(this))
+    }.bind(this));
+  }
 }
 
 let setup_twitter_feed = function() {
