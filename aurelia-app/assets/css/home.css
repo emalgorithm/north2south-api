@@ -1,0 +1,27 @@
+.margin10{margin-bottom:10px; margin-right:10px;}
+
+.postShort{ border-bottom:1px solid #ddd;}
+
+.btn-post {
+  color: #ffffff;
+  background-color: #1a58bc;
+  border-radius:0;
+  border-color: #1a58bc;
+  margin-bottom:10px
+}
+.btn-post:hover,
+.btn-post:focus,
+.btn-post:active,
+.btn-post.active,
+.open .dropdown-toggle.btn-post {
+  color: white;
+  background-color:#1a58bc;
+  border-color: #1a58bc;
+}
+.main_title {
+  color: black;
+}
+
+#webpage_title {
+  margin-bottom: 30px;
+}
