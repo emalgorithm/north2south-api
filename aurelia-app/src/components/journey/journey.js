@@ -3,11 +3,15 @@ import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
 import { inject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import Dygraph from '../../../node_modules/dygraphs/dist/dygraph'
 
 @inject(EventAggregator)
 export class Southpole {
 
   journey;
+  heartRate;
+  calories;
+  distance;
 
   constructor(EventAggregator) {
     this.client = new HttpClient()
@@ -33,12 +37,42 @@ export class Southpole {
 
   }
 
+  plotCharts(checkpoints) {
+    this.heartRate = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.heartRate+"\n";})
+    this.calories = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.calories+"\n";})
+    this.distance = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.distance+"\n";})
+
+    new Dygraph(
+      document.getElementById("heartRate"),
+      "Date,HeartRate\n" + this.heartRate.join(""),
+      {
+        legend: 'always',
+        labels: ["Time", "HeartRate"],
+        //title: chartName,
+      });
+    new Dygraph(
+      document.getElementById("distance"),
+      "Date,Distance\n" + this.distance.join(""),
+      {
+        legend: 'always',
+        labels: ["Time", "Distance"],
+        //title: chartName,
+      });
+    new Dygraph(
+      document.getElementById("calories"),
+      "Date,Calories\n" + this.heartRate.join(""),
+      {
+        legend: 'always',
+        labels: ["Time", "Calories"],
+        //title: chartName,
+      });
+  }
+
   attached() {
+    this.plotCharts(this.journey.checkpoints)
+
     Logger.info("Inside journey attached(), the map is: ");
     this.map = this.component.currentViewModel;
-    console.log(this.map)
-
-
 
     socket.on('checkpoint:save',
       function (checkpoint) {

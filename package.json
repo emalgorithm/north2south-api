@@ -61,6 +61,7 @@
     "bodymen": "^1.0.1",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
+    "dygraphs": "^2.0.0",
     "express": "^4.13.4",
     "jsonwebtoken": "^7.1.9",
     "lodash": "^4.13.1",

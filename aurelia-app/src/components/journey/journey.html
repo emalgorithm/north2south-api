@@ -36,7 +36,6 @@
         <form submit.trigger="previousDay()">
           <button type="submit">Previous Day</button>
         </form>
-
       </div>
     </div>
 
@@ -47,8 +46,11 @@
         <h3 class="featurette-heading">Today, ${journey.user.name} burned ${calories} calories. <span class="text-muted">See for yourself.</span></h3>
       </div>
       <div class="col-md-8">
-        <compose view-model="./barChart" model.bind="{ chartName : 'calories' }" ></compose>
+        <div id="calories" style="width: 50vw;"></div>
       </div>
+      <!--<div class="col-md-8">-->
+        <!--<compose view-model="./barChart" model.bind="{ chartName : 'calories' }" ></compose>-->
+      <!--</div>-->
     </div>
 
     <hr class="featurette-divider">

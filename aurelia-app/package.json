@@ -13,6 +13,7 @@
     "aurelia-google-maps": "^1.0.21",
     "aurelia-http-client": "^1.1.1",
     "bluebird": "^3.4.1",
+    "dygraphs": "^2.0.0",
     "requirejs": "^2.3.2",
     "socket.io-client": "^2.0.1",
     "text": "github:requirejs/text#latest"
