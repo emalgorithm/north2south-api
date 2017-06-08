@@ -36,7 +36,11 @@ export class Southpole {
         this.calories = checkpoints[checkpoints.length - 1].calories || 0
         this.distance = checkpoints[checkpoints.length - 1].distance || 0
       }
-      /* Initialise twitter feed */
+
+      checkpoints.forEach(function (checkpoint) {
+        map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      })
+
     }.bind(this));
 
     socket.on('checkpoint:save',
