@@ -3,6 +3,7 @@ import io from '../../../../node_modules/socket.io-client/dist/socket.io';
 var socket = io.connect();
 import { inject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import Dygraph from '../../../node_modules/dygraphs/dist/dygraph'
 
 @inject(EventAggregator)
 export class Southpole {
@@ -48,6 +49,10 @@ export class Southpole {
         this.calories = checkpoint.calories;
         this.distance = checkpoint.distance;
 
+        // Update chart real time
+        this.dateAndHeartRates.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
+        this.heartRateChart.updateOptions( { 'file': this.dateAndHeartRates } );
+
         this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
       }.bind(this));
 
@@ -58,6 +63,9 @@ export class Southpole {
     return (function() {
       this.client.get('checkpoints').then(function (response) {
         this.checkpoints = JSON.parse(response.response);
+        this.dateAndHeartRates = this.checkpoints.map(c => [new Date(c.createdAt), c.heartRate])
+        console.log(this.dateAndHeartRates)
+        this.heartRateChart = this.chartHeartRate(this.dateAndHeartRates)
         Logger.info("Received checkpoints from server");
         this.checkpoints.forEach(function (checkpoint) {
           if (checkpoint.distance && checkpoint.calories) {
@@ -72,7 +80,38 @@ export class Southpole {
       }.bind(this));
     }.bind(this));
   }
+
+  nextDay() {
+    this.date.setDate(this.date.getDate()+1);
+    this.chartHeartRate(this.dateAndHeartRates)
+    console.log("Day displayed is now " + this.date.toDateString())
+  }
+
+  previousDay() {
+    this.date.setDate(this.date.getDate()-1);
+    this.chartHeartRate(this.dateAndHeartRates)
+    console.log("Day displayed is now " + this.date.toDateString())
+  }
+
+  chartHeartRate = function (data) {
+    if (data <= 0) return;
+
+    data = data.filter(d => d[0].toDateString() === this.date.toDateString())
+
+    return chart("heartRate", data)
+  }
 }
+
+let chart = function (chartName, data) {
+  return new Dygraph(
+    document.getElementById(chartName),
+    data,
+    {
+      legend: 'always',
+      labels: ["Time", chartName],
+      //title: chartName,
+    });
+};
 
 let setup_twitter_feed = function() {
   !function (d, s, id) {
