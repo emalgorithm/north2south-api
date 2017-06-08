@@ -19,12 +19,10 @@ export class Southpole {
         x.withBaseUrl('/');
       });
     this.date = new Date();
-    this.checkpoints = [];
 
     // Create an event aggregate (pub-sub) and subscribe to the event of when the map loads, so we can add marks
     // after that
     this.eventAggregator = EventAggregator;
-    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
   }
 
   activate(params) {
@@ -33,8 +31,39 @@ export class Southpole {
     /* Load data associated with id */
     this.client.get('journeys/' + this.id).then(function(response) {
       this.journey = JSON.parse(response.response);
+      console.log(JSON.stringify(this.journey.checkpoints))
     }.bind(this));
 
+  }
+
+  attached() {
+    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
+
+    this.plotCharts(this.journey.checkpoints)
+
+    Logger.info("Inside journey attached(), the map is: ");
+    this.map = this.component.currentViewModel;
+
+    socket.on('checkpoint:save',
+      function (checkpoint) {
+        Logger.info("Getting socket updates:  " + checkpoint)
+
+        //Update other fields
+        this.totalCalories = checkpoint.calories
+        this.totalDistance = checkpoint.distance
+
+        //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      }.bind(this));
+
+    setup_twitter_feed()
+  }
+
+  onMapLoaded() {
+    return (function() {
+      this.journey.checkpoints.forEach(function (checkpoint) {
+        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      }.bind(this))
+    }.bind(this));
   }
 
   plotCharts(checkpoints) {
@@ -68,37 +97,6 @@ export class Southpole {
       });
   }
 
-  attached() {
-    this.plotCharts(this.journey.checkpoints)
-
-    Logger.info("Inside journey attached(), the map is: ");
-    this.map = this.component.currentViewModel;
-
-    socket.on('checkpoint:save',
-      function (checkpoint) {
-        Logger.info("Getting socket updates:  " + checkpoint)
-
-        //Update other fields
-        this.calories = checkpoint.calories
-        this.distance = checkpoint.distance
-
-        //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      }.bind(this));
-
-    setup_twitter_feed()
-  }
-
-  onMapLoaded() {
-    return (function() {
-      this.client.get('checkpoints').then(function (response) {
-        this.checkpoints = JSON.parse(response.response);
-        Logger.info("Received checkpoints from server");
-        this.checkpoints.forEach(function (checkpoint) {
-          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-        }.bind(this))
-      }.bind(this));
-    }.bind(this));
-  }
 }
 
 let setup_twitter_feed = function() {
