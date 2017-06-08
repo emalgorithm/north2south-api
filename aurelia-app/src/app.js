@@ -1,12 +1,12 @@
 export class App {
 
   constructor() {
-    this.heading = "NorthToSouth";
+    this.heading = "North2South";
     this.date = new Date();
   }
 
   configureRouter(config, router) {
-    config.title = 'Webapps';
+    config.title = 'North2South';
 
     config.map([
       {
