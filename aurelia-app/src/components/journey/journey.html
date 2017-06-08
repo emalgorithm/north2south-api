@@ -8,14 +8,14 @@
       <hr id="top_line">
       <h1 class="title_text">${journey.title}</h1>
       <div>${journey.user.bio}</div>
-     <a href=${journey.donateUrl} target="_blank"><img src="../../../assets/images/donate-button.png" alt="Donate with VirginMoney" height="30"/></a>
+     <a href="${journey.donateUrl}" target="_blank"><img src="../../../assets/images/donate-button.png" alt="Donate with VirginMoney" height="30"/></a>
 
       <div>Brief Description of journey</div>
       <div class="ssk-group" id="share_buttons">
-        <a href="http://www.facebook.com/sharer.php?u=https://north2south.herokuapp.com/" class="ssk ssk-facebook"></a>
-        <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=https://north2south.herokuapp.com/" class="ssk ssk-twitter"></a>
-        <a href="https://plus.google.com/share?url=https://north2south.herokuapp.com/" class="ssk ssk-google-plus"></a>
-        <a href="http://pinterest.com/pin/create/button/?url=url=https://north2south.herokuapp.com/" class="ssk ssk-pinterest"></a>
+        <a href="http://www.facebook.com/sharer.php?u=${url}" class="ssk ssk-facebook"></a>
+        <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=${url}" class="ssk ssk-twitter"></a>
+        <a href="https://plus.google.com/share?url=${url}" class="ssk ssk-google-plus"></a>
+        <a href="http://pinterest.com/pin/create/button/?url=${url}" class="ssk ssk-pinterest"></a>
       </div>
     </div>
   </div>
