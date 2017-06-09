@@ -9,9 +9,9 @@ import Dygraph from '../../../node_modules/dygraphs/dist/dygraph'
 export class Southpole {
 
   journey;
-  heartRate;
-  calories;
-  distance;
+  heartRateGraph;
+  caloriesGraph;
+  distanceGraph;
 
   constructor(EventAggregator) {
     this.client = new HttpClient()
@@ -51,6 +51,15 @@ export class Southpole {
         //Update other fields
         this.totalCalories = checkpoint.calories
         this.totalDistance = checkpoint.distance
+        // Update charts real time
+        this.heartRateGraph.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
+        this.heartRateGraph.updateOptions( { 'file': this.heartRateGraph } );
+
+        this.distanceGraph.push([new Date(checkpoint.createdAt), checkpoint.distance])
+        this.distanceGraph.updateOptions( { 'file': this.distanceGraph } );
+
+        this.caloriesGraph.push([new Date(checkpoint.createdAt), checkpoint.calories])
+        this.caloriesGraph.updateOptions( { 'file': this.caloriesGraph } );
 
         //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
       }.bind(this));
@@ -67,29 +76,29 @@ export class Southpole {
   }
 
   plotCharts(checkpoints) {
-    this.heartRate = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.heartRate+"\n";})
-    this.calories = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.calories+"\n";})
-    this.distance = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.distance+"\n";})
+    var heartRate = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.heartRate+"\n";})
+    var calories = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.calories+"\n";})
+    var distance = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.distance+"\n";})
 
-    new Dygraph(
+    this.heartRateGraph = new Dygraph(
       document.getElementById("heartRate"),
-      "Date,HeartRate\n" + this.heartRate.join(""),
+      "Date,HeartRate\n" + heartRate.join(""),
       {
         legend: 'always',
         labels: ["Time", "HeartRate"],
         //title: chartName,
       });
-    new Dygraph(
+    this.distanceGraph = new Dygraph(
       document.getElementById("distance"),
-      "Date,Distance\n" + this.distance.join(""),
+      "Date,Distance\n" + distance.join(""),
       {
         legend: 'always',
         labels: ["Time", "Distance"],
         //title: chartName,
       });
-    new Dygraph(
+    this.caloriesGraph = new Dygraph(
       document.getElementById("calories"),
-      "Date,Calories\n" + this.heartRate.join(""),
+      "Date,Calories\n" + calories.join(""),
       {
         legend: 'always',
         labels: ["Time", "Calories"],
