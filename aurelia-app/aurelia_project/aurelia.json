@@ -118,6 +118,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "aurelia-http-client",
           "text",
           {
             "name": "aurelia-templating-resources",
@@ -133,7 +134,7 @@
             "name": "aurelia-testing",
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
-            "env": "dev"
+            "env": "development"
           },
           {
             "name": "jquery",
