@@ -7,9 +7,6 @@
         <div class="card card-journey">
 
           <div class="card-header">
-            <h4 class="title">${j.name}</h4>
-            <p class="category">by ${j.owner.name}</p>
-
             <div class="card-profile">
               <div class="card-avatar">
                 <a href.bind="j.owner.profileUrl">
@@ -17,6 +14,9 @@
                 </a>
               </div>
             </div>
+
+            <h4 class="title">${j.name}</h4>
+            <p class="category">by ${j.owner.name}</p>
           </div>
           
           <div class="card-content">
@@ -24,8 +24,8 @@
             <!-- Focused content card -->
             <div class="col-md-6">
               <div class="content">
-                <h2 class="card-title">${j.focusedMessage.title}</h2>
-                <p>${j.focusedMessage.content}</p>
+                <h2 class="card-title">${j.status.title}</h2>
+                <p>${j.status.content}</p>
               </div>
             </div>
 
@@ -33,7 +33,7 @@
             <div class="col-md-6">
               <div class="card card-stats">
                 <div class="card-header" data-background-color="green">
-                  <i class="material-icons">${j.focusedCheckpoint.icon}</i>
+                  <i class="material-icons">${j.ceckpoint.icon}</i>
                 </div>
                 <div class="card-content">
                   <p class="category">${j.focusedCheckpoint.title}</p>

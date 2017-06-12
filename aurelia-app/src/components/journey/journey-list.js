@@ -2,7 +2,7 @@ import { RestApi } from 'services/api'
 
 export class JourneyList {
 
-  static inject =[RestApi]
+  static inject = [RestApi]
   constructor(api) {
     this.api = api
 
