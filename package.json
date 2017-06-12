@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .",
     "build:au": "cd aurelia-app && npm install && au build",
-    "docker:prod": "npm run build:au --env production && docker-compose build --pull && docker-compose up",
+    "docker:prod": "npm run build:au -- --env production && docker-compose build --pull && docker-compose up",
     "test": "jest",
     "test:unit": "npm test \"src/**/!(index).test.js\"",
     "test:integration": "npm test \"src/**/index.test.js\"",
