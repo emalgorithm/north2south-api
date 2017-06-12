@@ -118,8 +118,18 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
-          "aurelia-http-client",
+          {
+            "name": "aurelia-fetch-client",
+            "main": "aurelia-fetch-client",
+            "path": "../node_modules/aurelia-fetch-client/dist/amd",
+            "resources": []
+          },
           "text",
+          {
+            "name": "fetch",
+            "path": "../node_modules/whatwg-fetch",
+            "main": "fetch"
+          },
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -146,7 +156,9 @@
             "name": "bootstrap",
             "path": "../node_modules/material-dashboard/assets",
             "main": "js/bootstrap.min",
-            "deps": ["jquery"],
+            "deps": [
+              "jquery"
+            ],
             "exports": "$",
             "resources": [
               "css/bootstrap.min.css"
@@ -156,13 +168,18 @@
             "name": "material",
             "path": "../node_modules/material-dashboard/assets",
             "main": "js/material.min",
-            "deps": ["jquery"]
+            "deps": [
+              "jquery"
+            ]
           },
           {
             "name": "material-dashboard",
             "path": "../node_modules/material-dashboard/assets",
             "main": "js/material-dashboard",
-            "deps": ["bootstrap", "material"],
+            "deps": [
+              "bootstrap",
+              "material"
+            ],
             "exports": "md",
             "resources": [
               "css/material-dashboard.css"
@@ -172,13 +189,17 @@
             "name": "chartist",
             "path": "../node_modules/material-dashboard/assets",
             "main": "js/chartist.min",
-            "deps": ["material-dashboard"]
+            "deps": [
+              "material-dashboard"
+            ]
           },
           {
             "name": "bootstrap-notify",
             "path": "../node_modules/material-dashboard/assets",
             "main": "js/bootstrap-notify",
-            "deps": ["bootstrap"] 
+            "deps": [
+              "bootstrap"
+            ]
           }
         ]
       }
