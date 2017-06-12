@@ -1,12 +1,37 @@
 <template>
-  <nav class="navbar navbar-default navbar-fixed-top" id="main_nav">
+  <require from="bootstrap/css/bootstrap.min.css"></require>
+  <require from="material-dashboard/css/material-dashboard.css"></require>
+  <require from="css/styles.css"></require>
+  
+  <nav class="navbar navbar-primary navbar-fixed-top" id="main_nav">
     <div class="container">
-      <a href="#" class="navbar-brand"><img id="logo" src="../assets/images/thumbnail.png"/></a>
-      <a href="#" class="navbar-brand text-center">Latest</a>
-      <a href="#" class="navbar-brand text-center">Most Funded</a>
-      <a href="#" class="navbar-brand text-center">Most Supported Charities</a>
-      <a href="#" class="navbar-brand text-center">Challenges</a>
-    </div>
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">
+            <div>
+              <i class="fa fa-globe fa-2x pull-left"></i>
+              <span class="pull-left">North2South</span>
+            </div>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="navbar-brand">Latest</a></li>
+            <li><a href="#" class="navbar-brand">Most Funded</a></li>
+            <li><a href="#" class="navbar-brand">Most Supported Charities</a></li>
+            <li><a href="#" class="navbar-brand">Challenges</a></li>
+          </ul>
+        </div>
+      </div>
   </nav>
-  <router-view></router-view>
+
+  <div class="main-content">
+    <router-view></router-view>
+  </div>
+
 </template>

@@ -1,85 +1,147 @@
 <template>
-  <div id="intro">
-    <div class="col-md-5">
-      <img id="journey_img" class="img-responsive center-block" src="../../../assets/images/users/${journey.userId.picture}.jpg" alt="Generic placeholder image">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Profile -->
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="#pablo">
+              <img class="img" src="../assets/img/norway-me.jpg">
+            </a>
+          </div>
+
+          <div class="content">
+            <h6 class="category text-gray">Software Architect</h6>
+            <h2 class="card-title">James Redden | North By South 2017</h2>
+            <p class="card-content journey-description">
+            In 2017 I will attempt a full distance, solo, unsupported and unaided ski to the South Pole. The aim of this expedition is to raise money for Soundabout.org.uk, a UK-based charity which uses music as a form of therapy for disabled childrend and adults. I will also be raising money for a second charity and the official announcement will be made soon. Start date will be November 2017 (lots of planning and funding to raise hence announcing now; 17 months before I set off). Distance is about 683 miles and one I’m aiming to complete in under 30 days. In between...
+            </p>
+            <a class="btn btn-primary btn-round" href="#pablo">Follow</a>
+             <a class="btn btn-round" href="#pablo">Read more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Distance covered -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="green">
+            <i class="material-icons">directions_run</i>
+          </div>
+          <div class="card-content">
+            <p class="category">Distance covered today</p>
+            <h3 class="title">24.245 km</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">date_range</i> Last 24 Hours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donation Stats -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="red">
+            <i class="fa fa-heart"></i>
+          </div>
+          <div class="card-content">
+            <p class="category">Donations raised</p>
+            <h3 class="title">$2545</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">update</i> Just Updated
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heart rate chart -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-chart" data-background-color="green">
+            <div class="ct-chart heart-rate-chart"></div>
+          </div>
+          <div class="card-content">
+            <h4 class="title">Daily Heart Rate</h4>
+            <p class="category"><span class="text-success"><i class="fa fa-long-arrow-up"></i> 15%  </span> faster recovery compared to last week</p>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="col-md-7" id="journey_desc">
 
-      <hr id="top_line">
-      <h1 class="title_text">${journey.title}</h1>
-      <div>${journey.userId.bio}</div>
-     <a href="${journey.donateUrl}" target="_blank"><img src="../../../assets/images/donate-button.png" alt="Donate with VirginMoney" height="30"/></a>
-
-      <div><h3>${journey.description}</h3></div>
-      <div class="ssk-group" id="share_buttons">
-        <a href="http://www.facebook.com/sharer.php?u=${url}" class="ssk ssk-facebook"></a>
-        <a href="http://twitter.com/share?text=Support+James'+Redden+charity+trip+to+the+South+Pole&url=${url}" class="ssk ssk-twitter"></a>
-        <a href="https://plus.google.com/share?url=${url}" class="ssk ssk-google-plus"></a>
-        <a href="http://pinterest.com/pin/create/button/?url=${url}" class="ssk ssk-pinterest"></a>
+    <div class="row">
+      <!-- Map -->
+      <div class="col-md-12">
+        <compose view-model.ref="component" view-model="components/map"></compose>
       </div>
-    </div>
-  </div>
-
-  <div class="container marketing">
-    <hr class="featurette-divider">
-    <h1 class="title_text">Data dashboard</h1>
-    <br>
-    <div class="row featurette">
-      <div class="col-md-4">
-        <h3 class="featurette-heading">Have a look the heart rate of ${journey.user.name}. <span class="text-muted">Let's hope it keeps beating.</span></h3>
-      </div>
-      <div class="col-md-8">
-        <div id="heartRate" style="width: 50vw;"></div>
-        <form submit.trigger="nextDay()">
-          <button type="submit">Next Day</button>
-        </form>
-        <form submit.trigger="previousDay()">
-          <button type="submit">Previous Day</button>
-        </form>
-      </div>
+      
     </div>
 
-    <hr class="featurette-divider">
+    <div class="row">
+      
+      <!-- Followers Stats -->        
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="blue">
+            <i class="fa fa-twitter"></i>
+          </div>
+          <div class="card-content">
+            <p class="category">Followers</p>
+            <h3 class="title">+245</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">update</i> Just Updated
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Weather forecast -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header" data-background-color="blue">
+            <i class="fa fa-cloud"></i>
+          </div>
+          <div class="card-content">
+            <p class="category">Weather</p>
+            <h3 class="title">It will be -18C at James' location today</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">update</i> 1 hour ago
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="row featurette">
-      <div class="col-md-4">
-        <h3 class="featurette-heading">Today, ${journey.user.name} burned ${totalCalories} calories. <span class="text-muted">See for yourself.</span></h3>
+      <!-- Calories chart -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-chart" data-background-color="orange">
+            <div class="ct-chart calories-chart"></div>
+          </div>
+          <div class="card-content">
+            <h4 class="title">Daily Calories Burned</h4>
+            <p class="category"><span class="text-warning"><i class="fa fa-long-arrow-dowm"></i> 20%  </span> more calories burned than optimal</p>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-8">
-        <div id="calories" style="width: 50vw;"></div>
-      </div>
-      <!--<div class="col-md-8">-->
-        <!--<compose view-model="./barChart" model.bind="{ chartName : 'calories' }" ></compose>-->
-      <!--</div>-->
+
     </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-4">
-        <h3 class="featurette-heading">Today, ${journey.user.name} walked for ${totalDistance} meters.  <span class="text-muted">See for yourself.</span></h3>
-      </div>
-      <div class="col-md-8">
-        <div id="distance" style="width: 50vw;"></div>
-      </div>
-    </div>
-
-
-    <hr class="featurette-divider">
-    <compose view-model.ref="component" view-model="./map"></compose>
-
-    <hr class="featurette-divider">
-    <div class="container marketing" id="twitter_feed">
-
-      <!-- Twitter feed -->
-      <a class="twitter-timeline" href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
-    </div>
-    <hr class="featurette-divider">
-
-    <!-- FOOTER -->
-    <footer>
-      <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
   </div>
 </template>

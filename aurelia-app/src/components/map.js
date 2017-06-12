@@ -1,18 +1,15 @@
-import { inject } from 'aurelia-framework';
-import { EventAggregator } from 'aurelia-event-aggregator';
-
-@inject(EventAggregator)
 export class Map {
-  constructor(EventAggregator) {
-    Logger.info("Inside Map constructor");
+  constructor() {
+    console.log("Inside Map constructor");
     this.labelIndex = 0;
     this.coordinates = [];
-    this.eventAggregator = EventAggregator;
   }
 
   activate() {
-    Logger.info("Inside Map attached() method");
-    this.addMapScript(this.initMap())
+    console.log("Inside Map attached() method");
+    window.initMap = this.initMap();
+
+    this.addMapScript()
   }
 
   initMap() {
@@ -22,19 +19,19 @@ export class Map {
         center: {lat: -34.397, lng: 150.644},
         zoom: 2
       });
+      console.log("Inside initMap, GoogleMap is: ");
+      console.log(this);
     }.bind(this));
   }
 
-  addMapScript(callback) {
+  addMapScript() {
     // Add script which loads the map, and then has a callback to initMap
     let scriptElement = document.createElement('script');
-    scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk";
+    scriptElement.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwYqFZxpik8C0iIJgwuTroW1KyCSX_jk&callback=initMap";
     scriptElement.async = true;
     scriptElement.defer = true;
     scriptElement.onload = () => {
-      Logger.info("Google maps script element has been loaded");
-      callback();
-      this.eventAggregator.publish("mapLoaded");
+      console.log("Google maps script element has been loaded");
     };
     document.querySelector('head').appendChild(scriptElement);
   }
@@ -44,7 +41,9 @@ export class Map {
       return;
     }
 
-    Logger.info("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
+    console.log("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
+    console.log("GoogleMap is: ");
+    console.log(this.googleMap);
 
     var location = new google.maps.LatLng(latitude, longitude);
 
@@ -65,7 +64,7 @@ export class Map {
   }
 
   drawPath() {
-    Logger.info("drawPath is being called")
+    console.log("drawPath is being called")
     var path = new google.maps.Polyline({
       path: this.coordinates,
       geodesic: true,

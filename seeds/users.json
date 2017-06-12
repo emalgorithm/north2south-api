@@ -5,7 +5,7 @@
     "surname": "Redden",
     "email": "james@redden.com",
     "password": "$2a$09$by968rRF6aOHPkn3DBPn0eXBkYUtgW639kF5wqifMLwKEgixj0igS",
-    "picture": "1",
+    "picture": "//gravatar.com/avatar/22ab260039cc7c11aba9be5f263be841?s=200",
     "createdAt": "2017-05-31T18:10:55.165Z",
     "updatedAt": "2017-05-31T18:10:55.165Z"
   },
@@ -15,7 +15,7 @@
     "surname": "Rossi",
     "email": "ema@rossi.com",
     "password": "$2a$09$pYWq9h.RWL4m28PsahEzrOuLLZcqFhFby5t0ocrRgZSgaJPuJjKsq",
-    "picture": "2",
+    "picture": "//gravatar.com/avatar/22ab260039cc7c11aba9be5f263be841?s=200",
     "createdAt": "2017-05-31T18:06:36.045Z",
     "updatedAt": "2017-05-31T18:06:36.045Z"
   },
@@ -25,7 +25,7 @@
     "surname": "Panayiotou",
     "email": "pani@pani.com",
     "password": "$2a$09$Ta3cY1PwZd1MLMdIyttnp.ezDww6alij.NJnM0cLLB7t6cibBXrEe",
-    "picture": "3",
+    "picture": "//gravatar.com/avatar/22ab260039cc7c11aba9be5f263be841?s=200",
     "createdAt": "2017-05-31T18:10:55.165Z",
     "updatedAt": "2017-05-31T18:10:55.165Z"
   }

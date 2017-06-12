@@ -1,90 +1,44 @@
 [
   {
     "_id": { "$oid": "593727d9c1c04200d8cbcc7a" },
-    "userId": { "$oid": "593727ccc1c04200d8cbcc79" },
-    "title": "Support Emanuele on his brave post-exam climb on mount Kilimanjaro",
+    "owner": { "$oid": "593727ccc1c04200d8cbcc79" },
+    "name": "Support Emanuele on his brave post-exam climb on mount Kilimanjaro",
     "charities": ["1", "2"],
-    "checkpoints": [
-      {
-        "_id": { "$oid": "592f072f362d3200591d51e0" },
-        "heartRate": 85,
-        "calories": 1442,
-        "distance": 2396,
-        "longitude": 0.0,
-        "latitude": 10.65,
-        "createdAt": "2017-06-08T18:10:55.165Z",
-        "updatedAt": "2017-06-08T18:10:55.165Z"
-      },
-      {
-        "_id": { "$oid": "592f0725362d3200591d51df" },
-        "heartRate": 73,
-        "calories": 1342,
-        "distance": 2096,
-        "longitude": 34.0,
-        "latitude": 30.65,
-        "createdAt": "2017-06-07T18:10:45.004Z",
-        "updatedAt": "2017-06-07T18:10:45.004Z"
-      }
-    ],
     "description": "On an attempt to support Unicef and the British Heart foundation me and a few collegaues from Imperial College London are climbing mount Kilimanjaro.",
-    "donateUrl": "http://emanuelerossi.co.uk/"
+    "donateUrl": "http://emanuelerossi.co.uk/",
+    "statusUpdates": [
+      { "title": "Day 2", "content": "Another great day in the office"},
+      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+    ]
   },
   {
     "_id": { "$oid": "593728a0ff82580150333ee4" },
-    "userId": { "$oid": "593727b7c1c04200d8cbcc78" },
-    "title": "Support James Redden on his expedition on the South pole",
+    "owner": { "$oid": "593727b7c1c04200d8cbcc78" },
+    "name": "Support James Redden on his expedition on the South pole",
     "charities": ["3", "4"],
     "checkpoints": [
-      {
-        "_id": { "$oid": "592f071a362d3200591d51de" },
-        "heartRate": 83,
-        "calories": 1222,
-        "distance": 2026,
-        "longitude": 51.556582,
-        "latitude": -0.089607,
-        "createdAt": "2017-06-06T18:10:34.363Z",
-        "updatedAt": "2017-06-06T18:10:34.363Z"
-      },
-      {
-        "_id": { "$oid": "592f070f362d3200591d51dd" },
-        "heartRate": 75,
-        "calories": 1122,
-        "distance": 1946,
-        "longitude": 51.089723,
-        "latitude": -0.814705,
-        "createdAt": "2017-06-05T18:10:23.692Z",
-        "updatedAt": "2017-06-05T18:10:23.692Z"
-      },
-      {
-        "_id": { "$oid": "592f06d8362d3200591d51db" },
-        "heartRate": 77,
-        "calories": 910,
-        "distance": 1600,
-        "longitude": 52.099757,
-        "latitude": -2.517586,
-        "createdAt": "2017-06-04T18:09:28.494Z",
-        "updatedAt": "2017-06-04T18:09:28.494Z"
-      },
-      {
-        "_id": { "$oid": "592f06cf362d3200591d51da" },
-        "heartRate": 73,
-        "calories": 860,
-        "distance": 1411,
-        "longitude": 54.0,
-        "latitude": -3.517586,
-        "createdAt": "2017-06-03T18:09:19.661Z",
-        "updatedAt": "2017-06-03T18:09:19.661Z"
-      }
+       { "$oid": "592f071a362d3200591d51de" },
+       { "$oid": "592f070f362d3200591d51dd" },
+       { "$oid": "592f06d8362d3200591d51db" },
+       { "$oid": "592f06cf362d3200591d51da" }
     ],
     "description": "The Route will start off at the 6th degree on the polar ice and finish at the 1st degree, the south pole, covering a distance of 123km.",
-    "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes"
+    "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes",
+    "statusUpdates": [
+      { "title": "Day 2", "content": "Another great day in the office"},
+      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+    ]
   },
   {
     "_id": { "$oid": "59372894ff82580150333ee3" },
-    "userId": { "$oid": "593727d9c1c04200d8cbcc7a" },
-    "title": "Support Pani's quest in Pintos land",
+    "owner": { "$oid": "593727d9c1c04200d8cbcc7a" },
+    "name": "Support Pani's quest in Pintos land",
     "charities": ["1", "6"],
     "description": "Join my trip in an attempt to face the most scaring pointers of the world. \n\n\n\n\n\n\n int **p = ** (int ****) x; \n Oh dear.. Look at that!",
-    "donateUrl": "https://www.stackoverflow.com"
+    "donateUrl": "https://www.stackoverflow.com",
+    "statusUpdates": [
+      { "title": "Day 2", "content": "Another great day in the office"},
+      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+    ]
   }
 ]

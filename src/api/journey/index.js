@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, feed, show, update, destroy } from './controller'
 import { schema } from './model'
 export Journey, { schema } from './model'
 
 const router = new Router()
-const { checkpoints, title, description, donateUrl } = schema.tree
+const { checkpoints, name, description, donateUrl } = schema.tree
 
 /**
  * @api {post} /journeys Create journey
@@ -16,7 +16,7 @@ const { checkpoints, title, description, donateUrl } = schema.tree
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam checkpoints Journey's checkpoints.
- * @apiParam title Journey's title.
+ * @apiParam name Journey's name.
  * @apiParam description Journey's description.
  * @apiParam donateUrl Journey's donateUrl.
  * @apiSuccess {Object} journey Journey's data.
@@ -26,7 +26,7 @@ const { checkpoints, title, description, donateUrl } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ checkpoints, title, description, donateUrl }),
+  body({ checkpoints, name, description, donateUrl }),
   create)
 
 /**
@@ -41,10 +41,28 @@ router.get('/',
   query({
     owner: {
       type: String,
-      paths: ['userId']
+      paths: ['owner']
     }
   }),
   index)
+
+
+/**
+ * @api {get} /journeys/feed Retrieve journeys (focused)
+ * @apiName RetrieveJourneysFeed
+ * @apiGroup Journey
+ * @apiUse listParams
+ * @apiSuccess {Object[]} journeys List of journeys.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/feed',
+  query({
+    owner: {
+      type: String,
+      paths: ['owner']
+    }
+  }),
+  feed)
 
 /**
  * @api {get} /journeys/:id Retrieve journey
@@ -64,7 +82,7 @@ router.get('/:id',
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam checkpoints Journey's checkpoints.
- * @apiParam title Journey's title.
+ * @apiParam name Journey's name.
  * @apiParam description Journey's description.
  * @apiParam donateUrl Journey's donateUrl.
  * @apiSuccess {Object} journey Journey's data.
@@ -74,7 +92,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ checkpoints, title, description, donateUrl }),
+  body({ checkpoints, name, description, donateUrl }),
   update)
 
 /**

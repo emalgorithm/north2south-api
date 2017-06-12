@@ -4,7 +4,6 @@ import { Checkpoint } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>
     Checkpoint.create(body)
-      .then((checkpoint) => checkpoint.addToJourney(body.journeyId))
       .then((checkpoint) => checkpoint ? checkpoint.view(true): null)
       .then(success(res, 201))
       .catch(next)

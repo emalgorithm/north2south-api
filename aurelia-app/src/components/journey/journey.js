@@ -1,120 +1,63 @@
-import {HttpClient} from 'aurelia-http-client';
-import io from '../../../../node_modules/socket.io-client/dist/socket.io';
-var socket = io.connect();
-import { inject } from 'aurelia-framework';
-import { EventAggregator } from 'aurelia-event-aggregator';
-import Dygraph from '../../../node_modules/dygraphs/dist/dygraph'
+import 'bootstrap'
+import 'material-dashboard'
+import Chartist from 'chartist'
+ import { EventAggregator } from 'aurelia-event-aggregator'
 
-@inject(EventAggregator)
-export class Southpole {
+export class Journey {
 
-  journey;
-  heartRateGraph;
-  caloriesGraph;
-  distanceGraph;
+  static inject = [EventAggregator]
 
-  constructor(EventAggregator) {
-    this.client = new HttpClient()
-      .configure(x => {
-        x.withBaseUrl('/');
-      });
-    this.date = new Date();
 
-    // Create an event aggregate (pub-sub) and subscribe to the event of when the map loads, so we can add marks
-    // after that
-    this.eventAggregator = EventAggregator;
-    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
-  }
-
-  activate(params) {
-    this.url = window.location.href;
-    this.id = params.id;
-    /* Load data associated with id */
+  constructor() {
+    this.eventAggregator = EventAggregator
+    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
   }
 
   attached() {
-    //this.plotCharts(this.journey.checkpoints)
+    var data = {
+      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      series: [
+        [85, 78, 76, 72, 88, 79, 82]
+      ]
+    };
 
-    Logger.info("Inside journey attached(), the map is: ");
-    this.map = this.component.currentViewModel;
+    var options = {
+        lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 0
+        }),
+        low: 60,
+        high: 90,
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+    };
 
-    socket.on('checkpoint:save',
-      function (checkpoint) {
-        Logger.info("Getting socket updates:  " + checkpoint)
+    var chart = new Chartist.Line('.heart-rate-chart', data, options);
 
-        //Update other fields
-        this.totalCalories = checkpoint.calories
-        this.totalDistance = checkpoint.distance
-        // Update charts real time
-        this.heartRateGraph.push([new Date(checkpoint.createdAt), checkpoint.heartRate])
-        this.heartRateGraph.updateOptions( { 'file': this.heartRateGraph } );
+    md.startAnimationForLineChart(chart);
 
-        this.distanceGraph.push([new Date(checkpoint.createdAt), checkpoint.distance])
-        this.distanceGraph.updateOptions( { 'file': this.distanceGraph } );
+    data = {
+      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      series: [
+        [2585, 2895, 2965, 3072, 2512, 3125, 2454]
+      ]
+    };
 
-        this.caloriesGraph.push([new Date(checkpoint.createdAt), checkpoint.calories])
-        this.caloriesGraph.updateOptions( { 'file': this.caloriesGraph } );
+    options = {
+        lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 0
+        }),
+        low: 2000,
+        high: 3500,
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+    };
 
-        //this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      }.bind(this));
+    chart = new Chartist.Line('.calories-chart', data, options);
 
-    setup_twitter_feed()
+    md.startAnimationForLineChart(chart);
   }
 
   onMapLoaded() {
-    return (function() {
-      this.client.get('journeys/' + this.id).then(function(response) {
-        this.journey = JSON.parse(response.response);
-        console.log(JSON.stringify(this.journey.checkpoints))
-        this.journey.checkpoints.forEach(function (checkpoint) {
-          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-        }.bind(this));
-      }.bind(this))
-    }.bind(this));
+    // TODO: draw markers for checkpoints
+    // TODO: subscribe for real-time updates
+    return () => {}
   }
-
-  plotCharts(checkpoints) {
-    var heartRate = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.heartRate+"\n";})
-    var calories = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.calories+"\n";})
-    var distance = checkpoints.map(function(a) {return a.createdAt.substring(0, 10)+","+a.distance+"\n";})
-
-    this.heartRateGraph = new Dygraph(
-      document.getElementById("heartRate"),
-      "Date,HeartRate\n" + heartRate.join(""),
-      {
-        legend: 'always',
-        labels: ["Time", "HeartRate"],
-        //title: chartName,
-      });
-    this.distanceGraph = new Dygraph(
-      document.getElementById("distance"),
-      "Date,Distance\n" + distance.join(""),
-      {
-        legend: 'always',
-        labels: ["Time", "Distance"],
-        //title: chartName,
-      });
-    this.caloriesGraph = new Dygraph(
-      document.getElementById("calories"),
-      "Date,Calories\n" + calories.join(""),
-      {
-        legend: 'always',
-        labels: ["Time", "Calories"],
-        //title: chartName,
-      });
-  }
-
 }
-
-let setup_twitter_feed = function() {
-  !function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-      p = /^http:/.test(d.location) ? 'http' : 'https';
-    if (!d.getElementById(id)) {
-      js = d.createElement(s);
-      js.id = id;
-      js.src = p + "://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }
-  }(document, "script", "twitter-wjs");
-};

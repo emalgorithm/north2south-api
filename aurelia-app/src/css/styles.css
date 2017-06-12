@@ -1,0 +1,20 @@
+.main-content {
+    margin-top: 70px;
+    padding: 30px 15px;
+}
+
+.journey-description {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.card-journey .card-header .card-profile {
+    float: left;
+    margin-right: 20px;
+    margin-top: -20px;
+}
