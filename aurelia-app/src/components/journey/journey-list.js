@@ -1,10 +1,12 @@
 import { RestApi } from 'services/api'
+import { Router } from 'aurelia-router';
 
 export class JourneyList {
 
-  static inject = [RestApi]
-  constructor(api) {
+  static inject = [RestApi, Router]
+  constructor(api, router) {
     this.api = api
+    this.router = router
 
     var journeyViewModel = {
       name: 'North By South 2017',
@@ -33,5 +35,11 @@ export class JourneyList {
 
   created() {
     this.api.getJourneyList().then(journeys => this.journeys = journeys)
+  }
+
+  select(journeyId) {
+    this.router.navigateToRoute('journey', {
+      id: journeyId
+    })
   }
 }

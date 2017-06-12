@@ -14,7 +14,7 @@ export class App {
         moduleId: 'components/journey/journey-list',
       },
       {
-        route: 'journey', name: 'journey',
+        route: 'journey/:id', name: 'journey',
         moduleId: 'components/journey/journey'
       }
     ]);

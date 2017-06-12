@@ -6,7 +6,6 @@ export class RestApi {
 	static inject = [HttpClient]
 
 	constructor(http) {
-		this.isRequesting = false
 		this.http = http.configure(config => {
 			config
 				.withBaseUrl('/')
@@ -32,12 +31,12 @@ export class RestApi {
 	}
 
 	getJourneyList() {
-		this.isRequesting = true
 		return this.http.fetch('journeys/feed')
 			.then(response => response.json())
-			.then(journeys => {
-				console.log(journeys)
-				return journeys
-			})
+	}
+
+	getJourney(id) {
+		return this.http.fetch('journeys/${id}')
+			.then(response => response.json())
 	}
 }
