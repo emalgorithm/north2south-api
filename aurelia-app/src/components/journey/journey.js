@@ -2,14 +2,21 @@ import 'bootstrap'
 import 'material-dashboard'
 import Chartist from 'chartist'
 import { EventAggregator } from 'aurelia-event-aggregator'
+import { RestApi } from 'services/api'
 
 export class Journey {
 
-  static inject = [EventAggregator]
+  static inject = [RestApi, EventAggregator]
 
-  constructor(ea) {
-    this.eventAggregator = ea
+  constructor(api, eventAggregator) {
+    Object.assign(this, { api, eventAggregator })
+    
     this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
+  }
+
+  activate(params, routerConfig) {
+    return this.api.getJourney(params.id).then(journey =>
+      Object.assign(this, ...journey))
   }
 
   attached() {

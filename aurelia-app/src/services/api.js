@@ -36,7 +36,7 @@ export class RestApi {
 	}
 
 	getJourney(id) {
-		return this.http.fetch('journeys/${id}')
+		return this.http.fetch(`journeys/${id}`)
 			.then(response => response.json())
 	}
 }
