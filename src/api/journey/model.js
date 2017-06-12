@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
 const journeySchema = new Schema({
-  userId: {
+  owner: {
     type: Schema.ObjectId,
     ref: 'User',
     required: true
@@ -12,7 +12,7 @@ const journeySchema = new Schema({
       ref: 'Checkpoint'
     }]
   },
-  title: {
+  name: {
     type: String
   },
   charities: {
@@ -23,19 +23,31 @@ const journeySchema = new Schema({
   },
   donateUrl: {
     type: String
-  }
+  },
+  focusedMessage: { type: String },
+  focusedCheckpoint: { type: Schema.ObjectId, ref: 'Checkpoint'}
 }, {
   timestamps: true
 })
 
 journeySchema.methods = {
+  focused () {
+    return {
+      id: this.id,
+      name: this.name,
+      owner: this.owner.view(),
+      message: this.focusedMessage,
+      checkpoint: this.checkpoints.last().view(true)
+    }
+  },
+
   view (full) {
     const view = {
       // simple view
       id: this.id,
-      userId: this.userId.view(full),
+      owner: this.owner.view(full),
       checkpoints: this.checkpoints,
-      title: this.title,
+      name: this.name,
       charities: this.charities,
       description: this.description,
       donateUrl: this.donateUrl,
