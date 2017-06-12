@@ -1,11 +1,22 @@
 import { Journey } from '.'
 import { User } from '../user'
+import * as socket from '../checkpoint/socket'
+import { Checkpoint } from '../checkpoint'
 
-let user, journey
+const ioMock = {
+  emit: jest.fn()
+}
+
+socket.setUpSocketRoom(ioMock)
+
+let user, journey, checkpoint1, checkpoint2
 
 beforeEach(async () => {
   user = await User.create({ email: 'a@a.com', password: '123456' })
-  journey = await Journey.create({ owner: user, checkpoints: [], name: 'test', description: 'test', donateUrl: 'test' })
+  journey = await Journey.create({ owner: user, name: 'test', description: 'test', donateUrl: 'test' })
+
+  checkpoint1 = await Checkpoint.create({ journey: journey._id, distance: 1 })
+  checkpoint2 = await Checkpoint.create({ journey: journey._id, distance: 2 })
 })
 
 describe('view', () => {
@@ -15,7 +26,6 @@ describe('view', () => {
     expect(view.id).toBe(journey.id)
     expect(typeof view.owner).toBe('object')
     expect(view.owner.id).toBe(user.id)
-    expect(view.checkpoints).toBe(journey.checkpoints)
     expect(view.name).toBe(journey.name)
     expect(view.description).toBe(journey.description)
     expect(view.donateUrl).toBe(journey.donateUrl)
@@ -29,11 +39,18 @@ describe('view', () => {
     expect(view.id).toBe(journey.id)
     expect(typeof view.owner).toBe('object')
     expect(view.owner.id).toBe(user.id)
-    expect(view.checkpoints).toBe(journey.checkpoints)
     expect(view.name).toBe(journey.name)
     expect(view.description).toBe(journey.description)
     expect(view.donateUrl).toBe(journey.donateUrl)
     expect(view.createdAt).toBeTruthy()
     expect(view.updatedAt).toBeTruthy()
+  })
+
+  it('populates checkpoints', (done) => {
+    Journey.findOne().populate('checkpoints').exec(function(error, journey) {
+      let checkpoints = journey.view(true).checkpoints
+      expect(checkpoints.map(c => c.toObject())).toEqual([checkpoint1.toObject(), checkpoint2.toObject()])
+      done()
+    })    
   })
 })

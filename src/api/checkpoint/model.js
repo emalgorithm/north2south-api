@@ -3,6 +3,7 @@ import { onSave } from './socket'
 import { Journey } from '../journey'
 
 const checkpointSchema = new Schema({
+  journey: { ref: 'Journey', type: Schema.Types.ObjectId, required: true},
   heartRate: Number,
   calories: Number,
   distance: Number,

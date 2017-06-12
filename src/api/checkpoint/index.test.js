@@ -16,15 +16,15 @@ const app = () => express(routes)
 let checkpoint, journey
 
 beforeEach(async () => {
-  checkpoint = await Checkpoint.create({})
   const owner = await User.create({ name: 'user', email: 'g@g.com', password: '123456'})
   journey = await Journey.create({ name: 'Test Journey', description: 'Test description', owner: owner })
+  checkpoint = await Checkpoint.create({ journey: journey})
 })
 
 test('POST /checkpoints 201', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ journeyId: journey.id, heartRate: 67 })
+    .send({ journey: journey.id, heartRate: 67 })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
   expect(body.heartRate).toEqual(67)

@@ -1,18 +1,15 @@
 import mongoose, { Schema } from 'mongoose'
 
-const statusSchema = new Schema({
-  title: String,
-  content: String
-})
-
 const journeySchema = new Schema({
   name: { type: String, required: true},
   description: { type: String, required: true},
 
   owner: { type: Schema.ObjectId, ref: 'User', required: true },
 
-  checkpoints: { type: [{type: Schema.ObjectId, ref: 'Checkpoint'}] },
-  statusUpdates: [statusSchema],
+  statusUpdates: [{
+    title: String,
+    content: String
+  }],
 
   charities: [String],
   donateUrl: String
@@ -20,19 +17,33 @@ const journeySchema = new Schema({
   timestamps: true
 })
 
+journeySchema.virtual('checkpoints', {
+  ref: 'Checkpoint',
+  localField: '_id',
+  foreignField: 'journey'
+})
+
+journeySchema.virtual('latestCheckpoint')
+  .get(function() {
+    return this.populate('checkpoints').sort('createdAt').limit(1)
+  })
+
+journeySchema.virtual('latestStatusUpdate')
+  .get(function () {
+    return this.statusUpdates.length > 0
+      ? this.statusUpdates[this.statusUpdates.length - 1]
+      : undefined
+  })
+
 journeySchema.methods = {
   focused () {
     var focusedJourney = {
       id: this.id,
       name: this.name,
       owner: this.owner.view(),
+      checkpoint: this.latestCheckpoint,
+      status: this.latestStatusUpdate
     }
-
-    if (this.checkpoints.length > 0)
-      focusedJourney.checkpoint = this.checkpoints[this.checkpoints.length - 1].view(true)
-    
-    if (this.statusUpdates.length > 0)
-      focusedJourney.status = this.statusUpdates[this.statusUpdates.length - 1]
     
     return focusedJourney
   },
