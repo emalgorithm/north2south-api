@@ -16,12 +16,6 @@
     "owner": { "$oid": "593727b7c1c04200d8cbcc78" },
     "name": "Support James Redden on his expedition on the South pole",
     "charities": ["3", "4"],
-    "checkpoints": [
-       { "$oid": "592f071a362d3200591d51de" },
-       { "$oid": "592f070f362d3200591d51dd" },
-       { "$oid": "592f06d8362d3200591d51db" },
-       { "$oid": "592f06cf362d3200591d51da" }
-    ],
     "description": "The Route will start off at the 6th degree on the polar ice and finish at the 1st degree, the south pole, covering a distance of 123km.",
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes",
     "statusUpdates": [

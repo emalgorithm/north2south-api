@@ -155,10 +155,10 @@
   },
   {
     "_id": { "$oid": "592f062c362d3200591d51d1" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "journey": { "$oid": "59372894ff82580150333ee3" },
     "heartRate": 60,
     "calories": 0,
-    "distance": 0,
+    "distance": 1220,
     "longitude": 12.12,
     "latitude": -2.517586,
     "createdAt": "2017-06-08T18:06:36.045Z",
