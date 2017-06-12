@@ -33,7 +33,7 @@ export class RestApi {
 
 	getJourneyList() {
 		this.isRequesting = true
-		return this.http.fetch('journeys')
+		return this.http.fetch('journeys/feed')
 			.then(response => response.json())
 			.then(journeys => {
 				console.log(journeys)

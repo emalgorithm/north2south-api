@@ -17,13 +17,19 @@ const journeySchema = new Schema({
 
 journeySchema.methods = {
   focused () {
-    return {
+    var focusedJourney = {
       id: this.id,
       name: this.name,
       owner: this.owner.view(),
-      message: this.statusUpdates.last(),
-      checkpoint: this.checkpoints.last().view(true)
     }
+
+    if (this.checkpoints.length > 0)
+      focusedJourney.checkpoint = this.checkpoints[this.checkpoints.length - 1].view(true)
+    
+    if (this.statusUpdates.length > 0)
+      focusedJourney.status = this.statusUpdates[this.statusUpdates.length - 1]
+    
+    return focusedJourney
   },
 
   view (full) {
