@@ -1,9 +1,16 @@
 import 'bootstrap'
 import 'material-dashboard'
 import Chartist from 'chartist'
+ import { EventAggregator } from 'aurelia-event-aggregator'
 
-export class App {
+export class Journey {
+
+  static inject = [EventAggregator]
+
   constructor() {
+
+    this.eventAggregator = EventAggregator
+    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
   }
 
   attached() {
@@ -46,5 +53,11 @@ export class App {
     chart = new Chartist.Line('.calories-chart', data, options);
 
     md.startAnimationForLineChart(chart);
+  }
+
+  onMapLoaded() {
+    // TODO: draw markers for checkpoints
+    // TODO: subscribe for real-time updates
+    return () => {}
   }
 }
