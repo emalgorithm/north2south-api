@@ -1,3 +1,5 @@
+import { RestApi } from 'services/api'
+
 export class JourneyList {
     constructor() {
         var journeyViewModel = {
