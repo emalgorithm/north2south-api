@@ -1,15 +1,14 @@
 import 'bootstrap'
 import 'material-dashboard'
 import Chartist from 'chartist'
- import { EventAggregator } from 'aurelia-event-aggregator'
+import { EventAggregator } from 'aurelia-event-aggregator'
 
 export class Journey {
 
   static inject = [EventAggregator]
 
-
-  constructor() {
-    this.eventAggregator = EventAggregator
+  constructor(ea) {
+    this.eventAggregator = ea
     this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
   }
 
