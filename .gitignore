@@ -63,3 +63,6 @@ jest/
 
 # Aurelia generated bundle
 aurelia-app/scripts/
+
+# Seed configuration with credentials
+seed.json.secret
