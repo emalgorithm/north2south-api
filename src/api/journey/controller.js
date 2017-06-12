@@ -19,7 +19,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 export const feed = ({ querymen: { query, select, cursor } }, res, next) =>
   Journey.find(query, select, cursor)
     .populate('owner')
-    .populate('focusedCheckpoint')
+    .populate('checkpoints')
     .then((journeys) => journeys.map((journey) => journey.focused()))
     .then(success(res))
     .catch(next)

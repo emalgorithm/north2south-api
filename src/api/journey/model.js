@@ -25,7 +25,10 @@ journeySchema.virtual('checkpoints', {
 
 journeySchema.virtual('latestCheckpoint')
   .get(function() {
-    return this.populate('checkpoints').sort('createdAt').limit(1)
+    console.log(this.checkpoints)
+    return this.checkpoints.length > 0
+      ? this.checkpoints[this.checkpoints.length - 1]
+      : undefined
   })
 
 journeySchema.virtual('latestStatusUpdate')
