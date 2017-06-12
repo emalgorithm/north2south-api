@@ -1,5 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
+const statusSchema = new Schema({
+  title: String,
+  content: String
+})
+
 const journeySchema = new Schema({
   name: { type: String, required: true},
   description: { type: String, required: true},
@@ -7,7 +12,7 @@ const journeySchema = new Schema({
   owner: { type: Schema.ObjectId, ref: 'User', required: true },
 
   checkpoints: { type: [{type: Schema.ObjectId, ref: 'Checkpoint'}] },
-  statusUpdates: [String],
+  statusUpdates: [statusSchema],
 
   charities: [String],
   donateUrl: String
