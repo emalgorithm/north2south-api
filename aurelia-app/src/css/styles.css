@@ -14,11 +14,7 @@
 }
 
 .card-journey .card-header .card-profile {
-	margin-top: -80px;
-}
-
-@media screen and (max-width: 768px) {
-	.card-journey .card-header .card-profile {
-		float: right;
-	}
+    float: left;
+    margin-right: 20px;
+    margin-top: -20px;
 }
