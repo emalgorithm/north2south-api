@@ -1,31 +1,16 @@
 import mongoose, { Schema } from 'mongoose'
 
 const journeySchema = new Schema({
-  owner: {
-    type: Schema.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  checkpoints: {
-    type: [{
-      type: Schema.ObjectId,
-      ref: 'Checkpoint'
-    }]
-  },
-  name: {
-    type: String
-  },
-  charities: {
-    type: [String]
-  },
-  description: {
-    type: String
-  },
-  donateUrl: {
-    type: String
-  },
-  focusedMessage: { type: String },
-  focusedCheckpoint: { type: Schema.ObjectId, ref: 'Checkpoint'}
+  name: { type: String, required: true},
+  description: { type: String, required: true},
+
+  owner: { type: Schema.ObjectId, ref: 'User', required: true },
+
+  checkpoints: { type: [{type: Schema.ObjectId, ref: 'Checkpoint'}] },
+  statusUpdates: [String],
+
+  charities: [String],
+  donateUrl: String
 }, {
   timestamps: true
 })
@@ -36,7 +21,7 @@ journeySchema.methods = {
       id: this.id,
       name: this.name,
       owner: this.owner.view(),
-      message: this.focusedMessage,
+      message: this.statusUpdates.last(),
       checkpoint: this.checkpoints.last().view(true)
     }
   },

@@ -14,7 +14,7 @@ beforeEach(async () => {
   const anotherUser = await User.create({ email: 'b@b.com', password: '123456' })
   userSession = signSync(user.id)
   anotherSession = signSync(anotherUser.id)
-  journey = await Journey.create({ owner: user })
+  journey = await Journey.create({ name: 'Test Journey', description: 'Test description', owner: user })
 })
 
 test('POST /journeys 201 (user)', async () => {
