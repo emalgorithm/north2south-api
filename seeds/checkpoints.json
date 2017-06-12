@@ -1,6 +1,7 @@
 [
   {
     "_id": { "$oid": "592f072f362d3200591d51e0" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "heartRate": 85,
     "calories": 1442,
     "distance": 2396,
@@ -11,6 +12,7 @@
   },
   {
     "_id": { "$oid": "592f0725362d3200591d51df" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "heartRate": 73,
     "calories": 1342,
     "distance": 2096,
@@ -21,6 +23,7 @@
   },
   {
     "_id": { "$oid": "592f071a362d3200591d51de" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "heartRate": 83,
     "calories": 1222,
     "distance": 2026,
@@ -31,6 +34,7 @@
   },
   {
     "_id": { "$oid": "592f070f362d3200591d51dd" },
+    "journey": { "$oid": "593728a0ff82580150333ee4" },
     "heartRate": 75,
     "calories": 1122,
     "distance": 1946,
@@ -41,6 +45,7 @@
   },
   {
     "_id": { "$oid": "592f06d8362d3200591d51db" },
+    "journey": { "$oid": "593728a0ff82580150333ee4" },
     "heartRate": 77,
     "calories": 910,
     "distance": 1600,
@@ -51,6 +56,7 @@
   },
   {
     "_id": { "$oid": "592f06cf362d3200591d51da" },
+    "journey": { "$oid": "593728a0ff82580150333ee4" },
     "heartRate": 73,
     "calories": 860,
     "distance": 1411,
@@ -61,6 +67,7 @@
   },
   {
     "_id": { "$oid": "592f06c2362d3200591d51d9" },
+    "journey": { "$oid": "593728a0ff82580150333ee4" },
     "heartRate": 66,
     "calories": 820,
     "distance": 1209,
@@ -71,6 +78,7 @@
   },
   {
     "_id": { "$oid": "592f06b1362d3200591d51d8" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 67,
     "calories": 770,
     "distance": 1090,
@@ -81,6 +89,7 @@
   },
   {
     "_id": { "$oid": "592f067d362d3200591d51d7" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 70,
     "calories": 731,
     "distance": 1009,
@@ -91,6 +100,7 @@
   },
   {
     "_id": { "$oid": "592f066f362d3200591d51d6" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 90,
     "calories": 631,
     "distance": 982,
@@ -101,6 +111,7 @@
   },
   {
     "_id": { "$oid": "592f0661362d3200591d51d5" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 110,
     "calories": 529,
     "distance": 733,
@@ -111,6 +122,7 @@
   },
   {
     "_id": { "$oid": "592f0652362d3200591d51d4" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 80,
     "calories": 400,
     "distance": 600,
@@ -121,6 +133,7 @@
   },
   {
     "_id": { "$oid": "592f0648362d3200591d51d3" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 66,
     "calories": 160,
     "distance": 400,
@@ -131,6 +144,7 @@
   },
   {
     "_id": { "$oid": "592f063c362d3200591d51d2" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 65,
     "calories": 100,
     "distance": 300,
@@ -141,6 +155,7 @@
   },
   {
     "_id": { "$oid": "592f062c362d3200591d51d1" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
     "heartRate": 60,
     "calories": 0,
     "distance": 0,

@@ -4,10 +4,6 @@
     "owner": { "$oid": "593727ccc1c04200d8cbcc79" },
     "name": "Support Emanuele on his brave post-exam climb on mount Kilimanjaro",
     "charities": ["1", "2"],
-    "checkpoints": [
-      { "$oid": "592f072f362d3200591d51e0" },
-      { "$oid": "592f0725362d3200591d51df" }
-    ],
     "description": "On an attempt to support Unicef and the British Heart foundation me and a few collegaues from Imperial College London are climbing mount Kilimanjaro.",
     "donateUrl": "http://emanuelerossi.co.uk/",
     "statusUpdates": [
