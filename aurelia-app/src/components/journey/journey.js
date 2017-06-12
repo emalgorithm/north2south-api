@@ -23,23 +23,17 @@ export class Southpole {
     // Create an event aggregate (pub-sub) and subscribe to the event of when the map loads, so we can add marks
     // after that
     this.eventAggregator = EventAggregator;
+    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
   }
 
   activate(params) {
     this.url = window.location.href;
     this.id = params.id;
     /* Load data associated with id */
-    this.client.get('journeys/' + this.id).then(function(response) {
-      this.journey = JSON.parse(response.response);
-      console.log(JSON.stringify(this.journey.checkpoints))
-    }.bind(this));
-
   }
 
   attached() {
-    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded());
-
-    this.plotCharts(this.journey.checkpoints)
+    //this.plotCharts(this.journey.checkpoints)
 
     Logger.info("Inside journey attached(), the map is: ");
     this.map = this.component.currentViewModel;
@@ -69,8 +63,12 @@ export class Southpole {
 
   onMapLoaded() {
     return (function() {
-      this.journey.checkpoints.forEach(function (checkpoint) {
-        this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      this.client.get('journeys/' + this.id).then(function(response) {
+        this.journey = JSON.parse(response.response);
+        console.log(JSON.stringify(this.journey.checkpoints))
+        this.journey.checkpoints.forEach(function (checkpoint) {
+          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+        }.bind(this));
       }.bind(this))
     }.bind(this));
   }
