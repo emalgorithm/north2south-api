@@ -9,6 +9,7 @@ export Journey, { schema } from './model'
 const router = new Router()
 const { name, description, donateUrl, destination } = schema.tree
 
+console.log(destination)
 /**
  * @api {post} /journeys Create journey
  * @apiName CreateJourney
@@ -25,7 +26,7 @@ const { name, description, donateUrl, destination } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ name, description, donateUrl, destination }),
+  body({ name, description, donateUrl, destination: [Object] }),
   create)
 
 /**
