@@ -59,6 +59,7 @@ export class Journey {
     chart = new Chartist.Line('.calories-chart', data, options);
 
     md.startAnimationForLineChart(chart);
+    this.setup_twitter_feed()
   }
 
   onMapLoaded() {
@@ -66,4 +67,17 @@ export class Journey {
     // TODO: subscribe for real-time updates
     return () => {}
   }
+
+  setup_twitter_feed = function() {
+  !function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id = id;
+      js.src = p + "://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, "script", "twitter-wjs");
+};
 }
