@@ -10,13 +10,19 @@ export class Journey {
 
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
-    
+
     this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
   }
 
   activate(params, routerConfig) {
     return this.api.getJourney(params.id).then(journey =>
       Object.assign(this, ...journey))
+  }
+
+  get shortDescription() {
+    if (this.description.length > 500)
+      return this.description.substr(0, 500 - '...'.length) + '...'
+    return this.description
   }
 
   attached() {
