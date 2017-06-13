@@ -11,12 +11,15 @@ export class Journey {
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
     
-    this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
+    this.eventAggregator.subscribeOnce("JourneyInfoReceived", map => this.onMapLoaded(map))
   }
 
   activate(params, routerConfig) {
-    return this.api.getJourney(params.id).then(journey =>
-      Object.assign(this, ...journey))
+    return this.api.getJourney(params.id).then(journey => {
+        Object.assign(this, ...journey);
+        this.eventAggregator.publish("JourneyInfoReceived", journey.checkpoints);
+      }
+    )
   }
 
   attached() {
@@ -61,9 +64,11 @@ export class Journey {
     md.startAnimationForLineChart(chart);
   }
 
-  onMapLoaded() {
-    // TODO: draw markers for checkpoints
-    // TODO: subscribe for real-time updates
-    return () => {}
+  onMapLoaded(checkpoints) {
+    this.eventAggregator.subscribeOnce("mapLoaded", (map) => {
+      checkpoints.forEach(function (checkpoint) {
+        map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      })
+    });
   }
 }
