@@ -10,7 +10,6 @@ export class Journey {
 
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
-    
     this.eventAggregator.subscribeOnce("JourneyInfoReceived", map => this.onMapLoaded(map))
   }
 
@@ -20,6 +19,12 @@ export class Journey {
         this.eventAggregator.publish("JourneyInfoReceived", journey.checkpoints);
       }
     )
+  }
+
+  get shortDescription() {
+    if (this.description.length > 500)
+      return this.description.substr(0, 500 - '...'.length) + '...'
+    return this.description
   }
 
   attached() {
@@ -62,6 +67,7 @@ export class Journey {
     chart = new Chartist.Line('.calories-chart', data, options);
 
     md.startAnimationForLineChart(chart);
+    this.setup_twitter_feed()
   }
 
   onMapLoaded(checkpoints) {
@@ -71,4 +77,17 @@ export class Journey {
       })
     });
   }
+
+  setup_twitter_feed = function() {
+    !function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        p = /^http:/.test(d.location) ? 'http' : 'https';
+      if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + "://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+    }(document, "script", "twitter-wjs");
+  };
 }

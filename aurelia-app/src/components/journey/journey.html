@@ -12,10 +12,8 @@
 
           <div class="content">
             <h6 class="category text-gray">Software Architect</h6>
-            <h2 class="card-title">${owner.name} ${owner.surname} | North By South 2017</h2>
-            <p class="card-content journey-description">
-            In 2017 I will attempt a full distance, solo, unsupported and unaided ski to the South Pole. The aim of this expedition is to raise money for Soundabout.org.uk, a UK-based charity which uses music as a form of therapy for disabled childrend and adults. I will also be raising money for a second charity and the official announcement will be made soon. Start date will be November 2017 (lots of planning and funding to raise hence announcing now; 17 months before I set off). Distance is about 683 miles and one I’m aiming to complete in under 30 days. In between...
-            </p>
+            <h2 class="card-title">${owner.name} ${owner.surname} | ${name}</h2>
+            <p class="card-content journey-description">${shortDescription}</p>
             <a class="btn btn-primary btn-round" href="#pablo">Follow</a>
              <a class="btn btn-round" href="#pablo">Read more</a>
           </div>
@@ -48,7 +46,7 @@
           </div>
           <div class="card-content">
             <p class="category">Donations raised</p>
-            <h3 class="title">$2545</h3>
+            <a class="btn btn-primary btn-round" href.bind="donateUrl">Donate</a>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -83,20 +81,17 @@
       <div class="col-md-12">
         <compose view-model.ref="component" view-model="components/map"></compose>
       </div>
-      
     </div>
 
     <div class="row">
-      
-      <!-- Followers Stats -->        
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-header" data-background-color="blue">
             <i class="fa fa-twitter"></i>
           </div>
           <div class="card-content">
-            <p class="category">Followers</p>
-            <h3 class="title">+245</h3>
+            <!-- Twitter feed -->
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/microsoft" data-widget-id="870969931785019392">#microsoft Tweets</a>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -105,7 +100,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Weather forecast -->
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
