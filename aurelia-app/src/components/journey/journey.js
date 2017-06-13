@@ -11,7 +11,7 @@ export class Journey {
 
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
-
+    this.displayedDays = 7; /* For now */
     this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
   }
 
@@ -28,23 +28,29 @@ export class Journey {
 
   attached() {
     var groups = this.checkpoints.reduce(function (cs, c) {
-      (cs[moment(c.createdAt).startOf('day').format()] = cs[moment(c.createdAt).startOf('day').format()] || []).push(c);
+      (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
       return cs;
     }, {});
 
-
-    var heartSeries = []
+    var dateAndHeartRates = []
     for (var property in groups) {
       if (groups.hasOwnProperty(property)) {
-        var heartRates = groups[property].map(function(a) {return a.heartRate;})
-        heartSeries.unshift(heartRates.reduce(function(a, b) {return a + b;}) / heartRates.length);
+        var heartRates = groups[property].map(function(a) { return a.heartRate; })
+        dateAndHeartRates.push([property,heartRates.reduce(function(a, b) {return a + b;}) / heartRates.length]);
       }
     }
 
-    console.log(heartSeries);
+    var datelabels = []
+    var heartSeries = []
+
+    if (dateAndHeartRates.length > 0) {
+      datelabels.push(dateAndHeartRates[0][0])
+      heartSeries.push(dateAndHeartRates[0][1])
+    }
+
 
     var heartRateData = {
-      labels: ['M', 'T', 'W','T','F','S','S'],
+      labels: datelabels,
       series: [heartSeries]
     };
 
