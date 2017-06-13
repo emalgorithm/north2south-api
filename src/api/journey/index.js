@@ -91,7 +91,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ name, description, donateUrl }),
+  body({ name, description, donateUrl, destination: [Object] }),
   update)
 
 /**
