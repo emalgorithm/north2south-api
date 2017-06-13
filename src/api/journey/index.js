@@ -7,7 +7,7 @@ import { schema } from './model'
 export Journey, { schema } from './model'
 
 const router = new Router()
-const { checkpoints, name, description, donateUrl } = schema.tree
+const { checkpoints, name, description, donateUrl, destination } = schema.tree
 
 /**
  * @api {post} /journeys Create journey
@@ -26,7 +26,7 @@ const { checkpoints, name, description, donateUrl } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ checkpoints, name, description, donateUrl }),
+  body({ checkpoints, name, description, donateUrl, destination }),
   create)
 
 /**

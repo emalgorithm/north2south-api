@@ -12,7 +12,12 @@ const journeySchema = new Schema({
   }],
 
   charities: [String],
-  donateUrl: String
+  donateUrl: String,
+
+  destination: {
+    longitude: Number,
+    latitude: Number
+  }
 }, {
   timestamps: true
 })
@@ -47,7 +52,7 @@ journeySchema.methods = {
       checkpoint: this.latestCheckpoint,
       status: this.latestStatusUpdate
     }
-    
+
     return focusedJourney
   },
 
@@ -61,6 +66,7 @@ journeySchema.methods = {
       charities: this.charities,
       description: this.description,
       donateUrl: this.donateUrl,
+      destination: this.destination,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
