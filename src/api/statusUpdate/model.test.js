@@ -5,7 +5,7 @@ import { User } from '../user'
 let statusUpdate
 
 beforeEach(async () => {
-  const owner = await User.create({ name: 'user', email: 'g@g.com', password: '123456'})
+  const owner = await User.create({ name: 'user', email: 'h@h.com', password: '123456'})
   const journey = await Journey.create({ name: 'Test Journey', description: 'Test description', owner: owner })
   statusUpdate = await StatusUpdate.create({ journey: journey, title: 'test', content: 'test' })
 })

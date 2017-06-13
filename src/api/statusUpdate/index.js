@@ -24,7 +24,7 @@ const { journey, title, content } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ title, content }),
+  body({ journey, title, content }),
   create)
 
 /**

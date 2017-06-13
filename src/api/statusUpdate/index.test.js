@@ -10,7 +10,7 @@ const app = () => express(routes)
 let userSession, statusUpdate, journey
 
 beforeEach(async () => {
-  const user = await User.create({ email: 'a@a.com', password: '123456' })
+  const user = await User.create({ email: 'z@a.com', password: '123456' })
   userSession = signSync(user.id)
   journey = await Journey.create({ name: 'Test Journey', description: 'Test description', owner: user })
   
