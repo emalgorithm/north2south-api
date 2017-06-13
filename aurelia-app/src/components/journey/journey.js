@@ -3,15 +3,16 @@ import 'material-dashboard'
 import Chartist from 'chartist'
 import { EventAggregator } from 'aurelia-event-aggregator'
 import { RestApi } from 'services/api'
+import { WeatherApi } from 'services/weatherApi'
 import io from 'socket.io'
 var socket = io.connect();
 
 export class Journey {
 
-  static inject = [RestApi, EventAggregator]
+  static inject = [RestApi, WeatherApi, EventAggregator]
 
-  constructor(api, eventAggregator) {
-    Object.assign(this, { api, eventAggregator })
+  constructor(api, weatherApi, eventAggregator) {
+    Object.assign(this, { api, weatherApi, eventAggregator })
     this.checkpoints = [];
     this.destination = {
       "latitude" : 0,
@@ -31,7 +32,8 @@ export class Journey {
 
     return this.api.getJourney(params.id).then(journey => {
         Object.assign(this, ...journey);
-        // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
+        this.weatherApi.getCurrentWeather(this.latestCheckpoint.latitude, this.latestCheckpoint.longitude).then(weather => this.weather = weather);
+      // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
         if (this.mapLoaded) {
           this.addPointsToMap();
         }

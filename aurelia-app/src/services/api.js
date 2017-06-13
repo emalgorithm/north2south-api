@@ -17,7 +17,7 @@ export class RestApi {
 				})
 				.withInterceptor({
 					request(request) {
-						console.log('Reuqesting ${request.method} ${request.url}')
+						console.log(`Reuqesting ${request.method} ${request.url}`)
 						return request
 					},
 
