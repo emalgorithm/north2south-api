@@ -64,8 +64,8 @@ export class Journey {
     }
 
     return {
-      labels: datelabels,
-      series: [dataSeries]
+      labels: datelabels.reverse(),
+      series: [dataSeries.reverse()]
     };
   }
   attached() {
