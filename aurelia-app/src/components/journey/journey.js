@@ -26,38 +26,33 @@ export class Journey {
     return this.description
   }
 
-  attached() {
-    var groups = this.checkpoints.reduce(function (cs, c) {
-      (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
-      return cs;
-    }, {});
-
-    var dateAndHeartRates = []
+  getGraphData(groups, field) {
+    var dataAndDates = []
     for (var property in groups) {
       if (groups.hasOwnProperty(property)) {
-        var heartRates = groups[property].map(function(a) { return a.heartRate; })
-        dateAndHeartRates.push([property,heartRates.reduce(function(a, b) {return a + b;}) / heartRates.length]);
+        var data = groups[property].map(function(a) { return a[field]; })
+        dataAndDates.push([property, data.reduce(function(a, b) {return a + b;}) / data.length]);
       }
     }
 
     var datelabels = []
-    var heartSeries = []
+    var dataSeries = []
 
-    if (dateAndHeartRates.length > 0) {
-      datelabels.push(dateAndHeartRates[0][0])
-      heartSeries.push(dateAndHeartRates[0][1])
+    if (dataAndDates.length > 0) {
+      datelabels.push(dataAndDates[0][0])
+      dataSeries.push(dataAndDates[0][1])
       var current = 1;
-      var lastDate = dateAndHeartRates[0][0]
+      var lastDate = dataAndDates[0][0]
       for (var i = 1; i < this.displayedDays; i++) {
-        if (current < dateAndHeartRates.length && this.isNext(dateAndHeartRates[current][0], lastDate)) {
-          datelabels.push(dateAndHeartRates[current][0])
-          heartSeries.push(dateAndHeartRates[current][1])
-          lastDate = dateAndHeartRates[current][0]
+        if (current < dataAndDates.length && this.isNext(dataAndDates[current][0], lastDate)) {
+          datelabels.push(dataAndDates[current][0])
+          dataSeries.push(dataAndDates[current][1])
+          lastDate = dataAndDates[current][0]
           current += 1
         } else {
           lastDate = moment(lastDate, 'MMM/DD', false).add(-1, 'days').format('MMM DD')
           datelabels.push(lastDate)
-          heartSeries.push(undefined)
+          dataSeries.push(undefined)
         }
       }
     } else {
@@ -67,11 +62,18 @@ export class Journey {
       }
     }
 
-
-    var heartRateData = {
+    return {
       labels: datelabels,
-      series: [heartSeries]
+      series: [dataSeries]
     };
+  }
+  attached() {
+    var groups = this.checkpoints.reduce(function (cs, c) {
+      (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
+      return cs;
+    }, {});
+
+    var heartRateData = this.getGraphData(groups, 'heartRate')
 
     var options = {
         lineSmooth: Chartist.Interpolation.cardinal({
