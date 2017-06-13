@@ -10,13 +10,27 @@ export class Journey {
 
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
-    this.eventAggregator.subscribeOnce("JourneyInfoReceived", map => this.onMapLoaded(map))
+    this.checkpoints = [];
+    this.mapLoaded = false;
+    this.eventAggregator.subscribeOnce("mapLoaded", map => {
+      this.mapLoaded = true;
+      this.map = map;
+      // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
+      this.checkpoints.forEach(function (checkpoint) {
+        map.addMarker(checkpoint.latitude, checkpoint.longitude);
+      })
+    });
   }
 
   activate(params, routerConfig) {
     return this.api.getJourney(params.id).then(journey => {
         Object.assign(this, ...journey);
-        this.eventAggregator.publish("JourneyInfoReceived", journey.checkpoints);
+        // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
+        if (this.mapLoaded) {
+          this.checkpoints.forEach(function (checkpoint) {
+            this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+          })
+        }
       }
     )
   }
@@ -70,7 +84,7 @@ export class Journey {
     this.setup_twitter_feed()
   }
 
-  onMapLoaded(checkpoints) {
+  onCheckpointReceived(checkpoints) {
     this.eventAggregator.subscribeOnce("mapLoaded", (map) => {
       checkpoints.forEach(function (checkpoint) {
         map.addMarker(checkpoint.latitude, checkpoint.longitude);
