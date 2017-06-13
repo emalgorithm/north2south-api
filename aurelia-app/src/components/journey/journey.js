@@ -12,6 +12,7 @@ export class Journey {
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
     this.displayedDays = 7; /* For now */
+    this.totalDistance = 0;
     this.eventAggregator.subscribeOnce("mapLoaded", this.onMapLoaded())
   }
 
@@ -26,6 +27,13 @@ export class Journey {
     return this.description
   }
 
+  attached() {
+    this.totalDistance = 11;
+    this.drawGraph('heartRate', '.heart-rate-chart', 15)
+    this.drawGraph('calories', '.calories-chart', 200)
+    this.setup_twitter_feed()
+  }
+
   getGraphData(groups, field) {
     let dataAndDates = []
 
@@ -36,80 +44,61 @@ export class Journey {
       }
     }
 
-    let datelabels = []
+    let dateLabels = []
     let dataSeries = []
 
     if (dataAndDates.length > 0) {
-      datelabels.push(dataAndDates[0][0])
+      dateLabels.push(dataAndDates[0][0])
       dataSeries.push(dataAndDates[0][1])
       let current = 1;
       let lastDate = dataAndDates[0][0]
       for (let i = 1; i < this.displayedDays; i++) {
         if (current < dataAndDates.length && this.isNext(dataAndDates[current][0], lastDate)) {
-          datelabels.push(dataAndDates[current][0])
+          dateLabels.push(dataAndDates[current][0])
           dataSeries.push(dataAndDates[current][1])
           lastDate = dataAndDates[current][0]
           current += 1
         } else {
           lastDate = moment(lastDate, 'MMM/DD', false).add(-1, 'days').format('MMM DD')
-          datelabels.push(lastDate)
+          dateLabels.push(lastDate)
           dataSeries.push(undefined)
         }
       }
     } else {
       /* This week's days with no data */
       for (let i = this.displayedDays - 1; i >= 0; i--) {
-        datelabels.push(moment().add(-i, 'days').format('MMM DD'))
+        dateLabels.push(moment().add(-i, 'days').format('MMM DD'))
       }
     }
 
     return {
-      labels: datelabels.reverse(),
+      labels: dateLabels.reverse(),
       series: [dataSeries.reverse()]
     };
   }
-  attached() {
-    var groups2 = this.checkpoints.reduce(function (cs, c) {
+
+  drawGraph(property, graphElem, limit) {
+
+    let groups = this.checkpoints.reduce(function (cs, c) {
       (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
       return cs;
     }, {});
 
-    var groups1 = this.checkpoints.reduce(function (cs, c) {
-      (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
-      return cs;
-    }, {});
+    let propertyData = this.getGraphData(groups, property)
 
-    var heartRateData = this.getGraphData(groups1, 'heartRate')
 
-    var optionsHeart = {
-        lineSmooth: Chartist.Interpolation.cardinal({
-          tension: 0
-        }),
-        low: Math.min.apply(Math, heartRateData.series[0].filter(x => !isNaN(x) && x !== null)) - 15,
-        high: Math.max.apply(Math, heartRateData.series[0].filter(x => !isNaN(x) && x !== null)) + 15,
-        chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+    let options = {
+      lineSmooth: Chartist.Interpolation.cardinal({
+        tension: 0
+      }),
+      low: Math.min.apply(Math, propertyData.series[0].filter(x => !isNaN(x) && x !== null)) - limit,
+      high: Math.max.apply(Math, propertyData.series[0].filter(x => !isNaN(x) && x !== null)) + limit,
+      chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
     };
 
-    var chartHeart = new Chartist.Line('.heart-rate-chart', heartRateData, optionsHeart);
+    let chart = new Chartist.Line(graphElem, propertyData, options);
 
-    md.startAnimationForLineChart(chartHeart);
-
-    var caloriesData = this.getGraphData(groups2, 'calories')
-
-
-    var optionsCal = {
-        lineSmooth: Chartist.Interpolation.cardinal({
-          tension: 0
-        }),
-        low: Math.min.apply(Math, caloriesData.series[0].filter(x => !isNaN(x) && x !== null)) - 200,
-        high: Math.max.apply(Math, caloriesData.series[0].filter(x => !isNaN(x) && x !== null)) + 200,
-        chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
-    };
-
-    var chartCal = new Chartist.Line('.calories-chart', caloriesData, optionsCal);
-
-    md.startAnimationForLineChart(chartCal);
-    this.setup_twitter_feed()
+    md.startAnimationForLineChart(chart);
   }
 
   isNext(d1, d2) {
