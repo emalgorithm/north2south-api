@@ -200,6 +200,11 @@
             "deps": [
               "bootstrap"
             ]
+          },
+          {
+            "name": "socket.io",
+            "path": "../node_modules/socket.io/node_modules/socket.io-client",
+            "main": "socket.io"
           }
         ]
       }

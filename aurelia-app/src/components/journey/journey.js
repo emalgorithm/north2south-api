@@ -3,6 +3,8 @@ import 'material-dashboard'
 import Chartist from 'chartist'
 import { EventAggregator } from 'aurelia-event-aggregator'
 import { RestApi } from 'services/api'
+import io from 'socket.io'
+var socket = io.connect();
 
 export class Journey {
 
@@ -23,6 +25,19 @@ export class Journey {
   }
 
   activate(params, routerConfig) {
+    socket.on('checkpoint:save',
+      function (checkpoint) {
+        console.log("Getting socket updates:  " + checkpoint);
+
+        //Update other fields
+        this.calories = checkpoint.calories;
+        this.distance = checkpoint.distance;
+
+        if (this.mapLoaded) {
+          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+        }
+      }.bind(this));
+
     return this.api.getJourney(params.id).then(journey => {
         Object.assign(this, ...journey);
         // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
