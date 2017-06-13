@@ -79,8 +79,8 @@ export class Journey {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
-        low: 60,
-        high: 90,
+        low: Math.min.apply(Math, heartRateData.series[0].filter(x => !isNaN(x))) - 15,
+        high: Math.max.apply(Math, heartRateData.series[0].filter(x => !isNaN(x))) + 15,
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
     };
 
@@ -88,19 +88,14 @@ export class Journey {
 
     md.startAnimationForLineChart(chart);
 
-    var caloriesData = {
-      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [
-        [2585, 2895, 2965, 3072, 2512, 3125, 2454]
-      ]
-    };
+    var caloriesData = this.getGraphData(groups, 'calories')
 
     options = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
-        low: 2000,
-        high: 3500,
+        low: Math.min.apply(Math, caloriesData.series[0].filter(x => !isNaN(x))) - 200,
+        high: Math.max.apply(Math, caloriesData.series[0].filter(x => !isNaN(x)) + 200),
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
     };
 
