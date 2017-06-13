@@ -25,18 +25,7 @@ export class Journey {
   }
 
   activate(params, routerConfig) {
-    socket.on('checkpoint:save',
-      function (checkpoint) {
-        console.log("Getting socket updates:  " + checkpoint);
-
-        //Update other fields
-        this.calories = checkpoint.calories;
-        this.distance = checkpoint.distance;
-
-        if (this.mapLoaded) {
-          this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-        }
-      }.bind(this));
+    socket.on('checkpoint:save', checkpoint => this.onNewCheckpoint(checkpoint));
 
     return this.api.getJourney(params.id).then(journey => {
         Object.assign(this, ...journey);
@@ -99,12 +88,16 @@ export class Journey {
     this.setup_twitter_feed()
   }
 
-  onCheckpointReceived(checkpoints) {
-    this.eventAggregator.subscribeOnce("mapLoaded", (map) => {
-      checkpoints.forEach(function (checkpoint) {
-        map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      })
-    });
+  onNewCheckpoint(checkpoint) {
+    console.log("Getting socket updates:  " + checkpoint);
+
+    //Update other fields
+    this.calories = checkpoint.calories;
+    this.distance = checkpoint.distance;
+
+    if (this.mapLoaded) {
+      this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+    }
   }
 
   setup_twitter_feed = function() {
@@ -118,5 +111,7 @@ export class Journey {
         fjs.parentNode.insertBefore(js, fjs);
       }
     }(document, "script", "twitter-wjs");
-  };
+  }
+
+
 }
