@@ -31,14 +31,14 @@ journeySchema.virtual('statusUpdates', {
 
 journeySchema.virtual('latestCheckpoint')
   .get(function() {
-    return this.checkpoints.length > 0
+    return this.checkpoints && this.checkpoints.length > 0
       ? this.checkpoints[this.checkpoints.length - 1]
       : undefined
   })
 
 journeySchema.virtual('latestStatusUpdate')
   .get(function () {
-    return this.statusUpdates.length > 0
+    return this.statusUpdates && this.statusUpdates.length > 0
       ? this.statusUpdates[this.statusUpdates.length - 1]
       : undefined
   })
@@ -61,7 +61,7 @@ journeySchema.methods = {
       // simple view
       id: this.id,
       owner: this.owner.view(full),
-      checkpoints: this.checkpoints,
+      checkpoints: this.checkpoints || [],
       latestCheckpoint: this.latestCheckpoint,
       name: this.name,
       charities: this.charities,
