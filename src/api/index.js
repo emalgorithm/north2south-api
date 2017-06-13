@@ -3,6 +3,7 @@ import user from './user'
 import auth from './auth'
 import checkpoint from './checkpoint'
 import journey from './journey'
+import statusUpdate from './statusUpdate'
 
 const router = new Router()
 
@@ -33,5 +34,6 @@ router.use('/users', user)
 router.use('/auth', auth)
 router.use('/checkpoints', checkpoint)
 router.use('/journeys', journey)
+router.use('/statusUpdates', statusUpdate)
 
 export default router

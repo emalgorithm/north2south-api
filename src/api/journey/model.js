@@ -6,11 +6,6 @@ const journeySchema = new Schema({
 
   owner: { type: Schema.ObjectId, ref: 'User', required: true },
 
-  statusUpdates: [{
-    title: String,
-    content: String
-  }],
-
   charities: [String],
   donateUrl: String,
 
@@ -28,9 +23,14 @@ journeySchema.virtual('checkpoints', {
   foreignField: 'journey'
 })
 
+journeySchema.virtual('statusUpdates', {
+  ref: 'StatusUpdates',
+  localField: '_id',
+  foreignField: 'journey'
+})
+
 journeySchema.virtual('latestCheckpoint')
   .get(function() {
-    console.log(this.checkpoints)
     return this.checkpoints.length > 0
       ? this.checkpoints[this.checkpoints.length - 1]
       : undefined
