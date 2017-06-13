@@ -27,8 +27,25 @@ export class Journey {
     return this.description
   }
 
+  updateTotalDistance() {
+
+    let groups = this.checkpoints.reduce(function (cs, c) {
+      (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
+      return cs;
+    }, {});
+
+    for (let p in groups) {
+      if (groups.hasOwnProperty(p)) {
+        let data = groups[p].map(function(a) { return a['distance']; })
+        this.totalDistance = Math.max.apply(null, data.filter(x => x !== null && !isNaN(x)))
+        return;
+      }
+    }
+  }
+
   attached() {
-    this.totalDistance = 11;
+    /* Get latest checkpoint */
+    this.updateTotalDistance();
     this.drawGraph('heartRate', '.heart-rate-chart', 15,
       function(d) {
         return d.reduce(function(a, b) {return a + b;}) / d.length
