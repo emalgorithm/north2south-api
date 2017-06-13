@@ -3,6 +3,7 @@ import 'material-dashboard'
 import Chartist from 'chartist'
 import { EventAggregator } from 'aurelia-event-aggregator'
 import { RestApi } from 'services/api'
+import moment from 'moment'
 
 export class Journey {
 
@@ -26,7 +27,20 @@ export class Journey {
   }
 
   attached() {
-    var data = {
+    /* Date grouping */
+    console.log(JSON.stringify(this.checkpoints))
+    console.log("HERE IT COMES")
+    var groupBy = function(xs) {
+      return xs.reduce(function (rv, x) {
+        (rv[moment(x.createdAt).startOf('day').format()] = rv[moment(x.createdAt).startOf('day').format()] || []).push(x);
+        return rv;
+      }, {});
+    }
+    var groups = groupBy(this.checkpoints);
+    console.log("HERE IT FINISHES")
+    /* Finish grouping of dates */
+
+    var heartRateData = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       series: [
         [85, 78, 76, 72, 88, 79, 82]
@@ -42,11 +56,11 @@ export class Journey {
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
     };
 
-    var chart = new Chartist.Line('.heart-rate-chart', data, options);
+    var chart = new Chartist.Line('.heart-rate-chart', heartRateData, options);
 
     md.startAnimationForLineChart(chart);
 
-    data = {
+    caloriesData = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       series: [
         [2585, 2895, 2965, 3072, 2512, 3125, 2454]
@@ -62,7 +76,7 @@ export class Journey {
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
     };
 
-    chart = new Chartist.Line('.calories-chart', data, options);
+    chart = new Chartist.Line('.calories-chart', caloriesData, options);
 
     md.startAnimationForLineChart(chart);
     this.setup_twitter_feed()

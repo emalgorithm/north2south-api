@@ -200,6 +200,11 @@
             "deps": [
               "bootstrap"
             ]
+          },
+          {
+            "name": "moment",
+            "path": "../node_modules/moment",
+            "main": "moment"
           }
         ]
       }
