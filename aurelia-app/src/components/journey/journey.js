@@ -27,7 +27,7 @@ export class Journey {
     });
   }
 
-  activate(params, routerConfig) {
+  activate(params, routeConfig) {
     socket.on('checkpoint:save', checkpoint => this.onNewCheckpoint(checkpoint));
 
     return this.api.getJourney(params.id).then(journey => {
