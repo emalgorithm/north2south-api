@@ -29,18 +29,27 @@ export class Journey {
 
   attached() {
     this.totalDistance = 11;
-    this.drawGraph('heartRate', '.heart-rate-chart', 15)
-    this.drawGraph('calories', '.calories-chart', 200)
+    this.drawGraph('heartRate', '.heart-rate-chart', 15,
+      function(d) {
+        return d.reduce(function(a, b) {return a + b;}) / d.length
+      }
+    )
+
+    this.drawGraph('calories', '.calories-chart', 200,
+      function(d) {
+        return Math.max.apply(null, d.filter(x => x !== null && !isNaN(x)))
+      }
+    )
     this.setup_twitter_feed()
   }
 
-  getGraphData(groups, field) {
+  getGraphData(groups, field, choose) {
     let dataAndDates = []
 
     for (let property in groups) {
       if (groups.hasOwnProperty(property)) {
         let data = groups[property].map(function(a) { return a[field]; })
-        dataAndDates.push([property, data.reduce(function(a, b) {return a + b;}) / data.length]);
+        dataAndDates.push([property, choose(data)]);
       }
     }
 
@@ -77,14 +86,14 @@ export class Journey {
     };
   }
 
-  drawGraph(property, graphElem, limit) {
+  drawGraph(property, graphElem, limit, choose) {
 
     let groups = this.checkpoints.reduce(function (cs, c) {
       (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
       return cs;
     }, {});
 
-    let propertyData = this.getGraphData(groups, property)
+    let propertyData = this.getGraphData(groups, property, choose)
 
 
     let options = {
