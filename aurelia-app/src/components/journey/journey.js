@@ -43,9 +43,28 @@ export class Journey {
     var datelabels = []
     var heartSeries = []
 
-    if (dateAndHeartRates.length > 0) {
+    if (dateAndHeartRates.length > 0) { /* > 0 */
       datelabels.push(dateAndHeartRates[0][0])
       heartSeries.push(dateAndHeartRates[0][1])
+      var current = 1;
+      var lastDate = dateAndHeartRates[0][0]
+      for (var i = 1; i < this.displayedDays; i++) {
+        if (current < dateAndHeartRates.length && this.isNext(dateAndHeartRates[current][0], lastDate)) {
+          datelabels.push(dateAndHeartRates[current][0])
+          heartSeries.push(dateAndHeartRates[current][1])
+          lastDate = dateAndHeartRates[current][0]
+          current += 1
+        } else {
+          lastDate = moment(lastDate).add(-1, 'days').format('MMM DD')
+          datelabels.push(lastDate)
+          heartSeries.push(undefined)
+        }
+      }
+    } else {
+      /* This week days with no data */
+      for (var i = this.displayedDays - 1; i >= 0; i--) {
+        datelabels.push(moment().add(-i, 'days').format('MMM DD'))
+      }
     }
 
 
@@ -87,6 +106,10 @@ export class Journey {
 
     md.startAnimationForLineChart(chart);
     this.setup_twitter_feed()
+  }
+
+  isNext(d1, d2) {
+    return moment(d2).diff(moment(d1), 'days') == 1
   }
 
   onMapLoaded() {
