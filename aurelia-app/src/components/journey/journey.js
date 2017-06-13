@@ -27,24 +27,25 @@ export class Journey {
   }
 
   attached() {
-    /* Date grouping */
-    console.log(JSON.stringify(this.checkpoints))
-    console.log("HERE IT COMES")
-    var groupBy = function(xs) {
-      return xs.reduce(function (rv, x) {
-        (rv[moment(x.createdAt).startOf('day').format()] = rv[moment(x.createdAt).startOf('day').format()] || []).push(x);
-        return rv;
-      }, {});
+    var groups = this.checkpoints.reduce(function (cs, c) {
+      (cs[moment(c.createdAt).startOf('day').format()] = cs[moment(c.createdAt).startOf('day').format()] || []).push(c);
+      return cs;
+    }, {});
+
+
+    var heartSeries = []
+    for (var property in groups) {
+      if (groups.hasOwnProperty(property)) {
+        var heartRates = groups[property].map(function(a) {return a.heartRate;})
+        heartSeries.unshift(heartRates.reduce(function(a, b) {return a + b;}) / heartRates.length);
+      }
     }
-    var groups = groupBy(this.checkpoints);
-    console.log("HERE IT FINISHES")
-    /* Finish grouping of dates */
+
+    console.log(heartSeries);
 
     var heartRateData = {
-      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [
-        [85, 78, 76, 72, 88, 79, 82]
-      ]
+      labels: ['M', 'T', 'W','T','F','S','S'],
+      series: [heartSeries]
     };
 
     var options = {
@@ -60,7 +61,7 @@ export class Journey {
 
     md.startAnimationForLineChart(chart);
 
-    caloriesData = {
+    var caloriesData = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       series: [
         [2585, 2895, 2965, 3072, 2512, 3125, 2454]
