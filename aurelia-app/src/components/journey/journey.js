@@ -43,7 +43,7 @@ export class Journey {
     var datelabels = []
     var heartSeries = []
 
-    if (dateAndHeartRates.length > 0) { /* > 0 */
+    if (dateAndHeartRates.length > 0) {
       datelabels.push(dateAndHeartRates[0][0])
       heartSeries.push(dateAndHeartRates[0][1])
       var current = 1;
@@ -55,13 +55,13 @@ export class Journey {
           lastDate = dateAndHeartRates[current][0]
           current += 1
         } else {
-          lastDate = moment(lastDate).add(-1, 'days').format('MMM DD')
+          lastDate = moment(lastDate, 'MMM/DD', false).add(-1, 'days').format('MMM DD')
           datelabels.push(lastDate)
           heartSeries.push(undefined)
         }
       }
     } else {
-      /* This week days with no data */
+      /* This week's days with no data */
       for (var i = this.displayedDays - 1; i >= 0; i--) {
         datelabels.push(moment().add(-i, 'days').format('MMM DD'))
       }
@@ -109,7 +109,7 @@ export class Journey {
   }
 
   isNext(d1, d2) {
-    return moment(d2).diff(moment(d1), 'days') == 1
+    return moment(d2, 'MMM/DD', false).diff(moment(d1, 'MMM/DD', false), 'days') == 1
   }
 
   onMapLoaded() {
