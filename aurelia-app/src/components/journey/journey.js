@@ -13,14 +13,16 @@ export class Journey {
   constructor(api, eventAggregator) {
     Object.assign(this, { api, eventAggregator })
     this.checkpoints = [];
+    this.destination = {
+      "latitude" : 0,
+      "longitude": 0
+    };
     this.mapLoaded = false;
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
-      this.checkpoints.forEach(function (checkpoint) {
-        map.addMarker(checkpoint.latitude, checkpoint.longitude);
-      })
+      this.addPointsToMap();
     });
   }
 
@@ -31,9 +33,7 @@ export class Journey {
         Object.assign(this, ...journey);
         // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
         if (this.mapLoaded) {
-          this.checkpoints.forEach(function (checkpoint) {
-            this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
-          })
+          this.addPointsToMap();
         }
       }
     )
@@ -43,6 +43,13 @@ export class Journey {
     if (this.description.length > 500)
       return this.description.substr(0, 500 - '...'.length) + '...'
     return this.description
+  }
+
+  addPointsToMap() {
+    this.map.addDestination(this.destination.latitude, this.destination.longitude);
+    this.checkpoints.forEach(function (checkpoint) {
+      this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
+    }.bind(this));
   }
 
   attached() {

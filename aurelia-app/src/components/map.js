@@ -41,19 +41,7 @@ export class Map {
   }
 
   addMarker(latitude, longitude) {
-    if(isNaN(latitude) || isNaN(longitude)) {
-      return;
-    }
-
-    console.log("Adding a marker at latitude: " + latitude + " and longitude: " + longitude);
-
-    var location = new google.maps.LatLng(latitude, longitude);
-
-    var marker = new google.maps.Marker({
-      position: location,
-      label: this.labelIndex.toString(),
-      map: this.googleMap
-    });
+    this.addMarkerWithLabel(latitude, longitude, this.labelIndex.toString());
 
     this.labelIndex++;
 
@@ -63,6 +51,34 @@ export class Map {
     });
 
     this.drawPath()
+  }
+
+  addDestination(latitude, longitude) {
+    this.addMarkerWithLabel(latitude, longitude, "Destination")
+  }
+
+  addMarkerWithLabel(latitude, longitude, label) {
+    if(!this.isLatitudeValid(latitude) || !this.isLongitudeValid(longitude)) {
+      return;
+    }
+
+    console.log("Adding a marker at latitude: " + latitude + " and longitude: " + longitude + " and label: " + label);
+
+    var location = new google.maps.LatLng(latitude, longitude);
+
+    var marker = new google.maps.Marker({
+      position: location,
+      label: label,
+      map: this.googleMap
+    });
+  }
+
+  isLatitudeValid(latitude) {
+    return !isNaN(latitude) && latitude <= 90 && latitude >= -90;
+  }
+
+  isLongitudeValid(longitude) {
+    return !isNaN(longitude) && longitude <= 180 && longitude >= -180;
   }
 
   drawPath() {
