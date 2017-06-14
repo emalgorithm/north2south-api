@@ -3,7 +3,7 @@
 
     <div repeat.for="j of journeys" class="row">
       <!-- Journey focus -->
-      <div class="col-md-12">
+      <div class="col-md-12" click.delegate="select(j.id)" role="button">
         <div class="card card-journey">
 
           <div class="card-header">
@@ -30,7 +30,7 @@
             </div>
 
             <!-- Focused data card -->
-            <div class="col-md-6" click.delegate="select(j.id)">
+            <div class="col-md-6">
               <div class="card card-stats">
                 <div class="card-header" data-background-color="green">
                   <i class="material-icons">directions_run</i>
