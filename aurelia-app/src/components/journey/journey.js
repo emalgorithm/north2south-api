@@ -24,6 +24,8 @@ export class Journey {
       this.map = map;
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
       this.addPointsToMap();
+      console.log("Weather: ");
+      console.log(this.weather);
     });
   }
 

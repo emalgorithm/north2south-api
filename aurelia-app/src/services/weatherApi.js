@@ -24,7 +24,7 @@ export class WeatherApi {
 	getCurrentWeather(latitude, longitude) {
 	  console.log("Fetching weather");
 	  let key = "d1c70a6726e70b55ac3c105ee5a29d4c";
-    return this.http.fetch('data/2.5/weather?APPID=' + key + `&lat=${latitude}&lon=${longitude}`)
+    return this.http.fetch('data/2.5/weather?APPID=' + key + `&lat=${latitude}&lon=${longitude}&units=metric`)
       .then(response => response.json())
   }
 }
