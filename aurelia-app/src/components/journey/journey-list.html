@@ -18,28 +18,30 @@
           </div>
         </div>
 
-            <!-- Focused content card -->
-            <div class="col-md-6">
-              <div class="content">
-                <h2 class="card-title">${j.status.title}</h2>
-                <p>${j.status.content}</p>
-              </div>
-            </div>
+        <div class="card-content">
 
-            <!-- Focused data card -->
-            <div class="col-md-6">
-              <div class="card card-stats">
-                <div class="card-header" data-background-color="green">
-                  <i class="material-icons">directions_run</i>
-                </div>
-                <div class="card-content">
-                  <p class="category">Distance covered today</p>
-                  <h3 class="title">${j.checkpoint.distance} m</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
-                  </div>
+          <!-- Focused content card -->
+          <div class="col-md-6">
+            <div class="content">
+              <h2 class="card-title">${j.status.title}</h2>
+              <p>${j.status.content}</p>
+            </div>
+          </div>
+
+          <!-- Focused data card -->
+          <div class="col-md-6">
+            <div class="card card-stats">
+              <div class="charityImg">
+                <!--<i class="material-icons">directions_run</i>-->
+                <img src="../../../assets/images/charities/1.png">
+              </div>
+              <div class="card-content">
+                <p class="category">Distance covered today</p>
+                <h3 class="title">${j.checkpoint.distance} m</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">date_range</i> Last 24 Hours
                 </div>
               </div>
             </div>
@@ -48,6 +50,7 @@
 
       </div>
     </div>
+  </div>
 
   </div>
 </template>
