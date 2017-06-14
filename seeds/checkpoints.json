@@ -192,9 +192,31 @@
     "heartRate": 60,
     "calories": 0,
     "distance": 1220,
-    "longitude": 12.12,
+    "longitude": 2.12,
     "latitude": -2.517586,
     "createdAt": "2017-06-08T18:06:36.045Z",
     "updatedAt": "2017-06-08T18:06:36.045Z"
+  },
+  {
+    "_id": { "$oid": "592f062c362d3200591d54d1" },
+    "journey": { "$oid": "59372894ff82580150333ee3" },
+    "heartRate": 60,
+    "calories": 0,
+    "distance": 1220,
+    "longitude": 1,
+    "latitude": -1.517586,
+    "createdAt": "2017-06-07T18:06:36.045Z",
+    "updatedAt": "2017-06-07T18:06:36.045Z"
+  },
+  {
+    "_id": { "$oid": "592f062c362d3200591d56d1" },
+    "journey": { "$oid": "59372894ff82580150333ee3" },
+    "heartRate": 60,
+    "calories": 0,
+    "distance": 1220,
+    "longitude": 23,
+    "latitude": -1,
+    "createdAt": "2017-06-06T18:06:36.045Z",
+    "updatedAt": "2017-06-06T18:06:36.045Z"
   }
 ]
