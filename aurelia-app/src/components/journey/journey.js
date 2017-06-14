@@ -74,6 +74,13 @@ export class Journey {
     this.setup_twitter_feed()
   }
 
+  gotoProfile(event, userId) {
+    event.stopPropagation()
+    this.router.navigateToRoute('profile', {
+      id: userId
+    })
+  }
+
   updateTotalDistance() {
     let groups = this.checkpoints.reduce(function (cs, c) {
       (cs[moment(c.createdAt).format('MMM DD')] = cs[moment(c.createdAt).format('MMM DD')] || []).push(c);
