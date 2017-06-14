@@ -66,7 +66,7 @@ export class Journey {
   attached() {
     /* Get latest checkpoint */
     this.updateTotalDistance();
-    this.drawGraph('heartRate', '.heart-rate-chart', 15,
+    this.drawGraph('heartRate', '.heart-rate-chart-Week', 15,
       function(d) {
         return d.reduce(function(a, b) {return a + b;}) / d.length
       }
@@ -82,6 +82,10 @@ export class Journey {
 
   heartRateChartOptionSelected(o) {
     this.heartRateSelection = o;
+    switch (o) {
+      case 'Week': break;
+      case 'All': this.drawAllCheckpoints(); break;
+    }
   }
 
   updateTotalDistance() {
@@ -150,6 +154,28 @@ export class Journey {
       labels: dateLabels.reverse(),
       series: [dataSeries.reverse()]
     };
+  }
+
+  drawAllCheckpoints() {
+    let data = this.checkpoints.map((c) => { return { 
+      x: moment(c.createdAt).toDate(),
+      y: c.heartRate
+    }})
+
+    let options = {
+      axisX: {
+        type: Chartist.FixedScaleAxis,
+        divisor: 7,
+        labelInterpolationFnc: function(value) {
+          return moment(value).format('MMM DD')
+        }
+      }
+    }
+
+    let chart = new Chartist.Line('.heart-rate-chart-All', {
+      series: [ { name: 'series-1', data: data } ]
+    }, options)
+    md.startAnimationForLineChart(chart)
   }
 
   drawGraph(property, graphElem, limit, choose) {
