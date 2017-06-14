@@ -7,15 +7,15 @@ import { schema } from './model'
 export Journey, { schema } from './model'
 
 const router = new Router()
-const { checkpoints, name, description, donateUrl } = schema.tree
+const { name, description, donateUrl, destination } = schema.tree
 
+console.log(destination)
 /**
  * @api {post} /journeys Create journey
  * @apiName CreateJourney
  * @apiGroup Journey
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam checkpoints Journey's checkpoints.
  * @apiParam name Journey's name.
  * @apiParam description Journey's description.
  * @apiParam donateUrl Journey's donateUrl.
@@ -26,7 +26,7 @@ const { checkpoints, name, description, donateUrl } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ checkpoints, name, description, donateUrl }),
+  body({ name, description, donateUrl, destination: [Object] }),
   create)
 
 /**
@@ -81,7 +81,6 @@ router.get('/:id',
  * @apiGroup Journey
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam checkpoints Journey's checkpoints.
  * @apiParam name Journey's name.
  * @apiParam description Journey's description.
  * @apiParam donateUrl Journey's donateUrl.
@@ -92,7 +91,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ checkpoints, name, description, donateUrl }),
+  body({ name, description, donateUrl, destination: [Object] }),
   update)
 
 /**

@@ -9,7 +9,11 @@
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
       { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
-    ]
+    ],
+    "destination": {
+      "longitude": 51.4989,
+      "latitude": 30.1790
+    }
   },
   {
     "_id": { "$oid": "593728a0ff82580150333ee4" },
@@ -21,7 +25,11 @@
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
       { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
-    ]
+    ],
+    "destination": {
+      "longitude": 51.4989,
+      "latitude": 30.1790
+    }
   },
   {
     "_id": { "$oid": "59372894ff82580150333ee3" },
@@ -33,6 +41,10 @@
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
       { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
-    ]
+    ],
+    "destination": {
+      "longitude": 51.4989,
+      "latitude": 30.1790
+    }
   }
 ]

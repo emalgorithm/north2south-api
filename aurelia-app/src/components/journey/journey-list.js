@@ -33,6 +33,11 @@ export class JourneyList {
     ]
   }
 
+  activate(params, routeConfig) {
+    // choose watch journeys to display based on routeConfig.name
+    // it could be one of latest, mostFunded, trending, followed, etc.
+  }
+
   created() {
     this.api.getJourneyList().then(journeys => this.journeys = journeys)
   }

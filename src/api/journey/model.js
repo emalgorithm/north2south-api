@@ -6,13 +6,13 @@ const journeySchema = new Schema({
 
   owner: { type: Schema.ObjectId, ref: 'User', required: true },
 
-  statusUpdates: [{
-    title: String,
-    content: String
-  }],
-
   charities: [String],
-  donateUrl: String
+  donateUrl: String,
+
+  destination: {
+    longitude: Number,
+    latitude: Number
+  }
 }, {
   timestamps: true
 })
@@ -23,17 +23,22 @@ journeySchema.virtual('checkpoints', {
   foreignField: 'journey'
 })
 
+journeySchema.virtual('statusUpdates', {
+  ref: 'StatusUpdates',
+  localField: '_id',
+  foreignField: 'journey'
+})
+
 journeySchema.virtual('latestCheckpoint')
   .get(function() {
-    console.log(this.checkpoints)
-    return this.checkpoints.length > 0
+    return this.checkpoints && this.checkpoints.length > 0
       ? this.checkpoints[this.checkpoints.length - 1]
       : undefined
   })
 
 journeySchema.virtual('latestStatusUpdate')
   .get(function () {
-    return this.statusUpdates.length > 0
+    return this.statusUpdates && this.statusUpdates.length > 0
       ? this.statusUpdates[this.statusUpdates.length - 1]
       : undefined
   })
@@ -47,7 +52,7 @@ journeySchema.methods = {
       checkpoint: this.latestCheckpoint,
       status: this.latestStatusUpdate
     }
-    
+
     return focusedJourney
   },
 
@@ -56,11 +61,13 @@ journeySchema.methods = {
       // simple view
       id: this.id,
       owner: this.owner.view(full),
-      checkpoints: this.checkpoints,
+      checkpoints: this.checkpoints || [],
+      latestCheckpoint: this.latestCheckpoint,
       name: this.name,
       charities: this.charities,
       description: this.description,
       donateUrl: this.donateUrl,
+      destination: this.destination,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
