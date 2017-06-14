@@ -5,7 +5,7 @@ export class WeatherApi {
 	constructor() {
     this.http = new HttpClient().configure(config => {
       config
-        .withBaseUrl('http://api.openweathermap.org/')
+        .withBaseUrl('https://crossorigin.me/http://api.openweathermap.org/')
         .withInterceptor({
           request(request) {
             console.log(`Requesting ${request.method} ${request.url}`);
