@@ -8,7 +8,7 @@
     "donateUrl": "http://emanuelerossi.co.uk/",
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+      { "title": "Day 3", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
     ],
     "destination": {
       "longitude": 51.4989,
@@ -24,7 +24,7 @@
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes",
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+      { "title": "Day 5", "content": "It very cold here! Very very cold!" }
     ],
     "destination": {
       "longitude": 51.4989,
@@ -40,7 +40,7 @@
     "donateUrl": "https://www.stackoverflow.com",
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+      { "title": "Day 1", "content": "Another great day in the office! *************ptr = null;" }
     ],
     "destination": {
       "longitude": 51.4989,
