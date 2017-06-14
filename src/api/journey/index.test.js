@@ -24,12 +24,13 @@ beforeEach(async () => {
 test('POST /journeys 201 (user)', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ access_token: userSession, name: 'test', description: 'test', donateUrl: 'test'})
+    .send({ access_token: userSession, name: 'test', description: 'test', donateUrl: 'test', destination: destination})
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
   expect(body.name).toEqual('test')
   expect(body.description).toEqual('test')
   expect(body.donateUrl).toEqual('test')
+  expect(body.destination).toEqual(destination)
   expect(typeof body.owner).toEqual('object')
 })
 
@@ -63,13 +64,14 @@ test('GET /journeys/:id 404', async () => {
 test('PUT /journeys/:id 200 (user)', async () => {
   const { status, body } = await request(app())
     .put(`/${journey.id}`)
-    .send({ access_token: userSession, name: 'test', description: 'test', donateUrl: 'test' })
+    .send({ access_token: userSession, name: 'test', description: 'test', donateUrl: 'test', destination: destination })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(journey.id)
   expect(body.name).toEqual('test')
   expect(body.description).toEqual('test')
   expect(body.donateUrl).toEqual('test')
+  expect(body.destination).toEqual(destination)
   expect(typeof body.owner).toEqual('object')
 })
 
