@@ -6,12 +6,6 @@ export class WeatherApi {
     this.http = new HttpClient().configure(config => {
       config
         .withBaseUrl('http://api.openweathermap.org/')
-        .withDefaults({
-          headers: {
-            'Accept': 'application/json',
-            'X-Requested-With': 'Fetch'
-          }
-        })
         .withInterceptor({
           request(request) {
             console.log(`Requesting ${request.method} ${request.url}`);
