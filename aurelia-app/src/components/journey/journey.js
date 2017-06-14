@@ -27,7 +27,7 @@ export class Journey {
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
-      map.setOptions({scrollwheel: false});
+      this.map.setOptions({scrollwheel: false});
 
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
       this.addPointsToMap();
@@ -58,6 +58,17 @@ export class Journey {
     if (this.description.length > 500)
       return this.description.substr(0, 500 - '...'.length) + '...'
     return this.description
+  }
+
+  resetTimer() {
+    clearTimeout(this.timer);
+  }
+
+
+  enableScrolling() {
+    this.timer = setTimeout(function() {
+      this.map.setOptions({scrollwheel: true})
+    }.bind(this), 2000);
   }
 
   attached() {
