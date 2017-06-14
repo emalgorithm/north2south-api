@@ -50,6 +50,7 @@ journeySchema.methods = {
       name: this.name,
       owner: this.owner.view(),
       checkpoint: this.latestCheckpoint,
+      charities: this.charities,
       status: this.latestStatusUpdate
     }
 

@@ -31,6 +31,8 @@ export class Journey {
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
+      this.map.setOptions({scrollwheel: false});
+
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
       this.addPointsToMap();
       console.log("Weather: ");
@@ -51,6 +53,7 @@ export class Journey {
         this.weatherApi.getCurrentWeather(this.latestCheckpoint.latitude, this.latestCheckpoint.longitude).then(weather => this.weather = weather);
         // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
         if (this.mapLoaded) {
+
           this.addPointsToMap();
         }
       }
@@ -61,6 +64,17 @@ export class Journey {
     if (this.description.length > 500)
       return this.description.substr(0, 500 - '...'.length) + '...'
     return this.description
+  }
+
+  resetTimer() {
+    clearTimeout(this.timer);
+  }
+
+
+  enableScrolling() {
+    this.timer = setTimeout(function() {
+      this.map.setOptions({scrollwheel: true})
+    }.bind(this), 2000);
   }
 
   attached() {
@@ -86,6 +100,13 @@ export class Journey {
       case 'Week': break;
       case 'All': this.drawAllCheckpoints(); break;
     }
+  }
+
+  gotoProfile(event, userId) {
+    event.stopPropagation()
+    this.router.navigateToRoute('profile', {
+      id: userId
+    })
   }
 
   updateTotalDistance() {

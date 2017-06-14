@@ -5,9 +5,9 @@
       <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="card card-profile">
           <div class="card-avatar">
-            <a href="#pablo">
-              <img class="img" src="../assets/img/norway-me.jpg">
-            </a>
+            <div click.trigger="gotoProfile($event, owner._id)" role="button">
+              <img class="img" src="../../../assets/images/users/${owner.picture}.jpg">
+            </div>
           </div>
 
           <div class="content">
@@ -97,7 +97,7 @@
     <div class="row">
       <!-- Map -->
       <div class="col-md-12">
-        <compose view-model.ref="component" view-model="components/map"></compose>
+        <compose mouseenter.trigger='enableScrolling()' mouseleave.trigger='resetTimer()' view-model.ref="component" view-model="components/map"></compose>
       </div>
     </div>
 

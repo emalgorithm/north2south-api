@@ -3,12 +3,12 @@
     "_id": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "owner": { "$oid": "593727ccc1c04200d8cbcc79" },
     "name": "Support Emanuele on his brave post-exam climb on mount Kilimanjaro",
-    "charities": ["1", "2"],
+    "charities": ["4", "2"],
     "description": "On an attempt to support Unicef and the British Heart foundation me and a few collegaues from Imperial College London are climbing mount Kilimanjaro.",
     "donateUrl": "http://emanuelerossi.co.uk/",
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+      { "title": "Day 3", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
     ],
     "destination": {
       "longitude": 51.4989,
@@ -24,7 +24,7 @@
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes",
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+      { "title": "Day 5", "content": "It very cold here! Very very cold!" }
     ],
     "destination": {
       "longitude": 51.4989,
@@ -36,11 +36,11 @@
     "owner": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "name": "Support Pani's quest in Pintos land",
     "charities": ["1", "6"],
-    "description": "Join my trip in an attempt to face the most scaring pointers of the world. \n\n\n\n\n\n\n int **p = ** (int ****) x; \n Oh dear.. Look at that!",
+    "description": "Join my trip in an attempt to face the most scaring pointers of the world. int **p = ** (int ****) x; Oh dear.. Look at that!",
     "donateUrl": "https://www.stackoverflow.com",
     "statusUpdates": [
       { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Final countdown", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
+      { "title": "Day 1", "content": "Another great day in the office! *************ptr = null;" }
     ],
     "destination": {
       "longitude": 51.4989,
