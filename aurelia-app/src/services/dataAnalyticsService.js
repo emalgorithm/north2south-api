@@ -7,7 +7,19 @@ export class DataAnalyticsService {
   }
 
   analyseHeartRate() {
-    return this.analyse(this.meanFunction, 'recovery than previous weeks')
+    let thisWeekValue = this.meanFunction(this.weeklyCheckpoints.thisWeek)
+    let beforeValue = this.meanFunction(this.weeklyCheckpoints.before)
+
+    return this.analyse(thisWeekValue, beforeValue,
+      'recovery than previous weeks', ['faster', 'slower'])
+  }
+
+  analyseCalories() {
+    let latestCalories = this.weeklyCheckpoints.thisWeek[0].calories
+    let referenceValue = 2000
+
+    return this.analyse(latestCalories, referenceValue,
+      'than the normal daily calorie burn', ['more', 'less'])
   }
 
   meanFunction(xs) {
@@ -18,15 +30,13 @@ export class DataAnalyticsService {
     return xs.reduce((ys, y) => ys + y.heartRate, 0) / xs.length
   }
 
-  analyse(valueFunction, description) {
-    let thisWeekValue = valueFunction(this.weeklyCheckpoints.thisWeek)
-    let beforeValue = valueFunction(this.weeklyCheckpoints.before)
+  analyse(current, reference, description, adjectiveOptions) {
 
-    if (!thisWeekValue || !beforeValue)
+    if (!current || !reference)
       return null;
 
-    let percentageIncrease = (thisWeekValue * 100 / beforeValue) - 100
-    let adjective = percentageIncrease >= 0 ? 'faster' : 'slower'
+    let percentageIncrease = (current * 100 / reference) - 100
+    let adjective = percentageIncrease >= 0 ? adjectiveOptions[0] : adjectiveOptions[1]
 
     return {
       isPositive: percentageIncrease >= 0,

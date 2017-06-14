@@ -132,7 +132,12 @@
           </div>
           <div class="card-content">
             <h4 class="title">Daily Calories Burned</h4>
-            <p class="category"><span class="text-warning"><i class="fa fa-long-arrow-dowm"></i> 20%  </span> more calories burned than optimal</p>
+            <p if.bind="caloriesAnalysis" class="category">
+              <span class="${caloriesAnalysis.isPositive ? 'text-success' : 'text-warning'}">
+                <i class="fa fa-long-arrow-${caloriesAnalysis.isPositive ? 'up' : 'down'}"></i>
+                ${caloriesAnalysis.percentage}
+              </span> ${caloriesAnalysis.description}
+            </p>
           </div>
           <div class="card-footer">
             <div class="stats">
