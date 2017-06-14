@@ -5,6 +5,7 @@ import { EventAggregator } from 'aurelia-event-aggregator'
 import { RestApi } from 'services/api'
 import moment from 'moment'
 import { WeatherApi } from 'services/weatherApi'
+import { DataAnalyticsService } from 'services/dataAnalyticsService'
 import io from 'socket.io'
 var socket = io.connect();
 
@@ -36,6 +37,10 @@ export class Journey {
 
     return this.api.getJourney(params.id).then(journey => {
         Object.assign(this, ...journey);
+
+        this.dataAnalyticsService = new DataAnalyticsService(this.checkpoints);
+        this.heartRateAnalysis = this.dataAnalyticsService.analyseHeartRate()
+        debugger;
         this.weatherApi.getCurrentWeather(this.latestCheckpoint.latitude, this.latestCheckpoint.longitude).then(weather => this.weather = weather);
         // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
         if (this.mapLoaded) {
