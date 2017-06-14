@@ -9,7 +9,8 @@ const checkpointSchema = new Schema({
   distance: Number,
   longitude: Number,
   latitude: Number,
-  createdAt: Date
+}, {
+  timestamps: true
 })
 
 checkpointSchema.methods = {
