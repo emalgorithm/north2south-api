@@ -30,7 +30,7 @@ export class DataAnalyticsService {
 
     return {
       isPositive: percentageIncrease >= 0,
-      percentage: `${percentageIncrease.toFixed()}%`,
+      percentage: `${Math.abs(percentageIncrease.toFixed())}%`,
       description: `${adjective} ${description}`
     }
   }
