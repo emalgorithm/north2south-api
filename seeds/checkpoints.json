@@ -1,5 +1,38 @@
 [
   {
+    "_id": { "$oid": "592f072f362d3200590d51e7" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
+    "heartRate": 85,
+    "calories": 1642,
+    "distance": 1396,
+    "longitude": -0.089607,
+    "latitude": 52.556582,
+    "createdAt": "2017-06-13T18:10:55.165Z",
+    "updatedAt": "2017-06-13T18:10:55.165Z"
+  },
+  {
+    "_id": { "$oid": "592f072f362d3200594d54e7" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
+    "heartRate": 60,
+    "calories": 1700,
+    "distance": 500,
+    "longitude": -0.289607,
+    "latitude": 52.996582,
+    "createdAt": "2017-06-12T18:10:55.165Z",
+    "updatedAt": "2017-06-12T18:10:55.165Z"
+  },
+  {
+    "_id": { "$oid": "592f072f362d3200592d59e7" },
+    "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
+    "heartRate": 99,
+    "calories": 1400,
+    "distance": 1400,
+    "longitude": -0.189607,
+    "latitude": 53.556582,
+    "createdAt": "2017-06-11T18:10:55.165Z",
+    "updatedAt": "2017-06-11T18:10:55.165Z"
+  },
+  {
     "_id": { "$oid": "592f072f362d3200591d51e0" },
     "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "heartRate": 85,
