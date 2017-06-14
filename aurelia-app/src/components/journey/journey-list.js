@@ -42,6 +42,13 @@ export class JourneyList {
     this.api.getJourneyList().then(journeys => this.journeys = journeys)
   }
 
+  gotoProfile(event, userId) {
+      event.stopPropagation()
+      this.router.navigateToRoute('profile', {
+        id: userId
+      })
+  }
+
   select(journeyId) {
     this.router.navigateToRoute('journey', {
       id: journeyId

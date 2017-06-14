@@ -3,54 +3,51 @@
 
     <div repeat.for="j of journeys" class="row">
       <!-- Journey focus -->
-      <div class="col-md-12" click.delegate="select(j.id)" role="button">
-        <div class="card card-journey">
-
-          <div class="card-header">
+      <div class="card card-journey">
+        <div class="col-md-12" click.delegate="select(j.id)" role="button">
+          <div class="card-header clickable">
             <div class="card-profile">
               <div class="card-avatar">
-                <a href.bind="j.owner.profileUrl">
+                <div click.trigger="gotoProfile($event, j.owner.profileUrl)" role="button">
                   <img class="img" src.bind="j.owner.picture">
-                </a>
+                </div>
               </div>
             </div>
-
-              <h4 class="title">${j.name}</h4>
-              <p class="category">by ${j.owner.name}</p>
+            <h4 class="title">${j.name}</h4>
+            <p class="category">by ${j.owner.name}</p>
           </div>
-          
-          <div class="card-content">
-
-            <!-- Focused content card -->
-            <div class="col-md-6">
-              <div class="content">
-                <h2 class="card-title">${j.status.title}</h2>
-                <p>${j.status.content}</p>
-              </div>
-            </div>
-
-            <!-- Focused data card -->
-            <div class="col-md-6">
-              <div class="card card-stats">
-                <div class="card-header" data-background-color="green">
-                  <i class="material-icons">directions_run</i>
-                </div>
-                <div class="card-content">
-                  <p class="category">Distance covered today</p>
-                  <h3 class="title">${j.checkpoint.distance} m</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <div class="card-content">
+
+          <!-- Focused content card -->
+          <div class="col-md-6">
+            <div class="content">
+              <h2 class="card-title">${j.status.title}</h2>
+              <p>${j.status.content}</p>
+            </div>
+          </div>
+
+          <!-- Focused data card -->
+          <div class="col-md-6">
+            <div class="card card-stats">
+              <img id="charityImg" src="../../../assets/images/charities/1.png">
+              <div class="card-content">
+                <p class="category">Distance covered today</p>
+                <h3 class="title">${j.checkpoint.distance} m</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">date_range</i> Last 24 Hours
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+  </div>
 
   </div>
 </template>

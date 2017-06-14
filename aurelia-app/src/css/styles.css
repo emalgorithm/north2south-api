@@ -18,3 +18,15 @@
     margin-right: 20px;
     margin-top: -20px;
 }
+
+.clickable:hover {
+  background-color: #427df4;
+}
+
+#charityImg {
+  float: left;
+  height: 12vh;
+  width: 12vh;
+  max-height: 15%;
+  max-width: 15%;
+}

@@ -7,7 +7,7 @@ export class App {
 
   configureRouter(config, router) {
     config.title = 'North2South'
-
+    config.addPipelineStep('postcomplete', PostCompleteStep);
     config.map([
       {
         // This is also the default route
@@ -34,5 +34,15 @@ export class App {
     ])
 
     this.router = router
+  }
+}
+
+class PostCompleteStep {
+  run(instruction, next) {
+    if (!instruction.config.settings.noScrollToTop) {
+      window.scrollTo(0, 0);
+    }
+
+    return next();
   }
 }
