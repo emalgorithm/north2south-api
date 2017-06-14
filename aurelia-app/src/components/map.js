@@ -93,4 +93,9 @@ export class Map {
 
     path.setMap(this.googleMap);
   }
+
+  setOptions(options) {
+    this.googleMap.setOptions(options)
+  }
+
 }

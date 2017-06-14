@@ -27,6 +27,8 @@ export class Journey {
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
+      map.setOptions({scrollwheel: false});
+
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
       this.addPointsToMap();
       console.log("Weather: ");
@@ -45,6 +47,7 @@ export class Journey {
         this.weatherApi.getCurrentWeather(this.latestCheckpoint.latitude, this.latestCheckpoint.longitude).then(weather => this.weather = weather);
         // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
         if (this.mapLoaded) {
+
           this.addPointsToMap();
         }
       }
