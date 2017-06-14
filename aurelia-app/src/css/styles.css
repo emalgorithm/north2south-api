@@ -23,10 +23,10 @@
   background-color: #427df4;
 }
 
-.charityImg {
+#charityImg {
   float: left;
-  width: 12vw;
   height: 12vh;
-  max-height: 100%;
-  max-width: 100%;
+  width: 12vh;
+  max-height: 15%;
+  max-width: 15%;
 }
