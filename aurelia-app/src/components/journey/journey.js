@@ -15,6 +15,10 @@ export class Journey {
 
   constructor(api, weatherApi, eventAggregator) {
     Object.assign(this, { api, weatherApi, eventAggregator })
+
+    this.heartRateOptions = ['Week', 'Live', 'All']
+    this.heartRateSelection = this.heartRateOptions[0]
+
     this.displayedDays = 7; /* For now */
     this.totalDistance = 0;
     /* Map setup */
@@ -74,6 +78,10 @@ export class Journey {
       }
     )
     this.setup_twitter_feed()
+  }
+
+  heartRateChartOptionSelected(o) {
+    this.heartRateSelection = o;
   }
 
   updateTotalDistance() {

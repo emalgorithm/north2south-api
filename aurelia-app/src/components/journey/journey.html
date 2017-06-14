@@ -63,13 +63,26 @@
             <div class="ct-chart heart-rate-chart"></div>
           </div>
           <div class="card-content">
-            <h4 class="title">Daily Heart Rate</h4>
-            <p if.bind="heartRateAnalysis" class="category">
-              <span class="${heartRateAnalysis.isPositive ? 'text-success' : 'text-warning'}">
-                <i class="fa fa-long-arrow-${heartRateAnalysis.isPositive ? 'up' : 'down'}"></i>
-                ${heartRateAnalysis.percentage}
-              </span> ${heartRateAnalysis.description}
-            </p>
+            
+          <div class="row">
+            <div class="col-xs-6">
+              <h4 class="title">Daily Heart Rate</h4>
+              <p if.bind="heartRateAnalysis" class="category">
+                <span class="${heartRateAnalysis.isPositive ? 'text-success' : 'text-warning'}">
+                  <i class="fa fa-long-arrow-${heartRateAnalysis.isPositive ? 'up' : 'down'}"></i>
+                  ${heartRateAnalysis.percentage}
+                </span> ${heartRateAnalysis.description}
+              </p>  
+            </div>
+
+            <div class="col-xs-6">
+              <ul class="nav nav-pills nav-pills-success">
+                <li repeat.for="o of heartRateOptions" class="${o === heartRateSelection ? 'active' : ''}" click.delegate="heartRateChartOptionSelected(o)"><a href="#" data-toggle="tab">${o}</a></li>
+                </ul>
+            </div>
+          </div>
+            
+
           </div>
           <div class="card-footer">
             <div class="stats">
