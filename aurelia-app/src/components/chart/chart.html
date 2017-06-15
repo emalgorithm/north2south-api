@@ -1,0 +1,38 @@
+<template>
+<div class="col-md-6">
+    <div class="card">
+        
+        <!-- Header (contains actual chart) -->
+        <div class="card-header card-chart" data-background-color="green">
+            <div repeat.for="option of options" show.bind="selection === option" class="chart-${name}-${option}"></div>
+        </div>
+
+        <!-- Card title and data analysis description -->
+        <div class="card-content">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4 class="title">${title}</h4>
+                    <p if.bind="analysis" class="category">
+                        <span class="${analysis.isPositive ? 'text-success' : 'text-warning'}">
+                            <i class="fa fa-long-arrow-${analysis.isPositive ? 'up' : 'down'}"></i>
+                            ${analysis.percentage}
+                        </span> ${analysis.description}
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <ul class="nav nav-pills nav-pills-success">
+                        <li repeat.for="option of options" class="${option === selection ? 'active' : ''}" click.trigger="selectOption(option)"><a data-toggle="tab">${option}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Context information -->
+        <div class="card-footer">
+            <div class="stats">
+                <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+        </div>
+    </div>
+</div>
+</template>
