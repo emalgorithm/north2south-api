@@ -8,14 +8,16 @@ import { WeatherApi } from 'services/weatherApi'
 import { CaloriesAnalyticsService } from 'services/caloriesAnalytics'
 import { HeartRateAnalyticsService } from 'services/heartRateAnalytics'
 import io from 'socket.io'
+import { Router } from 'aurelia-router';
+
 var socket = io.connect();
 
 export class Journey {
 
-  static inject = [RestApi, WeatherApi, EventAggregator]
+  static inject = [RestApi, WeatherApi, EventAggregator, Router]
 
-  constructor(api, weatherApi, eventAggregator) {
-    Object.assign(this, { api, weatherApi, eventAggregator })
+  constructor(api, weatherApi, eventAggregator, router) {
+    Object.assign(this, { api, weatherApi, eventAggregator, router })
 
     this.heartRateOptions = ['Week', 'Live', 'All']
     this.heartRateSelection = this.heartRateOptions[0]
@@ -90,10 +92,10 @@ export class Journey {
     this.setup_twitter_feed()
   }
 
-  gotoProfile(event, userId) {
+  gotoProfile(event) {
     event.stopPropagation()
     this.router.navigateToRoute('profile', {
-      id: userId
+      id: this.owner.id
     })
   }
 
