@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { login } from './controller'
 import { password, master, facebook, google } from '../../services/passport'
+import { getAccessToken } from '../../services/facebook'
 
 const router = new Router()
 
@@ -20,6 +21,8 @@ router.post('/',
   password(),
   login)
 
+router.get('/me', (req, res) => res.redirect('../users/me'))
+
 /**
  * @api {post} /auth/facebook Authenticate with Facebook
  * @apiName AuthenticateFacebook
@@ -30,6 +33,7 @@ router.post('/',
  * @apiError 401 Invalid credentials.
  */
 router.post('/facebook',
+  getAccessToken,
   facebook(),
   login)
 
