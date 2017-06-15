@@ -1,18 +1,20 @@
 import {AuthService} from 'aurelia-authentication';
 import {inject, computedFrom} from 'aurelia-framework';
-import {BindingEngine} from 'aurelia-framework'; 
+import {BindingEngine} from 'aurelia-framework';
+import { Router } from 'aurelia-router';
 
 export class Login {
 
-    static inject = [AuthService, BindingEngine]
+    static inject = [AuthService, BindingEngine, Router]
 
     _authenticated = false;
     user = {};
     subscription = {};
 
-    constructor(authService, bindingEngine) {
+    constructor(authService, bindingEngine, router) {
         this.authService   = authService;
         this.providers     = [];
+        this.router = router
 
         this.bindingEngine = bindingEngine;
         this._authenticated = this.authService.isAuthenticated();
@@ -62,5 +64,11 @@ export class Login {
         .then(response => {
 
         });
+    }
+
+    gotoProfile(userId) {
+      this.router.navigateToRoute('profile', {
+        id: userId
+      })
     }
 }
