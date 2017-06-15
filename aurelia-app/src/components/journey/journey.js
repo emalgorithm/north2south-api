@@ -9,15 +9,23 @@ import { CaloriesAnalyticsService } from 'services/caloriesAnalytics'
 import { HeartRateAnalyticsService } from 'services/heartRateAnalytics'
 import io from 'socket.io'
 import { Router } from 'aurelia-router';
+import {AuthService} from 'aurelia-authentication';
+import {Login} from "../login/login";
+import {Config} from "aurelia-api";
+
 
 var socket = io.connect();
 
 export class Journey {
 
-  static inject = [RestApi, WeatherApi, EventAggregator, Router]
+  static inject = [RestApi, WeatherApi, EventAggregator, Router, AuthService, Login, Config]
 
-  constructor(api, weatherApi, eventAggregator, router) {
+  constructor(api, weatherApi, eventAggregator, router, authService, login, config) {
     Object.assign(this, { api, weatherApi, eventAggregator, router })
+
+    this.authService = authService
+    this.login = login
+    this.apiEndpoint = config.getEndpoint('api')
 
     this.heartRateOptions = ['Week', 'Live', 'All']
     this.heartRateSelection = this.heartRateOptions[0]
@@ -133,6 +141,18 @@ export class Journey {
     if (this.mapLoaded) {
       this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
     }
+  }
+
+  follow() {
+    if (!this.authService.authenticated) {
+      this.login.authenticate('facebook')
+      if (!this.authService.authenticated) {
+        return
+      }
+    }
+    return this.authService.getMe().then(
+      profile =>  this.apiEndpoint.post(`/users/${profile.id}/followers`, { "id": this.owner.id })
+    )
   }
 
   setup_twitter_feed = function() {

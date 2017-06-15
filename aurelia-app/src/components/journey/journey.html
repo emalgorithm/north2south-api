@@ -16,8 +16,8 @@
             <h6 class="category text-gray">Software Architect</h6>
             <h2 class="card-title">${owner.name} ${owner.surname} | ${name}</h2>
             <p class="card-content journey-description">${shortDescription}</p>
-            <a class="btn btn-primary btn-round" href="#pablo">Follow</a>
-             <a class="btn btn-round" href="#pablo">Read more</a>
+            <div class="btn btn-primary btn-round" click.delegate="follow()">Follow</div>
+            <div class="btn btn-round" click.delegate="gotoProfile()">Read more</div>
           </div>
         </div>
       </div>
