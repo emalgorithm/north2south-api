@@ -42,4 +42,10 @@ export class Profile {
     })
   }
 
+  gotoProfile(userId) {
+    console.log(userId)
+    this.router.navigateToRoute('profile', {
+      id: userId
+    })
+  }
 }

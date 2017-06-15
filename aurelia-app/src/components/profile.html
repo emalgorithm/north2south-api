@@ -65,8 +65,17 @@
 
 
       <h2>CHECK WHO I'M FOLLOWING</h2>
-      <div repeat.for="f of user.following" class="row">
-        ${f.name}
+      <hr>
+      <div repeat.for="f of user.following">
+        <div click.trigger="gotoProfile(f._id)" role="button">
+          <div class="card-journey">
+          <div class="card-header">
+            <div class="card-profile">
+              <img class="img profPic" src="../../assets/images/users/${f.picture}.jpg">
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
   </div>
 </template>
