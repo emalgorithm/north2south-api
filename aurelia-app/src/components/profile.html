@@ -17,10 +17,9 @@
         </div>
       </div>
       CHECK OUT MY AWESOME JOURNEYS
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-
+      <div repeat.for="j of journeys" class="row">
+        ${j.name}
+      </div>
       CHECK WHO I'M FOLLOWING
       <div repeat.for="f of following" class="row">
         ${f.name}

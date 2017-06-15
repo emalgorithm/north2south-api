@@ -40,6 +40,11 @@ export class RestApi {
 			.then(response => response.json())
 	}
 
+	getJourneysOfUser(id) {
+	  return this.http.fetch(`journeys/?owner=${id}`)
+      .then(response => response.json())
+  }
+
 	getUser(id) {
 	  return this.http.fetch(`users/${id}`)
       .then(response => response.json())

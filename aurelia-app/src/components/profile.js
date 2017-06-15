@@ -9,7 +9,8 @@ export class Profile {
   }
 
   activate(params, routeConfig) {
-    console.log('the parameter is' + params.id)
+    this.restApi.getJourneysOfUser(params.id).then(journeys => this.journeys = journeys)
+
     return this.restApi.getUser(params.id).then(user => {
       Object.assign(this, ...user);
     })
