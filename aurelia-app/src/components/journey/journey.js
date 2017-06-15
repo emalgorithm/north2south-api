@@ -28,6 +28,7 @@ export class Journey {
       "longitude": 0
     };
     this.mapLoaded = false;
+    this.mapScroll = false;
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
@@ -68,13 +69,17 @@ export class Journey {
 
   resetTimer() {
     clearTimeout(this.timer);
+    if (this.mapScroll) {
+      this.mapScroll = false;
+      this.map.setOptions({ scrollwheel: false })
+    }
   }
-
 
   enableScrolling() {
     this.timer = setTimeout(function() {
-      this.map.setOptions({scrollwheel: true})
-    }.bind(this), 2000);
+      this.mapScroll = true;
+      this.map.setOptions({ scrollwheel: true })
+    }.bind(this), 3000);
   }
 
   attached() {
