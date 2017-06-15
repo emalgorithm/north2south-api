@@ -48,6 +48,7 @@ export class Journey {
     socket.on('checkpoint:save', checkpoint => this.onNewCheckpoint(checkpoint));
 
     return this.api.getJourney(params.id).then(journey => {
+        journey.checkpoints.reverse()
         Object.assign(this, ...journey);
 
         this.heartRateAnalytics.checkpoints = this.checkpoints
