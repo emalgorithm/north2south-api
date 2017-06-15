@@ -8,14 +8,24 @@ import { WeatherApi } from 'services/weatherApi'
 import { CaloriesAnalyticsService } from 'services/caloriesAnalytics'
 import { HeartRateAnalyticsService } from 'services/heartRateAnalytics'
 import io from 'socket.io'
+import { Router } from 'aurelia-router';
+import {AuthService} from 'aurelia-authentication';
+import {Login} from "../login/login";
+import {Config} from "aurelia-api";
+
+
 var socket = io.connect();
 
 export class Journey {
 
-  static inject = [RestApi, WeatherApi, EventAggregator]
+  static inject = [RestApi, WeatherApi, EventAggregator, Router, AuthService, Login, Config]
 
-  constructor(api, weatherApi, eventAggregator) {
-    Object.assign(this, { api, weatherApi, eventAggregator })
+  constructor(api, weatherApi, eventAggregator, router, authService, login, config) {
+    Object.assign(this, { api, weatherApi, eventAggregator, router })
+
+    this.authService = authService
+    this.login = login
+    this.apiEndpoint = config.getEndpoint('api')
 
     this.heartRateOptions = ['Week', 'Live', 'All']
     this.heartRateSelection = this.heartRateOptions[0]
@@ -32,10 +42,11 @@ export class Journey {
     };
 
     this.mapLoaded = false;
+    this.mapScroll = false;
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
-      this.map.setOptions({scrollwheel: false});
+      this.map.setOptions({scrollwheel: false, minZoom: 2, maxZoom: 15 });
 
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
       this.addPointsToMap();
@@ -51,6 +62,7 @@ export class Journey {
         journey.checkpoints.reverse()
         Object.assign(this, ...journey);
 
+        this.updateTotalDistance()
         this.heartRateAnalytics.checkpoints = this.checkpoints
         this.caloriesAnalytics.checkpoints = this.checkpoints
 
@@ -72,13 +84,17 @@ export class Journey {
 
   resetTimer() {
     clearTimeout(this.timer);
+    if (this.mapScroll) {
+      this.mapScroll = false;
+      this.map.setOptions({ scrollwheel: false })
+    }
   }
-
 
   enableScrolling() {
     this.timer = setTimeout(function() {
-      this.map.setOptions({scrollwheel: true})
-    }.bind(this), 2000);
+      this.mapScroll = true;
+      this.map.setOptions({ scrollwheel: true })
+    }.bind(this), 3000);
   }
 
   attached() {
@@ -86,10 +102,9 @@ export class Journey {
     this.setup_twitter_feed()
   }
 
-  gotoProfile(event, userId) {
-    event.stopPropagation()
+  gotoProfile() {
     this.router.navigateToRoute('profile', {
-      id: userId
+      id: this.owner.id
     })
   }
 
@@ -129,6 +144,18 @@ export class Journey {
     if (this.mapLoaded) {
       this.map.addMarker(checkpoint.latitude, checkpoint.longitude);
     }
+  }
+
+  follow() {
+    if (!this.authService.authenticated) {
+      this.login.authenticate('facebook')
+      if (!this.authService.authenticated) {
+        return
+      }
+    }
+    return this.authService.getMe().then(
+      profile =>  this.apiEndpoint.post(`/users/${profile.id}/followers`, { "id": this.owner.id })
+    )
   }
 
   setup_twitter_feed = function() {

@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, follow } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -70,6 +70,15 @@ router.post('/',
   master(),
   body({ email, password, name, surname, picture, role, charities }),
   create)
+
+router.post('/:id/followers',
+  token({ required: true }),
+  body({ id: {
+    type: String,
+    required: true
+  } }),
+  follow
+)
 
 /**
  * @api {put} /users/:id Update user

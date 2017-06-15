@@ -39,6 +39,10 @@ const userSchema = new Schema({
     enum: roles,
     default: 'user'
   },
+  following: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
   picture: {
     type: String,
     trim: true
@@ -75,7 +79,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'name', 'picture', 'surname']
+    let fields = ['id', 'name', 'picture', 'surname', 'following']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
