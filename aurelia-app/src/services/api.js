@@ -8,7 +8,7 @@ export class RestApi {
 	constructor(http) {
 		this.http = http.configure(config => {
 			config
-				.withBaseUrl('/')
+				.withBaseUrl('/api/')
 				.withDefaults({
 					headers: {
 						'Accept': 'application/json',
