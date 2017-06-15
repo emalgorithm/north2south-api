@@ -14,17 +14,56 @@ export const Chart = decorators(
   class {
 
     static inject =[BindingEngine]
-    subscription = {}
+    subscription = null
+    liveData = []
 
     constructor(bindingEngine) {
+
       this.options = ['Week', 'Live', 'All']
       this.selection = this.options[0]
+      
       this.bindingEngine = bindingEngine
       this.data = []
-      this.subscription = bindingEngine.propertyObserver(this, 'data')
-        .subscribe((n, o) => {
-          this.analysis = this.analyser.analysis()
-        })
+
+      this.propertySubscription = this.bindingEngine.propertyObserver(this, 'data')
+        .subscribe(this.dataChanged.bind(this))
+    }
+
+    dataChanged(newValue, oldValue) {
+      this.unsubscribe()
+      if (this.data) {
+        this.subscription = this.bindingEngine.collectionObserver(this.data)
+        .subscribe(this.dataMutated.bind(this))
+      }
+    }
+
+    dataMutated(splices) {
+      debugger
+      let liveDataLength = this.liveData.length
+      for (let splice of splices) {
+        this.liveData.push(this.data[splice.index])
+      }
+    
+      if (this.selection === 'Live') {
+        if (liveDataLength > 0) {
+          this.liveChart.update(this.dataAsSeries(this.liveData))
+        } else {
+          this.showLiveChart()
+        }
+      }
+      this.analysis = this.analyser.analysis()
+    }
+
+    unsubscribe() {
+      if (this.subscription) {
+        this.subscription.dispose()
+        this.subscription = null
+      }
+    }
+
+    unbind() {
+      this.unsubscribe()
+      this.propertySubscription.dispose()
     }
 
     attached() {
@@ -45,6 +84,11 @@ export const Chart = decorators(
         case 'All':
           this.showAllChart();
           break;
+        case 'Live':
+          if (this.liveData.length > 0) {
+            this.showLiveChart();            
+          }
+          break;  
       }
     }
 
@@ -78,15 +122,46 @@ export const Chart = decorators(
       md.startAnimationForLineChart(chart);
     }
 
-    showAllChart() {
-      let data = this.data.map((c) => {
+    dataAsSeries(xs) {
+      let data = xs.map((c) => {
         return {
           x: moment(c.createdAt).toDate(),
           y: c[this.dataProperty]
         }
       })
 
+      let series = [{
+        name: this.dataProperty + 'Series',
+        data: data
+      }]
+
+      return { series: series }
+    }
+
+    showLiveChart() {
+      let data = this.dataAsSeries(this.liveData)
+
       let options = {
+        lineSmooth: false,
+        axisX: {
+          type: Chartist.FixedScaleAxis,
+          divisor: 10,
+          labelInterpolationFnc: function(value) {
+            return moment(value).format('hh:mm::ss')
+          }
+        }
+      }
+
+      this.liveChart = new Chartist.Line(`.chart-${this.name}-Live`, data, options)
+
+      md.startAnimationForLineChart(this.liveChart)
+    }
+
+    showAllChart() {
+      let data = this.dataAsSeries(this.data)
+
+      let options = {
+        lineSmooth: false,
         axisX: {
           type: Chartist.FixedScaleAxis,
           divisor: 7,
@@ -96,12 +171,7 @@ export const Chart = decorators(
         }
       }
 
-      let chart = new Chartist.Line(`.chart-${this.name}-All`, {
-        series: [{
-          name: 'series-1',
-          data: data
-        }]
-      }, options)
+      let chart = new Chartist.Line(`.chart-${this.name}-All`, data, options)
 
       md.startAnimationForLineChart(chart)
     }
