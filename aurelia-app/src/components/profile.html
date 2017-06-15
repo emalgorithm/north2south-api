@@ -12,7 +12,9 @@
             <h6 class="category text-gray">Software Architect</h6>
             <h2 class="card-title">${owner.name} ${owner.surname} | ${name}</h2>
             <p class="card-content journey-description">${shortDescription}</p>
-            <a class="btn btn-primary btn-round" href="#pablo">Follow</a>
+            <div class="btn btn-primary btn-round" click.delegate="follow()">
+              Follow
+            </div>
           </div>
         </div>
       </div>
