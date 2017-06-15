@@ -53,6 +53,7 @@ export class Journey {
     return this.api.getJourney(params.id).then(journey => {
         Object.assign(this, ...journey);
 
+        this.updateTotalDistance()
         this.heartRateAnalytics.checkpoints = this.checkpoints
         this.caloriesAnalytics.checkpoints = this.checkpoints
 
