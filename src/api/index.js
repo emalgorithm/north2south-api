@@ -36,4 +36,7 @@ router.use('/checkpoints', checkpoint)
 router.use('/journeys', journey)
 router.use('/statusUpdates', statusUpdate)
 
-export default router
+const apiRouter = new Router()
+apiRouter.use('/api', router)
+
+export default apiRouter
