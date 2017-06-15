@@ -30,6 +30,11 @@ export class App {
         // Not part of the navigation
         route: 'journey/:id', name: 'journey',
         moduleId: 'components/journey/journey'
+      },
+      {
+        route: 'login', name: 'login',
+        moduleId: 'components/login/login',
+        title: 'Login', nav: true
       }
     ])
 
