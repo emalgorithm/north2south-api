@@ -16,6 +16,11 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const follow = ({ user, bodymen: { body } }, res, next) =>
+  User.findByIdAndUpdate( user.id, { $push: { following: body.id } })
+    .then(success(res))
+    .catch(next)
+
 export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 
