@@ -44,6 +44,10 @@ const config = {
     }
   },
   development: {
+    facebook: {
+      clientID: '833296696833499',
+      clientSecret: '467d1c011654d56fda866b8c1d988cd3'
+    },
     mongo: {
       uri: 'mongodb://mongo:27017/north-2-south',
       options: {

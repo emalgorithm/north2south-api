@@ -3,10 +3,12 @@ import { Schema } from 'bodymen'
 import { BasicStrategy } from 'passport-http'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
+import FacebookTokenStrategy from 'passport-facebook-token' 
 import { jwtSecret, masterKey } from '../../config'
 import * as facebookService from '../facebook'
 import * as googleService from '../google'
 import User, { schema } from '../../api/user/model'
+import { facebook as facebookConfig } from '../../config'
 
 export const password = () => (req, res, next) =>
   passport.authenticate('password', { session: false }, (err, user, info) => {
@@ -21,8 +23,8 @@ export const password = () => (req, res, next) =>
     })
   })(req, res, next)
 
-export const facebook = () =>
-  passport.authenticate('facebook', { session: false })
+export const facebook = () => (req, res, next) =>
+  passport.authenticate('facebook-token', (err, user, info) => { req.user = user; console.log(req.user); next() })(req, res, next)
 
 export const google = () =>
   passport.authenticate('google', { session: false })
@@ -60,13 +62,19 @@ passport.use('password', new BasicStrategy((email, password, done) => {
   })
 }))
 
-passport.use('facebook', new BearerStrategy((token, done) => {
-  facebookService.getUser(token).then((user) => {
-    return User.createFromService(user)
-  }).then((user) => {
-    done(null, user)
-    return null
-  }).catch(done)
+passport.use('facebook-token', new FacebookTokenStrategy(
+  facebookConfig,
+  (token, refreshToken, profile, done) => {
+
+    profile.picture = profile.photos[0].value
+    profile.name = profile.name.givenName
+    profile.email = profile.emails[0].value
+    profile.service = profile.provider
+
+    User.createFromService(profile).then((user) => {
+      done(null, user, {access_token: token})
+      return null
+    }).catch(done)
 }))
 
 passport.use('google', new BearerStrategy((token, done) => {
