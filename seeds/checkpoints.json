@@ -7,19 +7,19 @@
     "distance": 1396,
     "longitude": -0.089607,
     "latitude": 52.556582,
-    "createdAt": { "$date": "2017-06-13T18:10:55.165Z" },
-    "updatedAt": { "$date": "2017-06-13T18:10:55.165Z" }
+    "createdAt": { "$date": "2017-06-01T18:10:55.165Z" },
+    "updatedAt": { "$date": "2017-06-01T18:10:55.165Z" }
   },
   {
     "_id": { "$oid": "592f072f362d3200594d54e7" },
     "journey": { "$oid": "593727d9c1c04200d8cbcc7a" },
-    "heartRate": 60,
+    "heartRate": 72,
     "calories": 1700,
     "distance": 500,
-    "longitude": -0.289607,
-    "latitude": 52.996582,
-    "createdAt": { "$date": "2017-06-12T18:10:55.165Z" },
-    "updatedAt": { "$date": "2017-06-12T18:10:55.165Z" }
+    "longitude": -0.189607,
+    "latitude": 53.996582,
+    "createdAt": { "$date": "2017-06-02T15:10:55.165Z" },
+    "updatedAt": { "$date": "2017-06-02T15:10:55.165Z" }
   },
   {
     "_id": { "$oid": "592f072f362d3200592d59e7" },
@@ -27,10 +27,10 @@
     "heartRate": 99,
     "calories": 1400,
     "distance": 1400,
-    "longitude": -0.189607,
-    "latitude": 53.556582,
-    "createdAt": { "$date": "2017-06-11T18:10:55.165Z" },
-    "updatedAt": { "$date": "2017-06-11T18:10:55.165Z" }
+    "longitude": -0.289607,
+    "latitude": 55.556582,
+    "createdAt": { "$date": "2017-06-03T18:30:55.165Z" },
+    "updatedAt": { "$date": "2017-06-03T18:30:55.165Z" }
   },
   {
     "_id": { "$oid": "592f072f362d3200591d51e0" },
@@ -39,9 +39,9 @@
     "calories": 1442,
     "distance": 2396,
     "longitude": -0.089607,
-    "latitude": 51.556582,
-    "createdAt": { "$date": "2017-06-08T18:10:55.165Z" },
-    "updatedAt": { "$date": "2017-06-08T18:10:55.165Z" }
+    "latitude": 55.756582,
+    "createdAt": { "$date": "2017-06-04T18:10:55.165Z" },
+    "updatedAt": { "$date": "2017-06-04T18:10:55.165Z" }
   },
   {
     "_id": { "$oid": "592f0725362d3200591d51df" },
@@ -49,10 +49,10 @@
     "heartRate": 73,
     "calories": 1342,
     "distance": 2096,
-    "longitude": -0.814705,
-    "latitude": 51.089723,
-    "createdAt": { "$date": "2017-06-07T18:10:45.004Z" },
-    "updatedAt": { "$date": "2017-06-07T18:10:45.004Z" }
+    "longitude": 0.314705,
+    "latitude": 55.389723,
+    "createdAt": { "$date": "2017-06-05T18:10:45.004Z" },
+    "updatedAt": { "$date": "2017-06-05T18:10:45.004Z" }
   },
   {
     "_id": { "$oid": "592f071a362d3200591d51de" },
@@ -60,11 +60,15 @@
     "heartRate": 83,
     "calories": 1222,
     "distance": 2026,
-    "longitude": 51.556582,
-    "latitude": -0.089607,
+    "longitude": 0.956582,
+    "latitude": 56.089607,
     "createdAt": { "$date": "2017-06-06T18:10:34.363Z" },
     "updatedAt": { "$date": "2017-06-06T18:10:34.363Z" }
   },
+  
+
+
+
   {
     "_id": { "$oid": "592f070f362d3200591d51dd" },
     "journey": { "$oid": "593728a0ff82580150333ee4" },
@@ -84,8 +88,8 @@
     "distance": 1600,
     "longitude": 52.099757,
     "latitude": -2.517586,
-    "createdAt": { "$date": "2017-06-04T18:09:28.494Z" },
-    "updatedAt": { "$date": "2017-06-04T18:09:28.494Z" }
+    "createdAt": { "$date": "2017-06-06T18:09:28.494Z" },
+    "updatedAt": { "$date": "2017-06-06T18:09:28.494Z" }
   },
   {
     "_id": { "$oid": "592f06cf362d3200591d51da" },
@@ -95,8 +99,8 @@
     "distance": 1411,
     "longitude": 54.0,
     "latitude": -3.517586,
-    "createdAt": { "$date": "2017-06-03T18:09:19.661Z" },
-    "updatedAt": { "$date": "2017-06-03T18:09:19.661Z" }
+    "createdAt": { "$date": "2017-06-07T18:09:19.661Z" },
+    "updatedAt": { "$date": "2017-06-07T18:09:19.661Z" }
   },
   {
     "_id": { "$oid": "592f06c2362d3200591d51d9" },
@@ -111,112 +115,226 @@
   },
   {
     "_id": { "$oid": "592f06b1362d3200591d51d8" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 67,
     "calories": 770,
     "distance": 1090,
     "longitude": 60,
     "latitude": -3.617586,
-    "createdAt": { "$date": "2017-06-05T18:08:49.393Z" },
-    "updatedAt": { "$date": "2017-06-05T18:08:49.393Z" }
+    "createdAt": { "$date": "2017-06-09T18:08:49.393Z" },
+    "updatedAt": { "$date": "2017-06-09T18:08:49.393Z" }
   },
   {
     "_id": { "$oid": "592f067d362d3200591d51d7" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 70,
     "calories": 731,
     "distance": 1009,
     "longitude": 45,
     "latitude": -2.517586,
-    "createdAt": { "$date": "2017-06-04T18:07:57.418Z" },
-    "updatedAt": { "$date": "2017-06-04T18:07:57.418Z" }
+    "createdAt": { "$date": "2017-06-10T18:07:57.418Z" },
+    "updatedAt": { "$date": "2017-06-10T18:07:57.418Z" }
   },
   {
     "_id": { "$oid": "592f066f362d3200591d51d6" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 90,
     "calories": 631,
     "distance": 982,
     "longitude": 23,
     "latitude": 30.65,
-    "createdAt": { "$date": "2017-06-03T18:07:43.321Z" },
-    "updatedAt": { "$date": "2017-06-03T18:07:43.321Z" }
+    "createdAt": { "$date": "2017-06-11T18:07:43.321Z" },
+    "updatedAt": { "$date": "2017-06-11T18:07:43.321Z" }
   },
   {
-    "_id": { "$oid": "592f0661362d3200591d51d5" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "_id": { "$oid": "592f0661362d3200591d51ff" },
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 110,
     "calories": 529,
     "distance": 733,
     "longitude": 23,
     "latitude": 0,
-    "createdAt": { "$date": "2017-06-02T18:07:29.811Z" },
-    "updatedAt": { "$date": "2017-06-02T18:07:29.811Z" }
+    "createdAt": { "$date": "2017-06-12T18:07:29.811Z" },
+    "updatedAt": { "$date": "2017-06-12T18:07:29.811Z" }
   },
   {
-    "_id": { "$oid": "592f0652362d3200591d51d4" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "_id": { "$oid": "592f0652362d3200591d51fa" },
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 80,
     "calories": 400,
     "distance": 600,
     "longitude": 12,
     "latitude": 20.2,
-    "createdAt": { "$date": "2017-06-01T18:07:14.499Z" },
-    "updatedAt": { "$date": "2017-06-01T18:07:14.499Z" }
+    "createdAt": { "$date": "2017-06-13T18:07:14.499Z" },
+    "updatedAt": { "$date": "2017-06-13T18:07:14.499Z" }
   },
   {
-    "_id": { "$oid": "592f0648362d3200591d51d3" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "_id": { "$oid": "592f0648362d3200591d51fb" },
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 66,
     "calories": 160,
     "distance": 400,
     "longitude": 13,
     "latitude": -5,
-    "createdAt": { "$date": "2017-06-01T18:07:04.936Z" },
-    "updatedAt": { "$date": "2017-06-01T18:07:04.936Z" }
+    "createdAt": { "$date": "2017-06-14T18:07:04.936Z" },
+    "updatedAt": { "$date": "2017-06-14T18:07:04.936Z" }
   },
   {
-    "_id": { "$oid": "592f063c362d3200591d51d2" },
-    "journey": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "_id": { "$oid": "592f063c362d3200591d51fc" },
+    "journey": { "$oid": "593728a0ff82580150333ee4"},
     "heartRate": 65,
     "calories": 100,
     "distance": 300,
     "longitude": 2,
     "latitude": 1.5,
-    "createdAt": { "$date": "2017-06-01T18:06:52.990Z" },
-    "updatedAt": { "$date": "2017-06-01T18:06:52.990Z" }
+    "createdAt": { "$date": "2017-06-15T18:06:52.990Z" },
+    "updatedAt": { "$date": "2017-06-15T18:06:52.990Z" }
+  },
+  {
+    "_id": { "$oid": "592f062c362d3200591d51fd" },
+    "journey": { "$oid": "593728a0ff82580150333ee4" },
+    "heartRate": 60,
+    "calories": 2130,
+    "distance": 1220,
+    "longitude": 2.12,
+    "latitude": -2.517586,
+    "createdAt": { "$date": "2017-06-16T18:06:36.045Z" },
+    "updatedAt": { "$date": "2017-06-16T18:06:36.045Z" }
+  },
+
+
+
+
+  {
+    "_id": { "$oid": "592f070f362d3200591d5fff" },
+    "journey": { "$oid": "59372894ff82580150333ee3" },
+    "heartRate": 75,
+    "calories": 1122,
+    "distance": 1946,
+    "longitude": 51.089723,
+    "latitude": -0.814705,
+    "createdAt": { "$date": "2017-06-05T18:10:23.692Z" },
+    "updatedAt": { "$date": "2017-06-05T18:10:23.692Z" }
+  },
+  {
+    "_id": { "$oid": "592f06d8362d3200591d5ffb" },
+    "journey": { "$oid": "59372894ff82580150333ee3" },
+    "heartRate": 77,
+    "calories": 910,
+    "distance": 1600,
+    "longitude": 52.099757,
+    "latitude": -2.517586,
+    "createdAt": { "$date": "2017-06-06T18:09:28.494Z" },
+    "updatedAt": { "$date": "2017-06-06T18:09:28.494Z" }
+  },
+  {
+    "_id": { "$oid": "592f06cf362d3200591d5ffa" },
+    "journey": { "$oid": "59372894ff82580150333ee3" },
+    "heartRate": 73,
+    "calories": 860,
+    "distance": 1411,
+    "longitude": 54.0,
+    "latitude": -3.517586,
+    "createdAt": { "$date": "2017-06-07T18:09:19.661Z" },
+    "updatedAt": { "$date": "2017-06-07T18:09:19.661Z" }
+  },
+  {
+    "_id": { "$oid": "592f06c2362d3200591d5ff9" },
+    "journey": { "$oid": "59372894ff82580150333ee3" },
+    "heartRate": 66,
+    "calories": 820,
+    "distance": 1209,
+    "longitude": 45,
+    "latitude": -6.517586,
+    "createdAt": { "$date": "2017-06-08T18:09:06.012Z" },
+    "updatedAt": { "$date": "2017-06-08T18:09:06.012Z" }
+  },
+  {
+    "_id": { "$oid": "592f06b1362d3200591d5ff8" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 67,
+    "calories": 770,
+    "distance": 1090,
+    "longitude": 60,
+    "latitude": -3.617586,
+    "createdAt": { "$date": "2017-06-09T18:08:49.393Z" },
+    "updatedAt": { "$date": "2017-06-09T18:08:49.393Z" }
+  },
+  {
+    "_id": { "$oid": "592f067d362d3200591d5ff7" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 70,
+    "calories": 731,
+    "distance": 1009,
+    "longitude": 45,
+    "latitude": -2.517586,
+    "createdAt": { "$date": "2017-06-10T18:07:57.418Z" },
+    "updatedAt": { "$date": "2017-06-10T18:07:57.418Z" }
+  },
+  {
+    "_id": { "$oid": "592f066f362d3200591dffd6" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 90,
+    "calories": 631,
+    "distance": 982,
+    "longitude": 23,
+    "latitude": 30.65,
+    "createdAt": { "$date": "2017-06-11T18:07:43.321Z" },
+    "updatedAt": { "$date": "2017-06-11T18:07:43.321Z" }
+  },
+  {
+    "_id": { "$oid": "592f0661362d3200591d51d5" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 110,
+    "calories": 529,
+    "distance": 733,
+    "longitude": 23,
+    "latitude": 0,
+    "createdAt": { "$date": "2017-06-12T18:07:29.811Z" },
+    "updatedAt": { "$date": "2017-06-12T18:07:29.811Z" }
+  },
+  {
+    "_id": { "$oid": "592f0652362d3200591d51d4" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 80,
+    "calories": 400,
+    "distance": 600,
+    "longitude": 12,
+    "latitude": 20.2,
+    "createdAt": { "$date": "2017-06-13T18:07:14.499Z" },
+    "updatedAt": { "$date": "2017-06-13T18:07:14.499Z" }
+  },
+  {
+    "_id": { "$oid": "592f0648362d3200591d51d3" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 66,
+    "calories": 160,
+    "distance": 400,
+    "longitude": 13,
+    "latitude": -5,
+    "createdAt": { "$date": "2017-06-14T18:07:04.936Z" },
+    "updatedAt": { "$date": "2017-06-14T18:07:04.936Z" }
+  },
+  {
+    "_id": { "$oid": "592f063c362d3200591d51d2" },
+    "journey": { "$oid": "59372894ff82580150333ee3"},
+    "heartRate": 65,
+    "calories": 100,
+    "distance": 300,
+    "longitude": 2,
+    "latitude": 1.5,
+    "createdAt": { "$date": "2017-06-15T18:06:52.990Z" },
+    "updatedAt": { "$date": "2017-06-15T18:06:52.990Z" }
   },
   {
     "_id": { "$oid": "592f062c362d3200591d51d1" },
     "journey": { "$oid": "59372894ff82580150333ee3" },
     "heartRate": 60,
-    "calories": 0,
+    "calories": 2490,
     "distance": 1220,
     "longitude": 2.12,
     "latitude": -2.517586,
-    "createdAt": { "$date": "2017-06-08T18:06:36.045Z" },
-    "updatedAt": { "$date": "2017-06-08T18:06:36.045Z" }
-  },
-  {
-    "_id": { "$oid": "592f062c362d3200591d54d1" },
-    "journey": { "$oid": "59372894ff82580150333ee3" },
-    "heartRate": 60,
-    "calories": 0,
-    "distance": 1220,
-    "longitude": 1,
-    "latitude": -1.517586,
-    "createdAt": { "$date": "2017-06-07T18:06:36.045Z" },
-    "updatedAt": { "$date": "2017-06-07T18:06:36.045Z" }
-  },
-  {
-    "_id": { "$oid": "592f062c362d3200591d56d1" },
-    "journey": { "$oid": "59372894ff82580150333ee3" },
-    "heartRate": 60,
-    "calories": 0,
-    "distance": 1220,
-    "longitude": 23,
-    "latitude": -1,
-    "createdAt": { "$date": "2017-06-06T18:06:36.045Z" },
-    "updatedAt": { "$date": "2017-06-06T18:06:36.045Z" }
+    "createdAt": { "$date": "2017-06-16T18:06:36.045Z" },
+    "updatedAt": { "$date": "2017-06-16T18:06:36.045Z" }
   }
 ]
