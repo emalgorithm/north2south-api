@@ -93,8 +93,7 @@ export class Journey {
     this.setup_twitter_feed()
   }
 
-  gotoProfile(event) {
-    event.stopPropagation()
+  gotoProfile() {
     this.router.navigateToRoute('profile', {
       id: this.owner.id
     })
