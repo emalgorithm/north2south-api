@@ -31,7 +31,7 @@ export class Journey {
     this.eventAggregator.subscribeOnce("mapLoaded", map => {
       this.mapLoaded = true;
       this.map = map;
-      this.map.setOptions({scrollwheel: false});
+      this.map.setOptions({scrollwheel: false, minZoom: 2, maxZoom: 15 });
 
       // Case 1: HTTP response has loaded first, and now map is loaded and we draw checkpoints
       this.addPointsToMap();
