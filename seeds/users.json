@@ -1,31 +1,34 @@
 [
   {
-    "_id": { "$oid": "593727b7c1c04200d8cbcc78"},
+    "_id": { "$oid": "593727b7c1c04200d8cbcc78" },
     "name": "James",
     "surname": "Redden",
     "email": "james@redden.com",
     "password": "$2a$09$by968rRF6aOHPkn3DBPn0eXBkYUtgW639kF5wqifMLwKEgixj0igS",
     "picture": "1",
+    "following": [{ "$oid": "593727d9c1c04200d8cbcc7a" }],
     "createdAt": "2017-05-31T18:10:55.165Z",
     "updatedAt": "2017-05-31T18:10:55.165Z"
   },
   {
-    "_id": { "$oid": "593727ccc1c04200d8cbcc79"},
+    "_id": { "$oid": "593727ccc1c04200d8cbcc79" },
     "name": "Emanuele",
     "surname": "Rossi",
     "email": "ema@rossi.com",
     "password": "$2a$09$pYWq9h.RWL4m28PsahEzrOuLLZcqFhFby5t0ocrRgZSgaJPuJjKsq",
     "picture": "2",
+    "following": [{ "$oid": "593727b7c1c04200d8cbcc78" }],
     "createdAt": "2017-05-31T18:06:36.045Z",
     "updatedAt": "2017-05-31T18:06:36.045Z"
   },
   {
-    "_id": { "$oid": "593727d9c1c04200d8cbcc7a"},
+    "_id": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "name": "Panayiotis",
     "surname": "Panayiotou",
     "email": "pani@pani.com",
     "password": "$2a$09$Ta3cY1PwZd1MLMdIyttnp.ezDww6alij.NJnM0cLLB7t6cibBXrEe",
     "picture": "3",
+    "following": [{ "$oid": "593727b7c1c04200d8cbcc78" }],
     "createdAt": "2017-05-31T18:10:55.165Z",
     "updatedAt": "2017-05-31T18:10:55.165Z"
   }
