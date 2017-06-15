@@ -27,7 +27,7 @@ export class App {
         title: 'Most Funded', nav: true
       },
       {
-        // Not part of the navigation
+        // Not part of the navigation bar
         route: 'journey/:id', name: 'journey',
         moduleId: 'components/journey/journey'
       },
@@ -35,6 +35,10 @@ export class App {
         route: 'login', name: 'login',
         moduleId: 'components/login/login',
         title: 'Login'
+      },
+      {
+        route: 'profile/:id', name: 'profile',
+        moduleId: 'components/profile'
       }
     ])
 
