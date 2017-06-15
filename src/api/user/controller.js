@@ -10,6 +10,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   User.findById(params.id)
+    .populate('following')
     .then(notFound(res))
     .then((user) => user ? user.view() : null)
     .then(success(res))
