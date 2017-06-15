@@ -34,7 +34,7 @@ export class App {
       {
         route: 'login', name: 'login',
         moduleId: 'components/login/login',
-        title: 'Login', nav: true
+        title: 'Login'
       }
     ])
 
