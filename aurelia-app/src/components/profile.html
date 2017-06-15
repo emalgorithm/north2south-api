@@ -20,6 +20,10 @@
       <li>A</li>
       <li>B</li>
       <li>C</li>
-    </div>
+
+      CHECK WHO I'M FOLLOWING
+      <div repeat.for="f of following" class="row">
+        ${f.name}
+      </div>
   </div>
 </template>
