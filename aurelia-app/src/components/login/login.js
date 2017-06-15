@@ -1,12 +1,40 @@
 import {AuthService} from 'aurelia-authentication';
 import {inject, computedFrom} from 'aurelia-framework';
+import {BindingEngine} from 'aurelia-framework'; 
 
-@inject(AuthService)
 export class Login {
-    constructor(authService) {
+
+    static inject = [AuthService, BindingEngine]
+
+    _authenticated = false;
+    user = {};
+    subscription = {};
+
+    constructor(authService, bindingEngine) {
         this.authService   = authService;
         this.providers     = [];
+
+        this.bindingEngine = bindingEngine;
+        this._authenticated = this.authService.isAuthenticated();
+        this.getMe()
+
+        this.subscription = bindingEngine.propertyObserver(this, 'authenticated')
+            .subscribe((newValue, oldValue) => this.getMe());
     };
+
+    getMe() {
+        if (this.authenticated) {
+            this.authService.getMe().then(data => {
+                return this.user = data;
+            });
+        }
+    }
+
+
+    deactivate() {
+        this.subscription.dispose();
+    }
+
 
     // make a getter to get the authentication status.
     // use computedFrom to avoid dirty checking
@@ -32,7 +60,7 @@ export class Login {
     authenticate(name) {
       return this.authService.authenticate(name)
         .then(response => {
-            
+
         });
     }
 }

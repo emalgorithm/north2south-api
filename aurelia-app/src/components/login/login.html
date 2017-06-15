@@ -1,5 +1,13 @@
 <template>
-	<div class="jumbotron" click.trigger="authenticate('facebook')">
-		<h1>Facebook</h1>
-	</div>
+  <ul if.bind="!authenticated" class="nav navbar-nav navbar-right">
+    <li><a href="#" click.trigger="authenticate('facebook')">Login with Facebook</a></li>
+  </ul>
+
+  <ul if.bind="authenticated" class="nav navbar-nav navbar-right">
+    <li>
+        <span>${user.name}</span>
+        <img class="img nav-avatar" src.bind="user.picture">
+    </li>
+    <li><a href="#" click.trigger="logout()">Logout</a></li>
+  </ul>
 </template>
