@@ -2,27 +2,69 @@
   <div class="container-fluid">
     <div class="row">
       <!-- Profile -->
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="card card-profile">
           <div class="card-avatar">
-            <img class="img" src="../../../assets/images/users/${owner.picture}.jpg">
+            <img class="img" src="../../assets/images/users/${user.picture}.jpg">
           </div>
 
           <div class="content">
             <h6 class="category text-gray">Software Architect</h6>
-            <h2 class="card-title">${owner.name} ${owner.surname} | ${name}</h2>
-            <p class="card-content journey-description">${shortDescription}</p>
+            <h2 class="card-title">${user.name} ${user.surname} </h2>
+            <!--<p class="card-content journey-description">${user.description}</p>-->
             <div class="btn btn-primary btn-round" click.delegate="follow()">
               Follow
             </div>
           </div>
         </div>
       </div>
-      CHECK OUT MY AWESOME JOURNEYS
+      <h2>CHECK OUT MY AWESOME JOURNEYS</h2>
+
+
       <div repeat.for="j of journeys" class="row">
-        ${j.name}
+        <!-- Journey focus -->
+        <div class="card card-journey">
+          <div class="col-lg-12 col-md-12 col-sm-12" click.delegate="select(j.id)" role="button">
+            <div class="card-header clickable">
+              <h4 class="title">${j.name}</h4>
+              <p class="category">by ${j.owner.name}</p>
+            </div>
+          </div>
+
+          <div class="card-content">
+
+            <!-- Focused content card -->
+            <div class="col-md-6">
+              <div class="content">
+                <!-- This is wrong and should be fixed that journey model returns the status -->
+                <h2 class="card-title">${j.status.title}</h2>
+                <h4>${j.description}</h4>
+              </div>
+            </div>
+
+            <!-- Focused data card -->
+            <div class="col-md-6 text-center">
+              <div class="card card-stats">
+                <img id="charityImg" src="../../../assets/images/charities/${j.charities[0]}.png">
+                <div class="card-content">
+                  <p class="category">Distance covered today</p>
+                  <!-- This is wrong and should be fixed that journey model returns the status -->
+                  <h3 class="title">100 km</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Last 24 Hours
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-      CHECK WHO I'M FOLLOWING
+
+
+      <h2>CHECK WHO I'M FOLLOWING</h2>
       <div repeat.for="f of user.following" class="row">
         ${f.name}
       </div>

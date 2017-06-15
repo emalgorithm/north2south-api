@@ -2,17 +2,18 @@ import { RestApi } from 'services/api'
 import {AuthService} from 'aurelia-authentication';
 import {Login} from "./login/login";
 import {Config} from "aurelia-api";
-
+import { Router } from 'aurelia-router';
 
 export class Profile {
 
-  static inject = [RestApi, AuthService, Login, Config]
+  static inject = [RestApi, AuthService, Login, Config, Router]
 
-  constructor(restApi, authService, login, config) {
+  constructor(restApi, authService, login, config, router) {
     this.restApi = restApi
     this.authService = authService
     this.login = login
     this.apiEndpoint = config.getEndpoint('api')
+    this.router = router
   }
 
   activate(params, routeConfig) {
@@ -34,4 +35,11 @@ export class Profile {
       profile =>  this.apiEndpoint.post(`/users/${profile.id}/followers`, { "id": this.user.id })
     )
   }
+
+  select(journeyId) {
+    this.router.navigateToRoute('journey', {
+      id: journeyId
+    })
+  }
+
 }
