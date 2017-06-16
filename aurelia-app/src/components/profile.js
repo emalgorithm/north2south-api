@@ -26,6 +26,10 @@ export class Profile {
     })
   }
 
+  get me() {
+    return this.login.user.id === this.user.id
+  }
+
   follow() {
     var follow = Promise.method(() => this.login.user)()
     if (!this.authService.authenticated) {
