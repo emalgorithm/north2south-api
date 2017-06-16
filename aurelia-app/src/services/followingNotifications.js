@@ -3,22 +3,28 @@ import io from 'socket.io'
 
 export class FollowingNotifications {
 
-  constructor(following) {
+  constructor() {
     this.socket = io.connect()
 
+    // Handle future notifications
+    this.socket.on('notification', FollowingNotifications.notify)
+  }
+
+  follow(following) {
+    this.followMany([following])
+  }
+
+  followMany(following) {
     // Subscribe for notifications about followed users
     this.socket.emit('notify-me', following, notifications => {
       const notificationsToShow = Math.min(notifications.length, 3)
       for (var i = notificationsToShow - 1; i >= 0; i--) {
-        this.notify(notifications[i])
+        FollowingNotifications.notify(notifications[i])
       }
     })
-
-    // Handle future notifications
-    this.socket.on('notification', this.notify)
   }
 
-  notify(message) {
+  static notify(message) {
     $.notify({
       icon: "notifications",
       message: message

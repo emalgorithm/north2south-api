@@ -1,33 +1,28 @@
 import { AuthService } from 'aurelia-authentication'
-import { inject, computedFrom } from 'aurelia-framework'
-import { BindingEngine } from 'aurelia-framework'
+import { computedFrom } from 'aurelia-framework'
 import { FollowingNotifications } from '../../services/followingNotifications'
 
 export class Login {
 
-  static inject = [AuthService, BindingEngine]
+  static inject = [AuthService, FollowingNotifications]
 
   user = {}
 
-  constructor(authService, bindingEngine) {
+  constructor(authService, followingNotifications) {
     this.authService = authService;
-    this.providers = [];
-
-    this.bindingEngine = bindingEngine;
+    this.followingNotifications = followingNotifications
 
     if (this.authenticated) {
       this.authService.getMe().then(data => {
         this.user = data
-        this.followingNotifications = new FollowingNotifications(data.following)
+        this.followingNotifications.followMany(data.following.map(f => f._id))
       })
     }
   }
 
-
   deactivate() {
     // TODO: this.followingNotifications.dispose()
   }
-
 
   // make a getter to get the authentication status.
   // use computedFrom to avoid dirty checking
@@ -43,7 +38,6 @@ export class Login {
       password
     });
   }
-  ;
 
   // use authService.logout to delete stored tokens
   // if you are using JWTs, authService.logout() will be called automatically,
@@ -58,7 +52,8 @@ export class Login {
     return this.authService.authenticate(name)
       .then(response => {
         this.user = response.user
-        this.followingNotifications = new FollowingNotifications(this.user.following)
-      });
+        this.followingNotifications.followMany(this.user.following.map(f => f._id))
+        return this.user
+      })
   }
 }
