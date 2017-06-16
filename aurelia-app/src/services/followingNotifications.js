@@ -12,7 +12,8 @@ export class FollowingNotifications {
     this.socket.on('notification', FollowingNotifications.notify)
     this.socket.on('checkpoint:save', ({ checkpoint, owner}) => {
       let followedName = this.findFollowedById(owner).name
-      FollowingNotifications.notify(`${followedName} created a new checkpoint`)
+      let profileUrl = `#/profile/${owner}`
+      FollowingNotifications.notify(`${followedName} created a new checkpoint`, profileUrl)
     })
   }
 
@@ -37,10 +38,12 @@ export class FollowingNotifications {
     return this.following.find(f => (f._id || f.id) === followedId)
   }
 
-  static notify(message) {
+  static notify(message, url) {
     $.notify({
       icon: "notifications",
-      message: message
+      message: message,
+      url: url,
+      target: '_self'
     }, {
       type: 'primary',
       timer: 4000,
