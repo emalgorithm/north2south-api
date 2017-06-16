@@ -12,8 +12,13 @@
             <h6 class="category text-gray">Software Architect</h6>
             <h2 class="card-title">${user.name} ${user.surname} </h2>
             <!--<p class="card-content journey-description">${user.description}</p>-->
-            <div if.bind="!me" class="btn btn-primary btn-round" click.delegate="follow()">
+            <div if.bind="!following" class="btn btn-primary btn-round" click.delegate="follow()">
               Follow
+            </div>
+
+            <div if.bind="following" class="btn btn-round btn-disabled">
+              <i class="material-icons">check</i>
+              Following
             </div>
           </div>
         </div>

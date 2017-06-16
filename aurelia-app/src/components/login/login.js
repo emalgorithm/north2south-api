@@ -44,6 +44,7 @@ export class Login {
   // when the token expires. The expiredRedirect setting in your authConfig
   // will determine the redirection option
   logout() {
+    this.user = {}
     return this.authService.logout();
   }
 

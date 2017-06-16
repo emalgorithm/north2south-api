@@ -4,10 +4,13 @@ import { Login } from "./login/login";
 import { Config } from "aurelia-api";
 import { Router } from 'aurelia-router';
 import { FollowingNotifications } from '../services/followingNotifications'
+import { computedFrom } from 'aurelia-framework'
 
 export class Profile {
 
   static inject =[RestApi, AuthService, Login, Config, Router, FollowingNotifications]
+
+  _following = false
 
   constructor(restApi, authService, login, config, router, followingNotifications) {
     this.restApi = restApi
@@ -26,8 +29,13 @@ export class Profile {
     })
   }
 
-  get me() {
-    return this.login.user.id === this.user.id
+  @computedFrom('login.user', 'user', '_following')
+  get following() {
+    return this._following || this.login.user.following && this.login.user.following.some(f => f._id === this.user.id)
+  }
+
+  set following(val) {
+    this._following = val
   }
 
   follow() {
@@ -41,6 +49,7 @@ export class Profile {
         "id": this.user.id
       }))
       .then(response => {
+        this.following = true
         this.followingNotifications.follow(this.user)
         FollowingNotifications.notify(`You are now following ${this.user.name}`)
       })
