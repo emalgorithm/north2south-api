@@ -26,7 +26,7 @@ export class FollowingNotifications {
     this.following.push.apply(this.following, following)
 
     // Subscribe for notifications about followed users
-    this.socket.emit('notify-me', following.map(f => f._id), notifications => {
+    this.socket.emit('notify-me', following.map(f => f._id || f.id), notifications => {
       const notificationsToShow = Math.min(notifications.length, 3)
       for (var i = notificationsToShow - 1; i >= 0; i--) {
         FollowingNotifications.notify(notifications[i])
