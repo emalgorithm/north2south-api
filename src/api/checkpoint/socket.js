@@ -1,10 +1,14 @@
-var socketRoom = null
+import { Journey } from '../journey'
 
-exports.setUpSocketRoom = (io) => {
-  socketRoom = io
-}
+var io = null
 
-exports.onSave = (checkpoint) => {
-  console.log("Broadcasting checkpoint update")
-  socketRoom.emit('checkpoint:save', checkpoint)
+exports.register = (_io) => io = _io
+
+exports.onSave = (checkpoint, ownerId) => {
+  Journey.findById(checkpoint.journey)
+    .then(journey => io.to(journey.owner)
+      .emit('checkpoint:save', {
+        checkpoint: checkpoint,
+        owner: journey.owner
+      }))
 }
