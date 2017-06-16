@@ -17,6 +17,8 @@
             </div>
           </a>
         </div>
+
+        
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
@@ -24,8 +26,9 @@
             </li>
           </ul>
 
-          <login></login>      
+          <login containerless></login>
         </div>
+
       </div>
   </nav>
 </template>

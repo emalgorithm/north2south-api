@@ -4,7 +4,7 @@ import { FollowingNotifications } from '../../services/followingNotifications'
 
 export class Login {
 
-  static inject = [AuthService, FollowingNotifications]
+  static inject =[AuthService, FollowingNotifications]
 
   user = {}
 
