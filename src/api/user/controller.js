@@ -18,11 +18,16 @@ export const show = ({ params }, res, next) =>
 
 export const follow = ({ user, bodymen: { body } }, res, next) =>
   User.findByIdAndUpdate( user.id, { $push: { following: body.id } })
+    .populate('following')
+    .then(user => user.view(true))
     .then(success(res))
     .catch(next)
 
-export const showMe = ({ user }, res) =>
-  res.json(user.view(true))
+export const showMe = ({ user }, res, next) =>
+  User.populate(user, 'following')
+    .then(user => user ? user.view(true) : null)
+    .then(success(res))
+    .catch(next)
 
 export const create = ({ bodymen: { body } }, res, next) =>
   User.create(body)
