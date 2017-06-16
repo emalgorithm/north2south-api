@@ -9,7 +9,7 @@ exports.setUpSocketServer = (socketio) => {
       for (let f of following) {
         socket.join(f)
       }
-      let notifications = ['Notifications from people you follow will appear here']
+      let notifications = []
       cb(notifications)
     })
   })
