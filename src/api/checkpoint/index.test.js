@@ -9,7 +9,7 @@ const ioMock = {
   emit: jest.fn()
 }
 
-socket.setUpSocketRoom(ioMock)
+socket.register(ioMock)
 
 const app = () => express(routes)
 

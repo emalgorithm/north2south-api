@@ -7,7 +7,7 @@ const ioMock = {
   emit: jest.fn()
 }
 
-socket.setUpSocketRoom(ioMock)
+socket.register(ioMock)
 
 let user, journey, checkpoint1, checkpoint2
 
