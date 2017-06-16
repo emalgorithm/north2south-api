@@ -27,10 +27,6 @@ const config = {
     ip: process.env.IP || '0.0.0.0',
     masterKey: requireProcessEnv('MASTER_KEY'),
     jwtSecret: requireProcessEnv('JWT_SECRET'),
-    facebook: {
-      clientID: '833296696833499',
-      clientSecret: '467d1c011654d56fda866b8c1d988cd3'
-    },
     mongo: {
       options: {
         db: {
@@ -40,6 +36,10 @@ const config = {
     }
   },
   test: {
+    facebook: {
+      clientID: '833296696833499',
+      clientSecret: '467d1c011654d56fda866b8c1d988cd3'
+    },
     mongo: {
       uri: 'mongodb://mongo:27017/north-2-south',
       options: {
@@ -48,6 +48,10 @@ const config = {
     }
   },
   development: {
+    facebook: {
+      clientID: '833296696833499',
+      clientSecret: '467d1c011654d56fda866b8c1d988cd3'
+    },
     mongo: {
       uri: 'mongodb://mongo:27017/north-2-south',
       options: {
@@ -60,6 +64,10 @@ const config = {
     port: process.env.PORT || 8080,
     mongo: {
       uri: process.env.MONGODB_URI || 'mongodb://mongo/north-2-south'
+    },
+    facebook: {
+      clientID: process.env.FACEBOOK_SECRET ? '1448046271898825' : '833296696833499',
+      clientSecret: process.env.FACEBOOK_SECRET || '467d1c011654d56fda866b8c1d988cd3'
     }
   }
 }
