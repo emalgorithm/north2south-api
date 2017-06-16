@@ -4,10 +4,13 @@ exports.setUpSocketServer = (socketio) => {
   console.log("Setting up Socket Server");
   checkpointSocket.setUpSocketRoom(socketio);
 
-  // When the user connects.. perform this
-  // socketio.on('connection', function (socket) {
-  //   console.log("Someone connected to the socket!");
-  //   checkpointSocket.register(socket)
-  // })
+  socketio.on('connection', socket => {
+    socket.on('notify-me', (following, cb) => {
+      for (let f of following) {
+        socket.join(f)
+      }
+      let notifications = ['Notifications from people you follow will appear here']
+      cb(notifications)
+    })
+  })
 };
-
