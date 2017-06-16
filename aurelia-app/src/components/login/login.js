@@ -15,7 +15,7 @@ export class Login {
     if (this.authenticated) {
       this.authService.getMe().then(data => {
         this.user = data
-        this.followingNotifications.followMany(data.following.map(f => f._id))
+        this.followingNotifications.followMany(data.following)
       })
     }
   }
@@ -52,7 +52,7 @@ export class Login {
     return this.authService.authenticate(name)
       .then(response => {
         this.user = response.user
-        this.followingNotifications.followMany(this.user.following.map(f => f._id))
+        this.followingNotifications.followMany(this.user.following)
         return this.user
       })
   }
