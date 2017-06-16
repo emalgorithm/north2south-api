@@ -13,15 +13,14 @@ import {AuthService} from 'aurelia-authentication';
 import {Login} from "../login/login";
 import {Config} from "aurelia-api";
 
-
-var socket = io.connect();
-
 export class Journey {
 
   static inject = [RestApi, WeatherApi, EventAggregator, Router, AuthService, Login, Config]
 
   constructor(api, weatherApi, eventAggregator, router, authService, login, config) {
     Object.assign(this, { api, weatherApi, eventAggregator, router })
+
+    this.socket = io.connect();
 
     this.authService = authService
     this.login = login
@@ -56,11 +55,17 @@ export class Journey {
   }
 
   activate(params, routeConfig) {
-    socket.on('checkpoint:save', checkpoint => this.onNewCheckpoint(checkpoint));
+    this.socket.on('checkpoint:save', ({ checkpoint }) => {
+      debugger
+      this.onNewCheckpoint(checkpoint)
+    });
 
     return this.api.getJourney(params.id).then(journey => {
         journey.checkpoints.reverse()
         Object.assign(this, ...journey);
+
+        // Request to join room for this journey
+        this.socket.emit('join:journey', journey.id)
 
         this.updateTotalDistance()
         this.heartRateAnalytics.checkpoints = this.checkpoints

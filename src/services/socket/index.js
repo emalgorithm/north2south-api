@@ -12,5 +12,9 @@ exports.setUpSocketServer = (socketio) => {
       let notifications = []
       cb(notifications)
     })
+
+    socket.on('join:journey', (id) => {
+        socket.join(id)
+    })
   })
 };
