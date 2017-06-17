@@ -37,7 +37,7 @@ export class Profile {
   follow() {
     var follow = Promise.method(() => this.authService.user)()
     if (!this.authService.authenticated) {
-      follow = this.authService.authenticate('facebook')
+      follow = this.authService.authenticate()
     }
 
     return follow

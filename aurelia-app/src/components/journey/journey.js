@@ -8,22 +8,21 @@ import { WeatherApi } from 'services/weatherApi'
 import { CaloriesAnalyticsService } from 'services/caloriesAnalytics'
 import { HeartRateAnalyticsService } from 'services/heartRateAnalytics'
 import io from 'socket.io'
-import { Router } from 'aurelia-router';
-import {AuthService} from 'aurelia-authentication';
-import {Login} from "../login/login";
-import {Config} from "aurelia-api";
+import { Router } from 'aurelia-router'
+import {AuthService} from 'services/authService'
+import {Config} from "aurelia-api"
+import { FollowingNotifications } from 'services/followingNotifications'
+import { computedFrom } from 'aurelia-framework'
 
 export class Journey {
 
-  static inject = [RestApi, WeatherApi, EventAggregator, Router, AuthService, Login, Config]
+  static inject = [RestApi, WeatherApi, EventAggregator, Router, AuthService, Config, FollowingNotifications]
 
-  constructor(api, weatherApi, eventAggregator, router, authService, login, config) {
-    Object.assign(this, { api, weatherApi, eventAggregator, router })
+  constructor(api, weatherApi, eventAggregator, router, authService, config, followingNotifications) {
+    Object.assign(this, { api, weatherApi, eventAggregator, router, authService, followingNotifications })
 
     this.socket = io.connect();
 
-    this.authService = authService
-    this.login = login
     this.apiEndpoint = config.getEndpoint('api')
 
     this.heartRateOptions = ['Week', 'Live', 'All']
@@ -55,6 +54,8 @@ export class Journey {
   }
 
   activate(params, routeConfig) {
+    this._following = false
+
     this.socket.on('checkpoint:save', ({ checkpoint }) => {
       debugger
       this.onNewCheckpoint(checkpoint)
@@ -81,6 +82,13 @@ export class Journey {
     )
   }
 
+  @computedFrom('followingNotifications.following', 'owner', '_following')
+  get following() {
+    return this._following ||
+      this.followingNotifications.isPrincipalFollowing(this.owner.id)
+  }
+
+  @computedFrom('description')
   get shortDescription() {
     if (this.description.length > 500)
       return this.description.substr(0, 500 - '...'.length) + '...'
@@ -152,16 +160,22 @@ export class Journey {
   }
 
   follow() {
+    var follow = Promise.method(() => this.authService.user)()
     if (!this.authService.authenticated) {
-      this.login.authenticate('facebook')
-      if (!this.authService.authenticated) {
-        return
-      }
+      follow = this.authService.authenticate()
     }
-    return this.authService.getMe().then(
-      profile =>  this.apiEndpoint.post(`/users/${profile.id}/followers`, { "id": this.owner.id })
-    )
+
+    return follow
+      .then(profile => this.apiEndpoint.post(`/users/${profile.id}/followers`, {
+        "id": this.owner.id
+      }))
+      .then(response => {
+        this._following = true
+        this.followingNotifications.follow(this.owner)
+        FollowingNotifications.notify(`You are now following ${this.owner.name}`)
+      })
   }
+
 
   setup_twitter_feed = function() {
     !function (d, s, id) {
