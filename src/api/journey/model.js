@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import DeepPopulate from 'mongoose-deep-populate'
 
 const journeySchema = new Schema({
   name: { type: String, required: true},
@@ -79,6 +80,11 @@ journeySchema.methods = {
     } : view
   }
 }
+
+// We need this so that createdBy can be populated when the status updates for
+// a given journey are populated
+const deepPopulate = DeepPopulate(mongoose)
+journeySchema.plugin(deepPopulate, {})
 
 const model = mongoose.model('Journey', journeySchema)
 
