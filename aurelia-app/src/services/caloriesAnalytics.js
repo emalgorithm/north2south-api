@@ -10,7 +10,9 @@ export class CaloriesAnalyticsService {
   analysis() {
     this.weeklyCheckpoints = DataAnalyticsHelpers.groupCheckpointsByWeek(this.checkpoints)
 
-    let latestCalories = this.weeklyCheckpoints.thisWeek[0].calories
+    let latestCalories = this.weeklyCheckpoints.thisWeek.length > 0 ?
+      this.weeklyCheckpoints.thisWeek[0].calories :
+      2000
     let referenceValue = 2000
 
     return DataAnalyticsHelpers.analyse(latestCalories, referenceValue,

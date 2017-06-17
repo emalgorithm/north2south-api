@@ -72,6 +72,11 @@ export class Journey {
         this.heartRateAnalytics.checkpoints = this.checkpoints
         this.caloriesAnalytics.checkpoints = this.checkpoints
 
+        // TODO: Handle this (Don't display broken weather)
+        if (!this.latestCheckpoint) {
+          return
+        }
+
         this.weatherApi.getCurrentWeather(this.latestCheckpoint.latitude, this.latestCheckpoint.longitude).then(weather => this.weather = weather);
         // Case 2: Map has loaded first, and now we get checkpoints from HTTP request and we draw checkpoints
         if (this.mapLoaded) {
