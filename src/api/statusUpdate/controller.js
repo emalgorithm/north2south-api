@@ -2,8 +2,8 @@ import _ from 'lodash'
 import { success, notFound } from '../../services/response/'
 import { StatusUpdate } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  StatusUpdate.create(body)
+export const create = ({ user, bodymen: { body } }, res, next) =>
+  StatusUpdate.create({ ...body, createdBy: user })
     .then((statusUpdate) => statusUpdate.view(true))
     .then(success(res, 201))
     .catch(next)

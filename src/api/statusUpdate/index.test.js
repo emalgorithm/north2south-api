@@ -7,20 +7,20 @@ import { Journey } from '../journey'
 
 const app = () => express(routes)
 
-let userSession, statusUpdate, journey
+let userSession, statusUpdate, journey, user
 
 beforeEach(async () => {
-  const user = await User.create({ email: 'z@a.com', password: '123456' })
+  user = await User.create({ email: 'z@a.com', password: '123456' })
   userSession = signSync(user.id)
   journey = await Journey.create({ name: 'Test Journey', description: 'Test description', owner: user })
   
-  statusUpdate = await StatusUpdate.create({journey: journey})
+  statusUpdate = await StatusUpdate.create({journey: journey, createdBy: user})
 })
 
 test('POST /statusUpdates 201 (user)', async () => {
   const { status, body } = await request(app())
     .post('/')
-    .send({ access_token: userSession, journey: journey.id, title: 'test', content: 'test' })
+    .send({ access_token: userSession, journey: journey.id, createdBy: user.id, title: 'test', content: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
   expect(body.title).toEqual('test')
