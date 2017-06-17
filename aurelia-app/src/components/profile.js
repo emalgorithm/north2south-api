@@ -1,27 +1,26 @@
 import { RestApi } from 'services/api'
-import { AuthService } from 'aurelia-authentication';
-import { Login } from "./login/login";
-import { Config } from "aurelia-api";
-import { Router } from 'aurelia-router';
+import { AuthService } from '../services/authService'
+import { Config } from "aurelia-api"
+import { Router } from 'aurelia-router'
 import { FollowingNotifications } from '../services/followingNotifications'
 import { computedFrom } from 'aurelia-framework'
 
 export class Profile {
 
-  static inject =[RestApi, AuthService, Login, Config, Router, FollowingNotifications]
+  static inject =[RestApi, AuthService, Config, Router, FollowingNotifications]
 
   _following = false
 
-  constructor(restApi, authService, login, config, router, followingNotifications) {
+  constructor(restApi, authService, config, router, followingNotifications) {
     this.restApi = restApi
     this.authService = authService
-    this.login = login
     this.apiEndpoint = config.getEndpoint('api')
     this.router = router
     this.followingNotifications = followingNotifications
   }
 
   activate(params, routeConfig) {
+    this._following = false
     this.restApi.getJourneysOfUser(params.id).then(journeys => this.journeys = journeys)
 
     return this.restApi.getUser(params.id).then(user => {
@@ -29,19 +28,16 @@ export class Profile {
     })
   }
 
-  @computedFrom('login.user', 'user', '_following')
+  @computedFrom('followingNotifications.following', 'user', '_following')
   get following() {
-    return this._following || this.login.user.following && this.login.user.following.some(f => f._id === this.user.id)
-  }
-
-  set following(val) {
-    this._following = val
+    return this._following ||
+      this.followingNotifications.isPrincipalFollowing(this.user.id)
   }
 
   follow() {
-    var follow = Promise.method(() => this.login.user)()
+    var follow = Promise.method(() => this.authService.user)()
     if (!this.authService.authenticated) {
-      follow = this.login.authenticate('facebook')
+      follow = this.authService.authenticate('facebook')
     }
 
     return follow
@@ -49,7 +45,7 @@ export class Profile {
         "id": this.user.id
       }))
       .then(response => {
-        this.following = true
+        this._following = true
         this.followingNotifications.follow(this.user)
         FollowingNotifications.notify(`You are now following ${this.user.name}`)
       })

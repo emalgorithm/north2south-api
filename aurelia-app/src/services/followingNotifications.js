@@ -1,20 +1,45 @@
 import 'bootstrap-notify'
 import io from 'socket.io'
+import { inject, BindingEngine } from 'aurelia-framework'
+import { AuthService } from 'services/authService'
 
+@inject(AuthService, BindingEngine)
 export class FollowingNotifications {
 
   following = []
+  subscription = {}
 
-  constructor() {
+  constructor(authService, bindingEngine) {
     this.socket = io.connect()
 
     // Handle future notifications
     this.socket.on('notification', FollowingNotifications.notify)
-    this.socket.on('checkpoint:save', ({ checkpoint, owner}) => {
+    this.socket.on('checkpoint:save', ({checkpoint, owner}) => {
       let followedName = this.findFollowedById(owner).name
       let profileUrl = `#/profile/${owner}`
       FollowingNotifications.notify(`${followedName} created a new checkpoint`, profileUrl)
     })
+
+    this.subscription = bindingEngine
+      .propertyObserver(authService, 'user')
+      .subscribe(this.principalChanged.bind(this))
+  }
+
+  principalChanged(newValue, oldValue) {
+    this.unfollowAll()
+    if (newValue.following) {
+      this.followMany(newValue.following)
+    }
+  }
+
+  isPrincipalFollowing(id) {
+    return this.following &&
+      this.following.some(f => (f._id || f.id) === id)
+  }
+
+  unfollowAll() {
+    this.following = []
+    // TODO: Exit socket rooms on the server
   }
 
   follow(following) {
@@ -36,6 +61,10 @@ export class FollowingNotifications {
 
   findFollowedById(followedId) {
     return this.following.find(f => (f._id || f.id) === followedId)
+  }
+
+  deactivate() {
+    this.subscription.dispose()
   }
 
   static notify(message, url) {
