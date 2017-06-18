@@ -16,8 +16,12 @@ export class FollowingNotifications {
     this.socket.on('notification', FollowingNotifications.notify)
     this.socket.on('checkpoint:save', ({checkpoint, owner}) => {
       let followedName = this.findFollowedById(owner).name
-      let profileUrl = `#/journey/${checkpoint.journey}`
-      FollowingNotifications.notify(`${followedName} created a new checkpoint`, profileUrl)
+      let journeyUrl = `#/journey/${checkpoint.journey}`
+      FollowingNotifications.notify(`${followedName} created a new checkpoint`, journeyUrl)
+    })
+    this.socket.on('statusUpdate:save', ({statusUpdate}) => {
+      let journeyUrl = `#/journey/${statusUpdate.journey}`
+      FollowingNotifications.notify(`${statusUpdate.createdBy.name}: ${statusUpdate.title}`, journeyUrl)
     })
 
     this.subscription = bindingEngine

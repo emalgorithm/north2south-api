@@ -57,9 +57,12 @@ export class Journey {
     this._following = false
 
     this.socket.on('checkpoint:save', ({ checkpoint }) => {
-      debugger
       this.onNewCheckpoint(checkpoint)
-    });
+    })
+
+    this.socket.on('statusUpdate:save', ({ statusUpdate }) => {
+      this.onNewStatusUpdate(statusUpdate)
+    })
 
     return this.api.getJourney(params.id).then(journey => {
         journey.checkpoints.reverse()
@@ -204,9 +207,11 @@ export class Journey {
       journey: this.id,
     }
 
-    this.statusUpdates.unshift({...comment, createdBy: this.authService.user })
-
     this.apiEndpoint.post('/statusUpdates', comment)
       .then(response => response)
+  }
+
+  onNewStatusUpdate(status) {
+    this.statusUpdates.unshift(status)
   }
 }
