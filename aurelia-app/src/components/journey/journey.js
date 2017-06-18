@@ -158,7 +158,7 @@ export class Journey {
   onNewCheckpoint(checkpoint) {
     console.log("Getting socket updates:  " + checkpoint);
 
-    this.checkpoints.push(checkpoint)
+    this.checkpoints.unshift(checkpoint)
 
     //Update other fields
     this.calories = checkpoint.calories;
