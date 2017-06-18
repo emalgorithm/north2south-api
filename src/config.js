@@ -66,7 +66,7 @@ const config = {
       uri: process.env.MONGODB_URI || 'mongodb://mongo/north-2-south'
     },
     facebook: {
-      clientID: process.env.FACEBOOK_SECRET ? '1448046271898825' : '833296696833499',
+      clientID: process.env.FACEBOOK_CLIENT_ID || '833296696833499',
       clientSecret: process.env.FACEBOOK_SECRET || '467d1c011654d56fda866b8c1d988cd3'
     }
   }
