@@ -8,6 +8,8 @@ export class FollowingNotifications {
 
   following = []
   subscription = {}
+  notificationsDisplayed = 0
+  notificationsLimit = 3
 
   constructor(authService, bindingEngine) {
     this.socket = io.connect()
@@ -17,16 +19,27 @@ export class FollowingNotifications {
     this.socket.on('checkpoint:save', ({checkpoint, owner}) => {
       let followedName = this.findFollowedById(owner).name
       let journeyUrl = `#/journey/${checkpoint.journey}`
-      FollowingNotifications.notify(`${followedName} created a new checkpoint`, journeyUrl)
+      this.notify(`${followedName} created a new checkpoint`, journeyUrl)
     })
     this.socket.on('statusUpdate:save', ({statusUpdate}) => {
       let journeyUrl = `#/journey/${statusUpdate.journey}`
-      FollowingNotifications.notify(`${statusUpdate.createdBy.name}: ${statusUpdate.title}`, journeyUrl)
+      this.notify(`${statusUpdate.createdBy.name}: ${statusUpdate.title}`, journeyUrl)
     })
 
     this.subscription = bindingEngine
       .propertyObserver(authService, 'user')
       .subscribe(this.principalChanged.bind(this))
+
+    this.notificationInterval()
+  }
+
+  notificationInterval() {
+    // Clear notification limit every 30 seconds
+    this.interval = setInterval(() => this.notificationsDisplayed = 0, 30 * 1000)
+  }
+
+  deactivate() {
+    clearInterval(this.interval)
   }
 
   principalChanged(newValue, oldValue) {
@@ -58,7 +71,7 @@ export class FollowingNotifications {
     this.socket.emit('notify-me', following.map(f => f._id || f.id), notifications => {
       const notificationsToShow = Math.min(notifications.length, 3)
       for (var i = notificationsToShow - 1; i >= 0; i--) {
-        FollowingNotifications.notify(notifications[i])
+        this.notify(notifications[i])
       }
     })
   }
@@ -71,7 +84,14 @@ export class FollowingNotifications {
     this.subscription.dispose()
   }
 
-  static notify(message, url) {
+  notify(message, url) {
+    // Don't display notification if there are already too many
+    if (this.notificationsDisplayed >= this.notificationsLimit) {
+      return
+    }
+
+    this.notificationsDisplayed += 1
+
     $.notify({
       icon: "notifications",
       message: message,

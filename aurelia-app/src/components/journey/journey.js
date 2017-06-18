@@ -158,7 +158,7 @@ export class Journey {
   onNewCheckpoint(checkpoint) {
     console.log("Getting socket updates:  " + checkpoint);
 
-    this.checkpoints.push(checkpoint)
+    this.checkpoints.unshift(checkpoint)
 
     //Update other fields
     this.calories = checkpoint.calories;
@@ -182,7 +182,7 @@ export class Journey {
       .then(response => {
         this._following = true
         this.followingNotifications.follow(this.owner)
-        FollowingNotifications.notify(`You are now following ${this.owner.name}`)
+        this.followingNotifications.notify(`You are now following ${this.owner.name}`)
       })
   }
 
