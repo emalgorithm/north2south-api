@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import { onSave } from './socket'
 
 const statusUpdateSchema = new Schema({
   title: String,
@@ -27,6 +28,9 @@ statusUpdateSchema.methods = {
     } : view
   }
 }
+
+statusUpdateSchema.pre('save', function(next) { this.wasNew = this.isNew; next() })
+statusUpdateSchema.post('save', function(s) { if (s.wasNew) onSave(s) })
 
 const model = mongoose.model('StatusUpdate', statusUpdateSchema)
 

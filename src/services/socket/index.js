@@ -1,8 +1,10 @@
 import checkpointSocket from '../../api/checkpoint/socket'
+import statusUpdateSocket from '../../api/statusUpdate/socket'
 
 exports.setUpSocketServer = (socketio) => {
-  console.log("Setting up Socket Server");
-  checkpointSocket.register(socketio);
+  console.log("Setting up Socket Server")
+  checkpointSocket.register(socketio)
+  statusUpdateSocket.register(socketio)
 
   socketio.on('connection', socket => {
     socket.on('notify-me', (following, cb) => {
