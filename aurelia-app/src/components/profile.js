@@ -47,7 +47,7 @@ export class Profile {
       .then(response => {
         this._following = true
         this.followingNotifications.follow(this.user)
-        FollowingNotifications.notify(`You are now following ${this.user.name}`)
+        this.followingNotifications.notify(`You are now following ${this.user.name}`)
       })
   }
 
