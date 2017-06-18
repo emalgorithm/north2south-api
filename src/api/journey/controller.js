@@ -29,7 +29,7 @@ export const show = ({ params }, res, next) =>
   Journey.findById(params.id)
     .populate('owner')
     .populate('checkpoints')
-    .populate('statusUpdates')
+    .populate({path: 'statusUpdates', populate: [{path: 'createdBy', select: 'name picture'}]})
     .then(notFound(res))
     .then((journey) => journey ? journey.view(true) : null)
     .then(success(res))
