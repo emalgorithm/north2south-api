@@ -1,13 +1,13 @@
 <template>
   <ul if.bind="!authService.authenticated" class="nav navbar-nav navbar-right">
-    <li><a href="#" click.trigger="authService.authenticate('facebook')">Login with Facebook</a></li>
+    <li><a click.delegate="authService.authenticate()">Login with Facebook</a></li>
   </ul>
 
   <ul if.bind="authService.authenticated" class="nav navbar-nav navbar-right">
-    <li>
+    <li class="pull-left">
       <a class="pull-left" href="#/profile/${authService.user.id}">${authService.user.name}</a>
       <img class="img nav-avatar" src.bind="authService.user.picture">
     </li>
-    <li><a href="#" click.trigger="authService.logout()">Logout</a></li>
+    <li class="pull-left"><a href="#" click.delegate="authService.logout()">Logout</a></li>
   </ul>
 </template>

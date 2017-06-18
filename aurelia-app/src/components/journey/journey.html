@@ -1,15 +1,16 @@
 <template>
   <require from="components/chart/chart"></require>
+  <require from="components/statusUpdates/statusUpdates"></require>
 
   <div class="container-fluid">
     <div class="row">
       <!-- Profile -->
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-md-6">
         <div class="card card-profile">
           <div class="card-avatar">
-            <div click.trigger="gotoProfile()" role="button">
+            <a href="#/profile/${owner.id}" role="button">
               <img class="img" src="../../../assets/images/users/${owner.picture}.jpg">
-            </div>
+            </a>
           </div>
 
           <div class="content">
@@ -20,7 +21,7 @@
             <div if.bind="following" class="btn btn-round btn-disabled">
             <i class="material-icons">check</i>
             Following</div>
-            <div class="btn btn-round" click.delegate="gotoProfile()">Read more</div>
+            <a class="btn btn-round" href="#/profile/${owner.id}">Read more</a>
           </div>
         </div>
       </div>
@@ -44,7 +45,7 @@
       </div>
 
       <!-- Donation Stats -->
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-3 col-md-6">
         <div class="card card-stats">
           <div class="card-header" data-background-color="red">
             <i class="fa fa-heart"></i>
@@ -112,7 +113,20 @@
 
       <!-- Calories chart -->
       <chart data.bind="checkpoints" data-property="calories" title="Daily Calories Burned" analyser.bind="caloriesAnalytics"/>
-
     </div>
+
+    <div class="row">
+      <div class="container-fluid">
+        <div repeat.for="s of statusUpdates" class="row">
+          <div class="col-md-12">
+            <div class="content">
+              <h2 class="card-title">${s.title}</h2>
+              <p>${s.content}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
   </div>
 </template>

@@ -1,0 +1,12 @@
+<template bindable="items">
+	<div class="container-fluid">
+		<div repeat.for="s of items" class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h2 class="card-title">${s.title}</h2>
+					<p>${s.content}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

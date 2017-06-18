@@ -32,11 +32,6 @@ export class App {
         moduleId: 'components/journey/journey'
       },
       {
-        route: 'login', name: 'login',
-        moduleId: 'components/login/login',
-        title: 'Login'
-      },
-      {
         route: 'profile/:id', name: 'profile',
         moduleId: 'components/profile'
       }
