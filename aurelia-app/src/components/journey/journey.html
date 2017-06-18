@@ -1,6 +1,5 @@
 <template>
   <require from="components/chart/chart"></require>
-  <require from="components/statusUpdates/statusUpdates"></require>
 
   <div class="container-fluid">
     <div class="row">
@@ -27,7 +26,7 @@
       </div>
 
       <!-- Distance covered -->
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-3 col-md-6">
         <div class="card card-stats">
           <div class="card-header" data-background-color="green">
             <i class="material-icons">directions_run</i>
@@ -52,8 +51,8 @@
           </div>
           <div class="card-content">
             <p class="category">Donations raised</p>
-            <h3 class="title">$20</h3>
-            <a class="btn btn-primary btn-round" href.bind="donateUrl">Donate</a>
+            <h3 class="title">$0</h3>
+            <a class="pull-right btn btn-primary btn-round" href.bind="donateUrl">Donate</a>
           </div>
           <div class="card-footer">
             <div class="stats">
