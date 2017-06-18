@@ -6,7 +6,7 @@
       <div class="col-md-12">
         <div class="card-header">
           <div class="card-profile">
-              <img class="img" id="logo" src="../../../assets/images/thumbnail.png">
+              <img class="img" id="logo" src="/assets/images/thumbnail.png">
           </div>
           <h2>Explore the latest journeys and support charities!</h2>
         </div>
@@ -22,7 +22,7 @@
             <div class="card-profile">
               <div class="card-avatar">
                 <div click.trigger="gotoProfile($event, j.owner.id)" role="button">
-                  <img class="img" src="../../../assets/images/users/${j.owner.picture}.jpg">
+                  <img class="img" src="${j.owner.picture}">
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@
           <!-- Focused data card -->
           <div class="col-md-6">
             <div class="card card-stats">
-              <img id="charityImg" src="../../../assets/images/charities/${j.charities[0]}.png">
+              <img id="charityImg" src="${j.charities[0]}">
               <div class="card-content">
                 <p class="category">Distance covered today</p>
                 <h3 class="title">${j.checkpoint.distance} km</h3>

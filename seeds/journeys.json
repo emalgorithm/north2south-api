@@ -3,7 +3,7 @@
     "_id": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "owner": { "$oid": "593727ccc1c04200d8cbcc79" },
     "name": "Support Emanuele on his brave post-exam climb on mount Kilimanjaro",
-    "charities": ["4", "2"],
+    "charities": ["/assets/images/charities/4.png"],
     "description": "On an attempt to support Unicef and the British Heart foundation me and a few collegaues from Imperial College London are climbing mount Kilimanjaro.",
     "donateUrl": "http://emanuelerossi.co.uk/",
     "destination": {
@@ -15,7 +15,7 @@
     "_id": { "$oid": "593728a0ff82580150333ee4" },
     "owner": { "$oid": "593727b7c1c04200d8cbcc78" },
     "name": "Support James Redden on his expedition on the South pole",
-    "charities": ["3", "4"],
+    "charities": ["/assets/images/charities/3.png"],
     "description": "The Route will start off at the 6th degree on the polar ice and finish at the 1st degree, the south pole, covering a distance of 123km.",
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes",
     "destination": {
@@ -27,7 +27,7 @@
     "_id": { "$oid": "59372894ff82580150333ee3" },
     "owner": { "$oid": "593727d9c1c04200d8cbcc7a" },
     "name": "Support Pani's quest in Pintos land",
-    "charities": ["1", "6"],
+    "charities": ["/assets/images/charities/1.png"],
     "description": "Join my trip in an attempt to face the most scaring pointers of the world. int **p = ** (int ****) x; Oh dear.. Look at that!",
     "donateUrl": "https://www.stackoverflow.com",
     "destination": {
