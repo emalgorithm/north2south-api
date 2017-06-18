@@ -39,12 +39,11 @@
   background-color: #427df4;
 }
 
-#charityImg {
-  float: left;
-  height: 12vh;
-  width: 12vh;
-  max-height: 15%;
-  max-width: 15%;
+.charityImg {
+  font-size: 36px;
+  line-height: 56px;
+  max-width: 56px;
+  height: 56px;
 }
 
 .nav-avatar {

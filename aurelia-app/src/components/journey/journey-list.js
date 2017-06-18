@@ -16,7 +16,9 @@ export class JourneyList {
   }
 
   created() {
-    this.api.getJourneyList().then(journeys => this.journeys = journeys)
+    this.api.getJourneyList().then(journeys => {
+      this.journeys = journeys
+    })
   }
 
   gotoProfile(event, userId) {

@@ -41,21 +41,40 @@
             </div>
           </div>
 
-          <!-- Focused data card -->
-          <div class="col-md-6">
-            <div class="card card-stats">
-              <img id="charityImg" src="${j.charities[0]}">
-              <div class="card-content">
-                <p class="category">Distance covered today</p>
-                <h3 class="title">${j.checkpoint.distance} km</h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons">date_range</i> Last 24 Hours
+          <!-- Focused donations card -->
+            <div class="col-lg-3 col-sm-6 text-center">
+              <div class="card card-stats">
+                <div class="card-header" data-background-color="red">
+                  <img if.bind="j.charities.length > 0" class="charityImg" src="${j.charities[0]}">
+                  <i if.bind="j.charities.length == 0" class="fa fa-heart"></i>
+                </div>
+
+                <div class="card-content">
+                  <p class="category">Donations raised</p>
+                  <!-- This is wrong and should be fixed that journey model returns the status -->
+                  <h3 class="title">$0</h3>
+                  <a class="btn btn-primary btn-round" href="${j.donateUrl}">Donate</a>
                 </div>
               </div>
             </div>
-          </div>
+
+            <!-- Distance covered -->
+            <div class="col-lg-3 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header" data-background-color="green">
+                  <i class="material-icons">directions_run</i>
+                </div>
+                <div class="card-content">
+                  <p class="category">Distance covered today</p>
+                  <h3 class="title">${j.checkpoint.distance} km</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Last 24 Hours
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
 
       </div>

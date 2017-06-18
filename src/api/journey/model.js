@@ -52,7 +52,8 @@ journeySchema.methods = {
       owner: this.owner.view(),
       checkpoint: this.latestCheckpoint,
       charities: this.charities,
-      status: this.latestStatusUpdate
+      status: this.latestStatusUpdate,
+      donateUrl: this.donateUrl
     }
 
     return focusedJourney
