@@ -2,6 +2,7 @@ import { Journey } from '.'
 import { User } from '../user'
 import * as socket from '../checkpoint/socket'
 import { Checkpoint } from '../checkpoint'
+import { StatusUpdate } from '../statusUpdate'
 
 const ioMock = {
   emit: jest.fn()

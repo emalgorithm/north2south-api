@@ -3,6 +3,7 @@ import { signSync } from '../../services/jwt'
 import express from '../../services/express'
 import { User } from '../user'
 import { Checkpoint } from '../checkpoint' // needed by ref in Journey
+import { StatusUpdate } from '../statusUpdate' // needed by ref in Journey
 import routes, { Journey } from '.'
 
 const app = () => express(routes)
