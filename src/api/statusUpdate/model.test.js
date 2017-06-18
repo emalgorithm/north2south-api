@@ -1,6 +1,16 @@
 import { StatusUpdate } from '.'
 import { Journey } from '../journey'
 import { User } from '../user'
+import * as socket from './socket'
+
+const ioMock = {
+  emit: jest.fn(),
+  to: jest.fn()
+}
+
+ioMock.to.mockReturnValue(ioMock)
+
+socket.register(ioMock)
 
 let statusUpdate, owner
 

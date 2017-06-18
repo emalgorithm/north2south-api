@@ -4,6 +4,16 @@ import express from '../../services/express'
 import { User } from '../user'
 import routes, { StatusUpdate } from '.'
 import { Journey } from '../journey'
+import * as socket from './socket'
+
+const ioMock = {
+  emit: jest.fn(),
+  to: jest.fn()
+}
+
+ioMock.to.mockReturnValue(ioMock)
+
+socket.register(ioMock)
 
 const app = () => express(routes)
 
