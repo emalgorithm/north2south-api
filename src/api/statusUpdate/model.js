@@ -16,7 +16,7 @@ statusUpdateSchema.methods = {
       id: this.id,
       title: this.title,
       content: this.content,
-      createdBy: this.createdBy,
+      createdBy: this.createdBy.view(),
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

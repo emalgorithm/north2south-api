@@ -25,7 +25,7 @@ journeySchema.virtual('checkpoints', {
 })
 
 journeySchema.virtual('statusUpdates', {
-  ref: 'StatusUpdates',
+  ref: 'StatusUpdate',
   localField: '_id',
   foreignField: 'journey'
 })
@@ -65,6 +65,7 @@ journeySchema.methods = {
       owner: this.owner.view(full),
       checkpoints: this.checkpoints || [],
       latestCheckpoint: this.latestCheckpoint,
+      statusUpdates: this.statusUpdates || [],
       name: this.name,
       charities: this.charities,
       description: this.description,
