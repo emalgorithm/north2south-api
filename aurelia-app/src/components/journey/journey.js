@@ -63,6 +63,8 @@ export class Journey {
 
     return this.api.getJourney(params.id).then(journey => {
         journey.checkpoints.reverse()
+        journey.statusUpdates.reverse()
+
         Object.assign(this, ...journey);
 
         // Request to join room for this journey
@@ -193,5 +195,18 @@ export class Journey {
         fjs.parentNode.insertBefore(js, fjs);
       }
     }(document, "script", "twitter-wjs");
+  }
+
+  submitComment() {
+    let comment = {
+      title: this.commentTitle,
+      content: this.commentContent,
+      journey: this.id,
+    }
+
+    this.statusUpdates.unshift({...comment, createdBy: this.authService.user })
+
+    this.apiEndpoint.post('/statusUpdates', comment)
+      .then(response => response)
   }
 }
