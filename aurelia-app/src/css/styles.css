@@ -9,8 +9,18 @@
 }
 
 #map {
-    height: 400px;
-    width: 100%;
+  height: 400px;
+  width: 100%;
+}
+
+#logo {
+  border-radius: 50%;
+}
+
+.isolated {
+  margin-bottom: 100px;
+  clear:both;
+  overflow: hidden;
 }
 
 .card-journey .card-header .card-profile {
