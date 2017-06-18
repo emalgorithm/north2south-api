@@ -1,0 +1,490 @@
+[
+  {
+    "journey": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-01T18:10:55.165Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-01T18:10:55.165Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-02T15:10:55.165Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-02T15:10:55.165Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-03T18:30:55.165Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-03T18:30:55.165Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-04T18:10:55.165Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-04T18:10:55.165Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-05T18:10:45.004Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-05T18:10:45.004Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-06T18:10:34.363Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-06T18:10:34.363Z"
+    }
+  },
+
+
+
+
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-05T18:10:23.692Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-05T18:10:23.692Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-06T18:09:28.494Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-06T18:09:28.494Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-07T18:09:19.661Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-07T18:09:19.661Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727d9c1c04200d8cbcc7a"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-08T18:09:06.012Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-08T18:09:06.012Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-09T18:08:49.393Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-09T18:08:49.393Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727ccc1c04200d8cbcc79"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-10T18:07:57.418Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-10T18:07:57.418Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727ccc1c04200d8cbcc79"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-11T18:07:43.321Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-11T18:07:43.321Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727ccc1c04200d8cbcc79"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-12T18:07:29.811Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-12T18:07:29.811Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727ccc1c04200d8cbcc79"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-13T18:07:14.499Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-13T18:07:14.499Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727ccc1c04200d8cbcc79"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-14T18:07:04.936Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-14T18:07:04.936Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-15T18:06:52.990Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-15T18:06:52.990Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "593728a0ff82580150333ee4"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-16T18:06:36.045Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-16T18:06:36.045Z"
+    }
+  },
+
+
+
+
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-05T18:10:23.692Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-05T18:10:23.692Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-06T18:09:28.494Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-06T18:09:28.494Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-07T18:09:19.661Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-07T18:09:19.661Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-08T18:09:06.012Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-08T18:09:06.012Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-09T18:08:49.393Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-09T18:08:49.393Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-10T18:07:57.418Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-10T18:07:57.418Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-11T18:07:43.321Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-11T18:07:43.321Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-12T18:07:29.811Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-12T18:07:29.811Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-13T18:07:14.499Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-13T18:07:14.499Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-14T18:07:04.936Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-14T18:07:04.936Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-15T18:06:52.990Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-15T18:06:52.990Z"
+    }
+  },
+  {
+    "journey": {
+      "$oid": "59372894ff82580150333ee3"
+    },
+    "title": "Another day in the office",
+    "createdBy": {
+      "$oid": "593727b7c1c04200d8cbcc78"
+    },
+    "content": "I had an amazing morning with my friend Jack. We had tea together and then I took off.",
+    "createdAt": {
+      "$date": "2017-06-16T18:06:36.045Z"
+    },
+    "updatedAt": {
+      "$date": "2017-06-16T18:06:36.045Z"
+    }
+  }
+]

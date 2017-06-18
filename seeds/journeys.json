@@ -6,10 +6,6 @@
     "charities": ["4", "2"],
     "description": "On an attempt to support Unicef and the British Heart foundation me and a few collegaues from Imperial College London are climbing mount Kilimanjaro.",
     "donateUrl": "http://emanuelerossi.co.uk/",
-    "statusUpdates": [
-      { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Day 3", "content": "Getting ready for the attack of the peak. Starting the climb at midnight, see you on top!" }
-    ],
     "destination": {
       "longitude": 51.4989,
       "latitude": 30.1790
@@ -22,10 +18,6 @@
     "charities": ["3", "4"],
     "description": "The Route will start off at the 6th degree on the polar ice and finish at the 1st degree, the south pole, covering a distance of 123km.",
     "donateUrl": "https://uk.virginmoneygiving.com/donation-web/fundraiser?fundraiserActivityId=734296&stop_mobi=yes",
-    "statusUpdates": [
-      { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Day 5", "content": "It very cold here! Very very cold!" }
-    ],
     "destination": {
       "longitude": 51.4989,
       "latitude": 30.1790
@@ -38,10 +30,6 @@
     "charities": ["1", "6"],
     "description": "Join my trip in an attempt to face the most scaring pointers of the world. int **p = ** (int ****) x; Oh dear.. Look at that!",
     "donateUrl": "https://www.stackoverflow.com",
-    "statusUpdates": [
-      { "title": "Day 2", "content": "Another great day in the office"},
-      { "title": "Day 1", "content": "Another great day in the office! *************ptr = null;" }
-    ],
     "destination": {
       "longitude": 51.4989,
       "latitude": 30.1790
