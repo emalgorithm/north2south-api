@@ -115,14 +115,48 @@
     </div>
 
     <div class="row">
-      <div class="container-fluid">
-        <div repeat.for="s of statusUpdates" class="row">
-          <div class="col-md-12">
-            <div class="content">
-              <h2 class="card-title">${s.title}</h2>
-              <p>${s.content}</p>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="title">Discussion board</h4>
+          <p class="category">Interact with ${owner.name} and the rest of his followers</p>
+        </div>
+        <div class="card-content container-fluid">
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group label-floating is-empty">
+                  <label class="control-label">Heading</label>
+                  <input type="text" class="form-control">
+                  <span class="material-input"></span>
+                </div>
+              </div>
             </div>
-          </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Comment</label>
+                  <div class="form-group is-empty">
+                    <textarea class="form-control" rows="5"></textarea>
+                    <span class="material-input"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Comment</button>
+            <div class="clearfix"></div>
+          </form>
+
+          <hr>
+          
+          <div repeat.for="s of statusUpdates" class="row">
+            <div class="col-md-12">
+              <div class="content">
+                <h3 class="card-title">${s.title}</h2>
+                <p>${s.content}</p>
+                <hr>
+              </div>
+            </div>
+          </div>  
         </div>
       </div>
     </div>
