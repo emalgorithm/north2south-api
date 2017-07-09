@@ -118,6 +118,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "numeral",
           {
             "name": "aurelia-fetch-client",
             "main": "aurelia-fetch-client",
