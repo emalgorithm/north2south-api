@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import DeepPopulate from 'mongoose-deep-populate'
+import { distance } from './latlong-distance'
 
 const journeySchema = new Schema({
   name: { type: String, required: true},
@@ -44,6 +45,21 @@ journeySchema.virtual('latestStatusUpdate')
       : undefined
   })
 
+journeySchema.virtual('distanceTotal')
+  .get(function() {
+    var prev = undefined;
+    var total = 0;
+    for (let c of this.checkpoints) {
+      if (c.longitude && c.latitude) {
+        if (prev) {
+          total += distance(prev, c)
+        }
+        prev = c
+      }
+    }
+    return total
+  })
+
 journeySchema.methods = {
   focused () {
     var focusedJourney = {
@@ -66,6 +82,7 @@ journeySchema.methods = {
       owner: this.owner.view(full),
       checkpoints: this.checkpoints || [],
       latestCheckpoint: this.latestCheckpoint,
+      distanceTotal: this.distanceTotal,
       statusUpdates: this.statusUpdates || [],
       name: this.name,
       charities: this.charities,
