@@ -20,37 +20,47 @@ beforeEach(async () => {
       longitude: 43.3
     }});
 
-  checkpoint1 = await Checkpoint.create({ journey: journey._id, distance: 1 })
-  checkpoint2 = await Checkpoint.create({ journey: journey._id, distance: 2 })
+  checkpoint1 = await Checkpoint.create({ journey: journey._id, distance: 1, longitude: 3, latitude: 3 })
+  checkpoint2 = await Checkpoint.create({ journey: journey._id, distance: 2, longitude: 2, latitude: 3 })
 })
 
 describe('view', () => {
-  it('returns simple view', () => {
-    const view = journey.view()
-    expect(typeof view).toBe('object')
-    expect(view.id).toBe(journey.id)
-    expect(typeof view.owner).toBe('object')
-    expect(view.owner.id).toBe(user.id)
-    expect(view.name).toBe(journey.name)
-    expect(view.description).toBe(journey.description)
-    expect(view.donateUrl).toBe(journey.donateUrl)
-    expect(view.destination).toBe(journey.destination)
-    expect(view.createdAt).toBeTruthy()
-    expect(view.updatedAt).toBeTruthy()
+  it('returns simple view', (done) => {
+    Journey.findOne().populate('checkpoints').exec(function(err, journey) {
+      console.error(err)
+      const view = journey.view()
+      expect(typeof view).toBe('object')
+      expect(view.id).toBe(journey.id)
+      expect(typeof view.owner).toBe('object')
+      expect(view.owner.id).toBe(user.id)
+      expect(view.name).toBe(journey.name)
+      expect(view.description).toBe(journey.description)
+      expect(view.donateUrl).toBe(journey.donateUrl)
+      expect(view.destination).toBe(journey.destination)
+      expect(view.createdAt).toBeTruthy()
+      expect(view.updatedAt).toBeTruthy()
+      expect(view.distanceTotal).toBeGreaterThan(0);
+      done()
+    })
   })
 
-  it('returns full view', () => {
-    const view = journey.view(true)
-    expect(typeof view).toBe('object')
-    expect(view.id).toBe(journey.id)
-    expect(typeof view.owner).toBe('object')
-    expect(view.owner.id).toBe(user.id)
-    expect(view.name).toBe(journey.name)
-    expect(view.description).toBe(journey.description)
-    expect(view.donateUrl).toBe(journey.donateUrl)
-    expect(view.destination).toBe(journey.destination)
-    expect(view.createdAt).toBeTruthy()
-    expect(view.updatedAt).toBeTruthy()
+  it('returns full view', (done) => {
+    Journey.findOne().populate('checkpoints').exec(function(err, journey) {
+
+      const view = journey.populate('checkpoints').view(true)
+      expect(typeof view).toBe('object')
+      expect(view.id).toBe(journey.id)
+      expect(typeof view.owner).toBe('object')
+      expect(view.owner.id).toBe(user.id)
+      expect(view.name).toBe(journey.name)
+      expect(view.description).toBe(journey.description)
+      expect(view.donateUrl).toBe(journey.donateUrl)
+      expect(view.destination).toBe(journey.destination)
+      expect(view.createdAt).toBeTruthy()
+      expect(view.updatedAt).toBeTruthy()
+      expect(view.distanceTotal).toBeGreaterThan(0);
+      done()
+    })
   })
 
   it('populates checkpoints', (done) => {

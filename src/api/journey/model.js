@@ -49,6 +49,10 @@ journeySchema.virtual('distanceTotal')
   .get(function() {
     var prev = undefined;
     var total = 0;
+    if (!this.checkpoints) {
+      return total;
+    }
+    
     for (let c of this.checkpoints) {
       if (c.longitude && c.latitude) {
         if (prev) {
