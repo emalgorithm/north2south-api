@@ -17,6 +17,7 @@
     "bluebird": "^3.4.1",
     "material-dashboard": "^1.0.0",
     "moment": "^2.18.1",
+    "numeral": "^2.0.6",
     "requirejs": "^2.3.2",
     "socket.io-client": "^2.0.3",
     "text": "github:requirejs/text#latest",
